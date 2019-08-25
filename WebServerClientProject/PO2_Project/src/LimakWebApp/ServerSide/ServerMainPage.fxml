@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" prefHeight="400.0" prefWidth="350.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LimakWebApp.ServerSide.MainPageController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane id="mainPane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="350.0">
+         <children>
+            <TreeView fx:id="serverTreeView" layoutX="14.0" layoutY="61.0" prefHeight="270.0" prefWidth="150.0" />
+            <TextField fx:id="serverStatusText" editable="false" layoutX="187.0" layoutY="306.0" prefHeight="25.0" prefWidth="153.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="serverFixedText" alignment="CENTER" disable="true" editable="false" layoutX="187.0" layoutY="275.0" opacity="0.99" prefHeight="25.0" prefWidth="153.0" text="STATUS:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="serverTitle" alignment="CENTER" disable="true" editable="false" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.99" prefHeight="40.0" prefWidth="324.0" style="-fx-alignment: center;" text="FileTransferService::Server" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </TextField>
+            <ListView fx:id="listView" layoutX="194.0" layoutY="93.0" prefHeight="168.0" prefWidth="139.0" />
+            <TextField fx:id="serverFixedText1" alignment="CENTER" disable="true" editable="false" layoutX="187.0" layoutY="61.0" opacity="0.99" prefHeight="25.0" prefWidth="153.0" text="CLIENTS:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </TextField>
+            <Label layoutX="14.0" layoutY="331.0" prefHeight="17.0" prefWidth="55.0" text="Error log:" />
+            <ScrollPane fx:id="log" layoutX="14.0" layoutY="348.0" prefHeight="40.0" prefWidth="324.0">
+               <VBox fx:id="logContent" layoutX="14.0" layoutY="348.0" maxHeight="Infinity" maxWidth="304" minWidth="304" prefWidth="304" />
+            </ScrollPane>
+         </children></AnchorPane>
+   </children>
+</GridPane>
