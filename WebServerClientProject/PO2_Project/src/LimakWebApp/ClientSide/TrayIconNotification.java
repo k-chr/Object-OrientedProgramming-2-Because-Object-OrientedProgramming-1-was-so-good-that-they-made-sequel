@@ -25,6 +25,13 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * <h1>TrayIconNotification</h1>
+ * This class provides tray notification for client app.
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   10.08.2019
+ */
 public class TrayIconNotification extends JFrame {
 
     private Timer notificationTimer;
@@ -36,6 +43,11 @@ public class TrayIconNotification extends JFrame {
     private static final String iconImageLoc =
             "src/LimakWebApp/Resources/progIcoSmall.png";
 
+    /**
+     * This constructor initializes {@link MediaTracker}, checks if trays notifications are available on system, reads an image for tray icon, and adds tray to given stage
+     * @param user credentials to display tray notification
+     * @param stage stage to apply tray notification to
+     */
     public TrayIconNotification(CredentialPacket user, Stage stage){
         tracker = new MediaTracker(this);
         if (!SystemTray.isSupported()) {

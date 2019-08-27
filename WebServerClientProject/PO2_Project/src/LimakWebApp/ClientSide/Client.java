@@ -24,10 +24,28 @@ import java.util.Date;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * <h1>Client</h1>
+ * This class is used by:
+ * <pre>
+ * {@link MainPageController}
+ * </pre>
+ * to manage business logic operations
+ *
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   20.05.2019
+ */
 public class Client extends ServicesHandler {
 
     Window windowToClose;
 
+    /**
+     * This constructor sets a controller provided from {@link ClientApp} and calls super()
+     * @param socketHandler indicates package of sockets needed to perform any networking
+     * @param packet indicates the data of user who uses the client service
+     * @throws IOException if {@code socketHandler} is not valid.
+     */
     public Client(SocketHandler socketHandler, CredentialPacket packet) throws IOException {
         super(socketHandler, packet, "");
         setController(ClientApp.getController(true));
@@ -50,6 +68,10 @@ public class Client extends ServicesHandler {
         getNotificationService().sendObject(new MessageToSend(getLocalEndPoint(), MessageToSend.COMMAND_TYPE.LOG_OUT_DEMAND));
     }
 
+    /**
+     * This method handles received commands to perform indicated operations
+     * @param command the data package with several instructions
+     */
     @Override
     protected void rcvCmd(MessageToSend command) {
         switch(command.getCommandType()){
@@ -136,11 +158,7 @@ public class Client extends ServicesHandler {
                 }
                 break;
             }
-            case SHARE_FILE_TO_USER:{
-                getNotificationService().sendObject(command);
-                break;
-            }
-            case REMOVE_USER_FROM_FILE_OWNERS:{
+            case SHARE_FILE_TO_USER: case REMOVE_USER_FROM_FILE_OWNERS:{
                 getNotificationService().sendObject(command);
                 break;
             }
@@ -151,6 +169,10 @@ public class Client extends ServicesHandler {
         });
     }
 
+    /**
+     * This method saves file in Client's <i>Download</i> directory
+     * @param filePacket the data package to save on drive
+     */
     @Override
     protected void saveFile(FilePacket filePacket) {
         File root = new File(getLocalEndPoint().getUserFolderPath());
@@ -195,6 +217,10 @@ public class Client extends ServicesHandler {
         }
     }
 
+    /**
+     * These method sends a list of files to server
+     * @param data the entry of map that contains a user's credentials as a <code>key</code> and list of file names as a <code>value</code>
+     */
     @Override
     protected void sendListOfFiles(Map.Entry<CredentialPacket, ArrayList<String>> data) {
         if(data == null || data.getValue().size() == 0 || data.getKey() == null) return;

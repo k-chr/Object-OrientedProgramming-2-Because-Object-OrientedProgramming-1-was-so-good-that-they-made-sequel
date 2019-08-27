@@ -23,6 +23,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 
+/**
+ * <h1>Server</h1>
+ * This class provides clients authorization and handles all networking on server's side
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   12.06.2019
+ */
 public class Server{
 
     private Thread authThread;
@@ -34,6 +41,9 @@ public class Server{
     private volatile Socket socket = null;
     private volatile ArrayList<CommunicationServiceThreadHandler> threadList = new ArrayList<>();
 
+    /**
+     * Constructor of Server. Initializes server's sockets.
+     */
     public Server(){
         try{
             server = new ServerSocket(Constants.authPort);
@@ -55,6 +65,9 @@ public class Server{
         }
     }
 
+    /**
+     * This method destroys all connections and closes ServerApp
+     */
     public void clearUpConnection(){
         Timer timer = new Timer();
         timer.schedule(
@@ -97,6 +110,10 @@ public class Server{
         );
     }
 
+    /**
+     * This method serves given socket in separated thread. Performs authorization of single connection and rejects or accepts new client.
+     * @param socket Accepted socket to authorize
+     */
     public void processSocket(Socket socket){
         Socket authSocket = socket;
         Runnable task = ()->{
@@ -156,6 +173,9 @@ public class Server{
         new Thread(task).start();
     }
 
+    /**
+     * This method accepts new sockets in loop.
+     */
     public void acceptClients(){
         while(!isItTimeToStop) {
             try {
@@ -167,6 +187,11 @@ public class Server{
         }
     }
 
+    /**
+     * This method finds connection assigned to user and shares file to user
+     * @param to User - the future owner of file
+     * @param item item to share
+     */
     public void shareToUser(CredentialPacket to, String item){
         CommunicationServiceThreadHandler handlerTemp =  threadList.stream().filter(handler->handler.getRemoteEndPoint().equals(to)).findAny().orElse(null);
         if(handlerTemp != null){
@@ -174,14 +199,26 @@ public class Server{
         }
     }
 
+    /**
+     * This method sets boolean flag to given value to stop or not process of accepting new sockets.
+     * @param value value to set
+     */
     public synchronized void setItTimeToStop(boolean value){
         isItTimeToStop = value;
     }
 
+    /**
+     * This method sets the reference to authorization thread
+     * @param authThread Reference to thread
+     */
     public void setAuthThread(Thread authThread) {
         this.authThread = authThread;
     }
 
+    /**
+     * This method gives access to instance of authorization thread.
+     * @return Thread
+     */
     public Thread getAuthThread() {
         return authThread;
     }

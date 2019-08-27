@@ -9,14 +9,29 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * <h1>ServerApp</h1>
+ * This class runs server application
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   12.08.2019
+ */
 public class ServerApp extends Application {
     private static FXMLLoader loader;
 
     @FXML
     private static MainPageController mainPageController;
 
+    /**
+     * Default constructor
+     */
     public ServerApp(){}
 
+    /**
+     * This method starts application, creates stage and runs authorization thread.
+     * @param primaryStage - the parameter inherited from abstract declaration in super class
+     * @throws Exception throws if there are problems with stage creation or application can't start
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage = createStage("ServerMainPage.fxml", 400, 400);
@@ -32,6 +47,10 @@ public class ServerApp extends Application {
         });
     }
 
+    /**
+     * This method launches application
+     * @param args Arguments provided to run application
+     */
     public static void main(String[] args) {
         launch(args);
     }

@@ -11,6 +11,13 @@ import java.net.Socket;
 
 import java.util.concurrent.Callable;
 
+/**
+ * <h1>AuthAgent</h1>
+ * This class is used by {@link LoginPageController} to perform authorization process with server
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   01.08.2019
+ */
 public class AuthAgent implements Callable<Integer> {
 
     private volatile CredentialPacket credentialPacket;
@@ -18,18 +25,33 @@ public class AuthAgent implements Callable<Integer> {
     private volatile ObjectOutputStream inputSender;
     private volatile ObjectInputStream inputReceiver;
 
+    /**
+     * This method sets a socket necessary to perform initial communication with server.
+     * @param socket an authorization socket to set
+     */
     public void setSocket(Socket socket){
         this.socket = socket;
     }
 
+    /**
+     * This method sets credentials to perform initial communication with server.
+     * @param packet credentials received from {@link LoginPageController}
+     */
     public void setCredentialPacket(CredentialPacket packet){
         this.credentialPacket = packet;
     }
 
+    /**
+     * This method returns a reference to credentials of user who is trying to log in.
+     * @return CredentialPacket
+     */
     public CredentialPacket getCredentialPacket() {
         return credentialPacket;
     }
 
+    /**
+     * This method closes streams and sockets created or assigned during process of authentication
+     */
     public void closeInitConnection(){
         try{
             inputReceiver.close();
@@ -45,6 +67,7 @@ public class AuthAgent implements Callable<Integer> {
     AuthAgent(){
 
     }
+
     String getSessionID(){
         try {
             return (String) inputReceiver.readObject();
@@ -54,19 +77,18 @@ public class AuthAgent implements Callable<Integer> {
             return "";
         }
     }
+
     private void initStreams(){
         try {
             inputSender = new ObjectOutputStream(this.socket.getOutputStream());
             inputSender.flush();
-            System.out.println("got output stream");
             InputStream input = this.socket.getInputStream();
             inputReceiver = new ObjectInputStream(input);
-            System.out.println("got input stream");
         }
         catch(IOException ignore){
-            ignore.printStackTrace();
         }
     }
+
     private synchronized Integer authorize(){
         try {
             inputSender.writeObject(this.credentialPacket);
@@ -79,6 +101,10 @@ public class AuthAgent implements Callable<Integer> {
         }
     }
 
+    /**
+     * This method initializes streams returns a result code of authentication process.
+     * @return Integer
+     */
     @Override
     public Integer call() {
         initStreams();

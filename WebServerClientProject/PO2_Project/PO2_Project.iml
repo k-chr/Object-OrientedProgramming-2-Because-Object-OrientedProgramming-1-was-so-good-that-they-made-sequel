@@ -6,20 +6,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/Program Files/Java/json-20180813.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files/Java/gson-2.8.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/gson-2.8.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,20 +19,106 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files/Java/javamail1_4_7/javamail-1.4.7/mail.jar!/" />
-          <root url="file://C:/Program Files/Java/javamail1_4_7/javamail-1.4.7/lib" />
+          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/mail.jar!/" />
         </CLASSES>
-        <JAVADOC>
-          <root url="file://C:/Program Files/Java/javamail1_4_7/javamail-1.4.7/docs/javadocs" />
-        </JAVADOC>
+        <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://C:/Program Files/Java/javamail1_4_7/javamail-1.4.7/lib" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files/Java/javax.activation-1.1.0.v201108011116.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/dsn.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/gimap.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/imap.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/mailapi.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/pop3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/smtp.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/gradle/wrapper/gradle-wrapper.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/junit-jupiter-engine/src/test/resources/jupiter-testjar.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/junit-vintage-engine/src/test/resources/vintage-testjar.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/platform-tests/src/test/resources/gh-1436-invalid-nested-class-file.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/platform-tests/src/test/resources/jartest.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

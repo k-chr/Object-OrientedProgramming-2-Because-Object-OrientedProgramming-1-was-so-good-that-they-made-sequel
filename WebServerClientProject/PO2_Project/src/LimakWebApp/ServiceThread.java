@@ -17,6 +17,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * <h1>ServiceThread</h1>
+ * This class performs sockets transfer operations
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   02.07.2019
+ */
 public class ServiceThread {
 
     private ServicesHandler parentHandler;
@@ -28,6 +35,13 @@ public class ServiceThread {
     private volatile ObjectOutputStream outputStream;
     private volatile Boolean sendExit = false;
 
+    /**
+     * Constructor of ServiceThread, sets socket, gets I/O streams.
+     * @param socket socket to set
+     * @param type type of services to perform
+     * @param parent the creator of new instance
+     * @throws IOException if there are problems with connections
+     */
     public ServiceThread(Socket socket, String type, ServicesHandler parent)throws IOException {
         parentHandler = parent;
         this.socket = socket;
@@ -38,6 +52,10 @@ public class ServiceThread {
         token = this.type.equals("FileService") ? "file" : (this.type.equals("NotificationService") ? "notification" : "authorization packet");
     }
 
+    /**
+     * This method gets object or objects
+     * @param conditionalIgnored Indicates if method should get object continuously or perform action one time.
+     */
     public synchronized void getObject(boolean conditionalIgnored) {
         Runnable task = () -> {
             do {
@@ -74,6 +92,10 @@ public class ServiceThread {
         }
     }
 
+    /**
+     * This method sends object via socket.
+     * @param object Object to send
+     */
     public synchronized void sendObject(Object object) {
         if(socket.isClosed() || socket.isOutputShutdown()) return;
         Runnable task = () -> {
@@ -102,12 +124,20 @@ public class ServiceThread {
         transferService.submit(task);
     }
 
+    /**
+     * This method submit task to owned thread pool.
+     * @param task task to perform
+     */
     public synchronized void submitTask(Runnable task){
         synchronized (transferService) {
             transferService.submit(task);
         }
     }
 
+    /**
+     * This method indicates if loop in getObject should stop operations
+     * @param value value to set
+     */
     public synchronized  void setSendExit(Boolean value){
         sendExit = value;
     }

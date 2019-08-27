@@ -56,6 +56,13 @@ import java.util.stream.Collectors;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+/**
+ * <h1>DataPair</h1>
+ * This class is used by {@link MainPageController} maintain list of clients
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   12.08.2019
+ */
 class DataPair implements Map.Entry<CredentialPacket, Boolean>{
 
     private CredentialPacket key;
@@ -103,6 +110,14 @@ class DataPair implements Map.Entry<CredentialPacket, Boolean>{
     }
 
 }
+
+/**
+ * <h1>MainPageController</h1>
+ * This class performs GUI operations and some business logic for Server
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   20.06.2019
+ */
 public class MainPageController extends Controller {
 
     @FXML
@@ -127,6 +142,9 @@ public class MainPageController extends Controller {
     private volatile ObservableList<DataPair> packetBooleanObservableList;
     private volatile Set<String> ids;
 
+    /**
+     * Constructor of ServerSide.MainPageController, initializes Server, set of string and calls super()
+     */
     public MainPageController(){
         super();
         ids = new HashSet<>();
@@ -176,6 +194,11 @@ public class MainPageController extends Controller {
         addLog(Constants.LogType.INFO, new Date().toString() + ":\nWaiting for the clients...\n");
     }
 
+    /**
+     * This method adds given filename to RunTimeMap, provided that given user is valid.
+     * @param user Owner of file represented by filename.
+     * @param fileName File to add.
+     */
     public void addToRuntimeMap(CredentialPacket user, String fileName){
         for (Map.Entry<CredentialPacket, ArrayList<String>> next : runTimeMapOfFileOwners.entrySet()) {
             if (next.getKey().equals(user)) {
@@ -185,6 +208,12 @@ public class MainPageController extends Controller {
         }
     }
 
+    /**
+     * This method removes user from list of owners of given file. Returns true if method succeeded to remove user.
+     * @param fileName The file owned by provided user
+     * @param user The user whose ownership to provided file will be abolished
+     * @return boolean
+     */
     public synchronized boolean removeUserFromFileOwners(String fileName, CredentialPacket user){
         boolean rV = false;
         for(DiskMap disk : serverDiskMap){
@@ -196,6 +225,11 @@ public class MainPageController extends Controller {
         return rV;
     }
 
+    /**
+     * This method adds user to owners of given file and if user is active the file is added to runtime map.
+     * @param to The user who file would be shared with.
+     * @param item File to share.
+     */
     public void shareFile(CredentialPacket to, String item){
         addUserToFileOwners(item,to);
         if(getActiveListOfClients().contains(to)){
@@ -206,6 +240,10 @@ public class MainPageController extends Controller {
         }
     }
 
+    /**
+     * This method return the list of logged out users
+     * @return {@code ArrayList<CredentialPacket>}
+     */
     public ArrayList<CredentialPacket> getInactiveListOfClients(){
         return listOfClients.entrySet().stream()
                 .filter(client->client.getValue() == false)
@@ -213,6 +251,10 @@ public class MainPageController extends Controller {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * This method returns the list of legged in users
+     * @return {@code ArrayList<CredentialPacket>}
+     */
     public ArrayList<CredentialPacket> getActiveListOfClients(){
         return listOfClients.entrySet().stream()
                 .filter(client->client.getValue())
@@ -220,6 +262,11 @@ public class MainPageController extends Controller {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * This method returns set of filenames owned by given user.
+     * @param packet the user who owns some files
+     * @return {@code Set<String>}
+     */
     public Set<String> getListOfFilesForUser(CredentialPacket packet){
         Set<String> rV = new HashSet<>();
         for(DiskMap disk : serverDiskMap){
@@ -229,6 +276,12 @@ public class MainPageController extends Controller {
         return rV;
     }
 
+    /**
+     * This method returns list of files missing in files' list received from user.
+     * @param user Owner of list to compare
+     * @param userFileList list of filenames to compare
+     * @return {@code Map.Entry<CredentialPacket, ArrayList<String>>}
+     */
     public Map.Entry<CredentialPacket, ArrayList<String>> compareUserAndServerList(CredentialPacket user, ArrayList<String> userFileList){
         Map.Entry<CredentialPacket, ArrayList<String>> rV = null;
         ArrayList<String> outList = new ArrayList<>();
@@ -242,6 +295,9 @@ public class MainPageController extends Controller {
         return rV;
     }
 
+    /**
+     * This method cleans connections, drops email session, dumps server control files, and shutdowns {@link ScheduledExecutorService}
+     */
     public void cleanUp(){
         dumpListOfClients();
         for(int i = 0; i < serverDiskMap.size(); ++i){
@@ -266,10 +322,19 @@ public class MainPageController extends Controller {
         server.clearUpConnection();
     }
 
+    /**
+     * This method puts an ID to hash set of IDs.
+     * @param strId unique ID to put
+     */
     public synchronized void putId(String strId){
         ids.add(strId);
     }
 
+    /**
+     * This method checks if file is on server and returns directory name succeeded to find
+     * @param fileName File to search
+     * @return String
+     */
     public String findFileInServer(String fileName){
         for(String dir : Constants.getDirectories(this)){
             String outName = Constants.getServerDirectory(this) + "\\" + dir;
@@ -285,6 +350,11 @@ public class MainPageController extends Controller {
         return "";
     }
 
+    /**
+     * This method updates list of clients for given user and status
+     * @param packet User to update its state
+     * @param value State, if true the user is on-line otherwise user is off-line
+     */
     public synchronized void updateListOfClients(CredentialPacket packet, Boolean value){
         listOfClients.put(packet, value);
         Platform.runLater(()-> {
@@ -293,6 +363,9 @@ public class MainPageController extends Controller {
         });
     }
 
+    /**
+     * This method authorizes and accepts clients
+     */
     public void authorize(){
         server.acceptClients();
     }
@@ -466,14 +539,12 @@ public class MainPageController extends Controller {
         String stringPath = Constants.getServerDirectory(this);
         File rootFile = new File (stringPath);
         if(!rootFile.exists()){
-            rootFile.mkdir();
+            rootFile.mkdirs();
         }
         File[] listingDir = rootFile.listFiles();
-        if(listingDir != null) {
-            if (listingDir.length < 5) {
-                for (String str : directories) {
-                    new File(stringPath + "\\" + str).mkdir();
-                }
+        if(listingDir == null || (listingDir  != null && listingDir.length < 5)) {
+            for (String str : directories) {
+               new File(stringPath + "\\" + str).mkdir();
             }
         }
         return;
@@ -636,38 +707,69 @@ public class MainPageController extends Controller {
         return serverDiskMap.get(idx);
     }
 
+    /**
+     * This method returns server's credentials
+     * @return CredentialPacket
+     */
     public CredentialPacket getCredentialPacket() {
         return credentialPacket;
     }
 
+    /**
+     * This method returns Server instance
+     * @return Server
+     */
     public Server getServer() {
         return server;
     }
 
+    /**
+     * This method returns instance of email session
+     * @return EmailUtil
+     */
     public EmailUtil getEmailSession() {
         return emailSession;
     }
 
+    /**
+     * This method returns full list of clients with current states
+     * @return ListOfClients
+     */
     public ListOfClients getListOfClients(){
         return  listOfClients;
     }
 
-
+    /**
+     * This method clears root of tree of files.
+     */
     @Override
     public void clearRoot() {
         serverTreeView.setRoot(null);
     }
 
+    /**
+     * This method is a public accessor of {@link #displayTreeView()}.
+     */
     @Override
     public void displayTree() {
         displayTreeView();
     }
 
+    /**
+     * Method sets current status of client application.
+     * @param string status to set
+     */
     @Override
     @FXML
     public void setStatusText(String string){
         serverStatusText.setText(string);
     }
+
+    /**
+     * Adds new log message to log pane with specified type and content.
+     * @param logType type of message.
+     * @param message content of message, usually contains a date of message and some basic content which indicates performed action.
+     */
     @Override
     @FXML
     public void addLog(Constants.LogType logType, String message){

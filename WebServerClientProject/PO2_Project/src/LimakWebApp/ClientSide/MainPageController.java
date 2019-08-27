@@ -63,6 +63,13 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import static java.nio.file.StandardWatchEventKinds.*;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+/**
+ * <h1>MainPageController</h1>
+ * This class performs GUI operations and some business logic for Client
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   20.05.2019
+ */
 public class MainPageController extends Controller {
 
     @FXML
@@ -99,6 +106,9 @@ public class MainPageController extends Controller {
     private String itemToShare = null;
     private WatchService watchService;
 
+    /**
+     * This constructor calls super().
+     */
     public MainPageController(){
         super();
     }
@@ -196,6 +206,9 @@ public class MainPageController extends Controller {
         lock = new ReentrantReadWriteLock();
     }
 
+    /**
+     * This method performs shutdown of all {@link ExecutorService} objects, closes {@link WatchService} and {@link Client}.
+     */
     public void cleanUp(){
         Platform.runLater(()->{
             setStatusText("Closing...");
@@ -215,9 +228,9 @@ public class MainPageController extends Controller {
             io.printStackTrace();
         }
         try {
-            scheduler.awaitTermination(3, SECONDS);
-            watcherServiceTh.awaitTermination(3, SECONDS);
-            pool.awaitTermination(3, SECONDS);
+            scheduler.awaitTermination(10, SECONDS);
+            watcherServiceTh.awaitTermination(10, SECONDS);
+            pool.awaitTermination(10, SECONDS);
         }
         catch(InterruptedException ie){
             pool.shutdownNow();
@@ -226,10 +239,20 @@ public class MainPageController extends Controller {
         }
     }
 
+    void createDirectories(){
+        File dir = new File(credentialPacket.getUserFolderPath());
+        if(!dir.exists() && dir.isDirectory()){
+            dir.mkdirs();
+        }
+    }
+
     boolean checkIfMinimized(){
         return ((Stage)tView.getScene().getWindow()).isIconified();
     }
 
+    /**
+     * This method runs client's directory watcher to manage file events.
+     */
     public void runWatcher(){
         Runnable task = ()->{
             try {
@@ -270,11 +293,21 @@ public class MainPageController extends Controller {
         };
         watcherServiceTh.submit(task);
     }
+
+    /**
+     * This method register user directory to watcher to manage new and removed files.
+     * @throws IOException if path to directory is not valid
+     */
     public void registerDirectoriesForWatchService() throws  IOException{
         Path path = Paths.get(credentialPacket.getUserFolderPath());
         path.register(watchService, ENTRY_CREATE, ENTRY_DELETE);
     }
 
+    /**
+     * This method updates received list of users from server.
+     * @param itemsToAdd List of users' names to add
+     * @param which Indicates which list should be updated - the active or inactive users' list
+     */
     public void updateListOfUsers(ArrayList<String> itemsToAdd, boolean which){
         if(which) {
             activeUsersObservableList.clear();
@@ -285,11 +318,19 @@ public class MainPageController extends Controller {
             inactiveUsersObservableList.addAll(itemsToAdd);
         }
     }
+
+    /**
+     * This method shows lists of users (inactive and active users).
+     */
     public void showUsers(){
         tView.setDisable(true);
         viewOfClientsToShare.setVisible(true);
         setStatusText("Choose user");
     }
+
+    /**
+     * This method displays user's directory contents in tree.
+     */
     public void displayTreeView() {
         String inputDirectoryLocation = credentialPacket.getUserFolderPath();
         String[] path = inputDirectoryLocation.split("\\\\");
@@ -426,6 +467,11 @@ public class MainPageController extends Controller {
         }
     }
 
+    /**
+     * This method compares server's list and user's list to indicate if there are any new files on server.
+     * @param serverFileList List of user's files that are assigned to him on server
+     * @return boolean
+     */
     public boolean checkIfAreNewFiles(ArrayList<String> serverFileList){
         ArrayList<String> outList = new ArrayList<>();
         lock.writeLock().lock();
@@ -446,6 +492,11 @@ public class MainPageController extends Controller {
         return outList.size() > 0;
     }
 
+    /**
+     * This methods compares local and remote user's list of files and returns for current user list of filenames that are unique locally.
+     * @param serverFileList List of user's files that are assigned to him on server
+     * @return <pre>{@code Map.Entry<CredentialPacket, ArrayList<String>>}</pre>
+     */
     public Map.Entry<CredentialPacket, ArrayList<String>> compareUserAndServerList( ArrayList<String> serverFileList){
         Map.Entry<CredentialPacket, ArrayList<String>> rV = null;
         ArrayList<String> outList = new ArrayList<>();
@@ -469,22 +520,42 @@ public class MainPageController extends Controller {
         return rV;
     }
 
+    /**
+     * This method sets an ID of current session.
+     * @param sessionID received ID from server
+     */
     public void setSessionID(String sessionID) {
         this.sessionID.setText(sessionID);
     }
 
+    /**
+     * This method sets user's credentials.
+     * @param credentialPacket credentials of user to set
+     */
     public void setCredentialPacket(CredentialPacket credentialPacket) {
         this.credentialPacket = credentialPacket;
     }
 
+    /**
+     * This method sets a client.
+     * @param client Client object to set
+     */
     public void setClient(Client client) {
         this.client = client;
     }
 
+    /**
+     * This method returns current stage.
+     * @return Stage
+     */
     public Stage getStage(){
         return (Stage)logOutButton.getScene().getWindow();
     }
 
+    /**
+     * This method provides access to user's files' list.
+     * @return <pre>{@code ArrayList<String>}</pre>
+     */
     public ArrayList<String> getListOfFiles(){
         return listOfFiles;
     }
@@ -493,37 +564,54 @@ public class MainPageController extends Controller {
         return itemToSend;
     }
 
+    /**
+     * This method is a public accessor of {@link #displayTreeView()}.
+     */
     @Override
     public void displayTree() {
         displayTreeView();
     }
 
+    /**
+     * This method refreshes a tree of files.
+     */
     @Override
     public void refreshTree(){
         Platform.runLater(()-> {
             lock.readLock().lock();
             try {
-                synchronized (listOfFiles) {
-                    listOfFiles.clear();
-                }
+                listOfFiles.clear();
                 super.refreshTree();
-            } finally {
+            }
+            finally {
                 lock.readLock().unlock();
             }
         });
     }
 
+    /**
+     * This method clears root of tree of files.
+     */
     @Override
     public void clearRoot() {
         tView.setRoot(null);
     }
 
+    /**
+     * Method sets current status of client application.
+     * @param string status to set
+     */
     @Override
     @FXML
     public void setStatusText(String string){
         statusText.setText(string);
     }
 
+    /**
+     * Adds new log message to log pane with specified type and content.
+     * @param logType type of message.
+     * @param message content of message, usually contains a date of message and some basic content which indicates performed action.
+     */
     @Override
     @FXML
     public void addLog(Constants.LogType logType, String message){

@@ -23,6 +23,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/**
+ * <h1>LoginPageController</h1>
+ * This class provides ability to log in server or register new user.
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   22.06.2019
+ */
 public class LoginPageController  extends Controller {
 
     Socket socket;
@@ -42,24 +49,32 @@ public class LoginPageController  extends Controller {
     @FXML
     private Button loginButton;
 
+    /**
+     * Default constructor
+     */
     public LoginPageController(){
 
     }
 
+    @Deprecated
     @Override
     public void addLog(Constants.LogType type, String body) {
 
     }
+
+    @Deprecated
     @Override
     public void setStatusText(String text) {
 
     }
 
+    @Deprecated
     @Override
     public void displayTree() {
 
     }
 
+    @Deprecated
     @Override
     public void clearRoot() {
 
@@ -107,6 +122,7 @@ public class LoginPageController  extends Controller {
                     controller.setClient(client);
                     controller.setCredentialPacket( authAgent.getCredentialPacket());
                     client.setController(controller);
+                    controller.createDirectories();
                     controller.displayTreeView();
                     controller.refreshTree();
                     controller.registerDirectoriesForWatchService();

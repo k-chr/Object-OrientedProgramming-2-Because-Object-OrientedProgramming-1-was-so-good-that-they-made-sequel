@@ -21,18 +21,33 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * <h1>EmailUtil</h1>
+ * This class is used by:
+ * {@link Server}
+ * and
+ * {@link MainPageController}
+ * to send email notifications tp users
+ *
+ * @author  Kamil Chrustowski
+ * @version 1.0
+ * @since   13.08.2019
+ */
 public class EmailUtil {
-    /**
-     * Utility method to send simple HTML email
-     * @param session
-     * @param toEmail
-     * @param subject
-     * @param body
-     */
+
     private Session session;
     private ExecutorService pool;
     private  boolean sessionExists = false;
 
+    /**
+     * Utility method to send simple HTML email
+     * @param purpose indicates email's body content and header (greeting new user or new files notification
+     * @param toEmail indicates the receiver of message
+     * @param files array of file names to send in notification
+     * <p> Method uses
+     * {@link ExecutorService}
+     * to submit task of sending email</p>
+     */
     public void sendEmail(CredentialPacket toEmail, Boolean purpose, String...files) {
         Runnable task = () -> {
             try {
