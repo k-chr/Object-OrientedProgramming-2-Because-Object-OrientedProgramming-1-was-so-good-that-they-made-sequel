@@ -240,7 +240,19 @@ public class Server{
                 Integer ret = dataPair.getKey().compareTo(credentialPacket);
                 return ret.equals(0);
             });
-            int rV = newUser ? 9 : (oldUser ? 0 : -1);
+            boolean invalidEmail = listOfClients.stream().anyMatch(dataPair -> {
+                Integer ret = dataPair.getKey().compareTo(credentialPacket);
+                return ret.equals(3) || ret.equals(6);
+            });
+            boolean invalidUsername = listOfClients.stream().anyMatch(dataPair -> {
+                Integer ret = dataPair.getKey().compareTo(credentialPacket);
+                return ret.equals(1) || ret.equals(8);
+            });
+            boolean invalidPath = listOfClients.stream().anyMatch(dataPair -> {
+                Integer ret = dataPair.getKey().compareTo(credentialPacket);
+                return ret.equals(4) || ret.equals(5);
+            });
+            int rV = newUser ? 9 : (oldUser ? 0 : (invalidEmail ? 3 :(invalidUsername ? 1 : (invalidPath ? 4 : -1))));
             outputStream.writeObject(rV);
             outputStream.flush();
             return new HashMap.SimpleEntry<>(credentialPacket, rV);

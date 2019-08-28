@@ -1,5 +1,6 @@
 package LimakWebApp.ClientSide;
 
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import LimakWebApp.Utils.Constants;
 import LimakWebApp.DataPackets.CredentialPacket;
@@ -103,15 +104,6 @@ public class LoginPageController  extends Controller {
                     stage.setOnCloseRequest(e-> {
                         controller.cleanUp();
                         e.consume();
-                        Timer timer = new Timer();
-                        timer.schedule(
-                                new java.util.TimerTask() {
-                                    @Override
-                                    public void run() {
-                                        System.exit(0);
-                                    }
-                                }, 4000);
-                        timer.cancel();
                     });
                     stage.show();
                     ArrayList<Socket> sockets = new ArrayList<>();
@@ -134,16 +126,20 @@ public class LoginPageController  extends Controller {
             }
             else{
                 switch(integer){
-                    case 1: case 8:{
+                    case 1: {
                         errLogLabel.setText("Error! Invalid username");
                         break;
                     }
-                    case 3: case 6:{
+                    case 3: {
                         errLogLabel.setText("Error! Invalid email");
                         break;
                     }
-                    case 4: case 5:{
+                    case 4: {
                         errLogLabel.setText("Error! Invalid path");
+                        break;
+                    }
+                    case -1:{
+                        errLogLabel.setText("Error occurred!");
                         break;
                     }
                 }

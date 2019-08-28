@@ -2,45 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PO2_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PO2_Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/AuthAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/AuthAgent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ClientApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ClientApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/LoginPageController$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/LoginPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/LoginPageController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/TrayIconNotification$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/TrayIconNotification$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/TrayIconNotification.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/TrayIconNotification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/CredentialPacket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/CredentialPacket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/FilePacket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/FilePacket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/MessageToSend$COMMAND_TYPE.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/MessageToSend$COMMAND_TYPE.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/MessageToSend.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/MessageToSend.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/SocketHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/SocketHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DataPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DataPair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DiskMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DiskMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ListOfClients.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ListOfClients.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/META-INF/PO2_Project.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ServerApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ServerApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServiceThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServiceThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServicesHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServicesHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants$LogType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants$LogType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/MessageTemplates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/MessageTemplates.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/AuthAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/AuthAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/LoginPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/TrayIconNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/TrayIconNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/CredentialPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/CredentialPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/FilePacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/FilePacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/MessageToSend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/MessageToSend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/SocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/SocketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/ListOfClients.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/ListOfClients.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServicesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServicesHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/MessageTemplates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/MessageTemplates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/StringFunctionalInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/StringFunctionalInterface.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +163,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ServerApp">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -341,6 +347,11 @@
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
           <line>546</line>
           <option name="timeStamp" value="227" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="230" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>

@@ -102,11 +102,14 @@ public class AuthAgent implements Callable<Integer> {
     }
 
     /**
-     * This method initializes streams returns a result code of authentication process.
+     * This method initializes streams, returns a result code of authentication process.
      * @return Integer
      */
     @Override
     public Integer call() {
+        if(socket == null || socket.isClosed() || socket.isInputShutdown() || socket.isOutputShutdown()){
+            return -1;
+        }
         initStreams();
         return authorize();
     }

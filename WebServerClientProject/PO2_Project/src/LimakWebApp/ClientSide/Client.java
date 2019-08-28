@@ -18,10 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -63,7 +60,17 @@ public class Client extends ServicesHandler {
         command.addContents(items);
         getNotificationService().sendObject(command);
     }
-
+    void dropConnection(){
+        getNotificationService().sendObject(new MessageToSend(getLocalEndPoint(), MessageToSend.COMMAND_TYPE.QUIT_CONNECTION));
+        getNotificationService().submitTask(this::cleanUp);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 4000);
+    }
     void demandForLogOut(){
         getNotificationService().sendObject(new MessageToSend(getLocalEndPoint(), MessageToSend.COMMAND_TYPE.LOG_OUT_DEMAND));
     }
@@ -84,6 +91,18 @@ public class Client extends ServicesHandler {
                     windowToClose.hide();
                     try {
                         Stage primaryStage = LimakWebApp.ClientSide.ClientApp.createStage("ClientLoginPage.fxml", 240, 290, false);
+                        primaryStage.setOnCloseRequest(e-> {
+                            e.consume();
+                            Timer timer = new Timer();
+                            timer.schedule(
+                                    new java.util.TimerTask() {
+                                        @Override
+                                        public void run() {
+                                            System.exit(0);
+                                        }
+                                    }, 4000);
+                            timer.cancel();
+                        });
                         primaryStage.show();
                     }
                     catch(IOException io){

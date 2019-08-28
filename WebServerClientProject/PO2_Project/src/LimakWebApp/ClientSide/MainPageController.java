@@ -214,13 +214,10 @@ public class MainPageController extends Controller {
             setStatusText("Closing...");
             addLog(Constants.LogType.INFO, new Date().toString() + ":\nClosing...\n");
         });
+        client.dropConnection();
         pool.shutdown();
         scheduler.shutdown();
         watcherServiceTh.shutdown();
-        boolean rV = client.isClosed() == false;
-        if(rV) {
-            client.close();
-        }
         try {
             watchService.close();
         }
@@ -236,6 +233,10 @@ public class MainPageController extends Controller {
             pool.shutdownNow();
             scheduler.shutdownNow();
             watcherServiceTh.shutdownNow();
+        }
+        boolean rV = client.isClosed() == false;
+        if(rV) {
+            client.close();
         }
     }
 
