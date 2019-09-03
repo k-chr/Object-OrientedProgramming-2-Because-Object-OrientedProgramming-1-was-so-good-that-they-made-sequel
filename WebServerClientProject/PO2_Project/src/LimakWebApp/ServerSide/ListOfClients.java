@@ -1,6 +1,7 @@
 package LimakWebApp.ServerSide;
 
 import LimakWebApp.DataPackets.CredentialPacket;
+import LimakWebApp.Utils.DataPair;
 
 import java.util.HashSet;
 import java.util.Map;

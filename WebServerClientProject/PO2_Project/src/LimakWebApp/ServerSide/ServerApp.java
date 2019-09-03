@@ -34,7 +34,7 @@ public class ServerApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage = createStage("ServerMainPage.fxml", 400, 400);
+        primaryStage = createStage("ServerMainPage.fxml", 435, 480);
         primaryStage.show();
         mainPageController.getServer().setAuthThread(new Thread(Thread.currentThread().getThreadGroup(),()->mainPageController.authorize(), "ServerSocketAuth"));
         mainPageController.getServer().getAuthThread().start();
@@ -64,10 +64,5 @@ public class ServerApp extends Application {
         stage.setScene(new Scene(root, width, height));
         stage.setTitle("Server app::MAIN");
         return stage;
-    }
-
-    @FXML
-    static MainPageController getController(){
-        return mainPageController ;
     }
 }

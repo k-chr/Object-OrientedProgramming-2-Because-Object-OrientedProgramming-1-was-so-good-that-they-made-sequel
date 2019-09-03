@@ -54,17 +54,25 @@ public class AuthAgent implements Callable<Integer> {
      */
     public void closeInitConnection(){
         try{
-            inputReceiver.close();
-            inputSender.close();
-            if(!socket.isClosed())
+            if(inputReceiver != null) {
+                inputReceiver.close();
+            }
+            if(inputSender != null) {
+                    inputSender.close();
+            }
+            if(socket != null && !socket.isClosed()) {
                 socket.close();
+            }
         }
         catch(IOException ignored){
 
         }
     }
 
-    AuthAgent(){
+    /**
+     * Default constructor
+     */
+    public AuthAgent(){
 
     }
 

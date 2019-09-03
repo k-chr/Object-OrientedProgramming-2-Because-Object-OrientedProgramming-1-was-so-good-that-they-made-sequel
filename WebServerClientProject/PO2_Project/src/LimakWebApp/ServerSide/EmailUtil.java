@@ -1,10 +1,9 @@
 package LimakWebApp.ServerSide;
 
-import LimakWebApp.Utils.Constants;
 import LimakWebApp.DataPackets.CredentialPacket;
+import LimakWebApp.Utils.Constants;
+import LimakWebApp.Utils.Controller;
 import LimakWebApp.Utils.MessageTemplates;
-
-import javafx.application.Platform;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -15,6 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
@@ -38,6 +38,15 @@ public class EmailUtil {
     private Session session;
     private ExecutorService pool;
     private  boolean sessionExists = false;
+    private Controller controller;
+
+    /**
+     * Constructor of EmailUtil
+     * @param controller Controller to get data, send and set logs
+     */
+    public EmailUtil(Controller controller){
+        this.controller = controller;
+    }
 
     /**
      * Utility method to send simple HTML email
@@ -50,38 +59,37 @@ public class EmailUtil {
      */
     public void sendEmail(CredentialPacket toEmail, Boolean purpose, String...files) {
         Runnable task = () -> {
-            try {
-                MessageTemplates messageTemplates = new MessageTemplates(toEmail, purpose, files);
-                MimeMessage msg = new MimeMessage(session);
-                msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
-                msg.addHeader("format", "flowed");
-                msg.addHeader("Content-Transfer-Encoding", "8bit");
-                msg.setFrom(new InternetAddress(Constants.getServerEMail(this), "NoReply"));
-                System.out.println(session.getProperty("auth"));
-                msg.setReplyTo(InternetAddress.parse(toEmail.getUserEmail(), false));
-                msg.setSubject(messageTemplates.getSubject(this), "UTF-8");
-                msg.setText(messageTemplates.getContents(this), "UTF-8");
-                msg.setSentDate(new Date());
-                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail.getUserEmail(), false));
-                Transport.send(msg);
-                Platform.runLater(() -> {
-                    ServerApp.getController().setStatusText("Email sent to: " + toEmail.getUserName());
-                    ServerApp.getController().addLog(Constants.LogType.INFO, new Date().toString() + ":\nEmail sent to: \n\t"+ toEmail.getUserName());
-                });
-            } catch (Exception e) {
-                Platform.runLater(()-> {
-                    ServerApp.getController().setStatusText("Email hasn't been sent successfully!!");
-                    StringBuilder stringBuilder = new StringBuilder();
-                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                    PrintStream outStream = new PrintStream(outputStream);
-                    e.printStackTrace(outStream);
-                    stringBuilder.append(new Date()).append(":\n").append("Email hasn't been sent successfully!! \n\t").append(e.getMessage()).append("\n").append(outStream.toString()).append("\n");
-                    ServerApp.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
-                    e.printStackTrace();
-                });
-            }
+            sendMessage(toEmail, purpose, files);
         };
         pool.submit(task);
+    }
+    private void sendMessage(CredentialPacket toEmail, Boolean purpose, String...files){
+        try {
+            MessageTemplates messageTemplates = new MessageTemplates(toEmail, purpose, files);
+            MimeMessage msg = new MimeMessage(session);
+            msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+            msg.addHeader("format", "flowed");
+            msg.addHeader("Content-Transfer-Encoding", "8bit");
+            msg.setFrom(new InternetAddress(Constants.getServerEMail(this), "NoReply"));
+            System.out.println(session.getProperty("mail.smtp.auth"));
+            msg.setReplyTo(InternetAddress.parse(toEmail.getUserEmail(), false));
+            msg.setSubject(messageTemplates.getSubject(this), "UTF-8");
+            msg.setText(messageTemplates.getContents(this), "UTF-8");
+            msg.setSentDate(new Date());
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail.getUserEmail(), false));
+            Transport.send(msg);
+            controller.setStatusText("Email sent to: " + toEmail.getUserName());
+            controller.addLog(Constants.LogType.INFO, new Date().toString() + ":\nEmail sent to: \n\t"+ toEmail.getUserName());
+        } catch (Exception e) {
+            controller.setStatusText("Email hasn't been sent successfully!!");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            e.printStackTrace(outStream);
+            stringBuilder.append(new Date()).append(":\n").append("Email hasn't been sent successfully!! \n\t").append(e.getMessage()).append("\n").append(outStream.toString()).append("\n");
+            controller.addLog(Constants.LogType.ERROR, stringBuilder.toString());
+            e.printStackTrace();
+        }
     }
 
     void createSession(String password){

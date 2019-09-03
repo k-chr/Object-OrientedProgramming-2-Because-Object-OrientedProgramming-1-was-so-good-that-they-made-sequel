@@ -6,8 +6,10 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.event.MouseInputAdapter;
 
 import java.awt.AWTException;
 import java.awt.Font;
@@ -17,10 +19,14 @@ import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
-import java.io.File;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -41,7 +47,7 @@ public class TrayIconNotification extends JFrame {
     private CredentialPacket user;
     private MediaTracker tracker;
     private static final String iconImageLoc =
-            "src/LimakWebApp/Resources/progIcoSmall.png";
+            "../Resources/progIcoSmall.png";
 
     /**
      * This constructor initializes {@link MediaTracker}, checks if trays notifications are available on system, reads an image for tray icon, and adds tray to given stage
@@ -58,7 +64,7 @@ public class TrayIconNotification extends JFrame {
         notificationTimer = new Timer();
         timeFormat = SimpleDateFormat.getTimeInstance();
         try {
-            image = ImageIO.read(new File((iconImageLoc)).toURI().toURL());
+            image = ImageIO.read(getClass().getResource(iconImageLoc));
         }
         catch( IOException io){
             io.printStackTrace();
@@ -75,12 +81,23 @@ public class TrayIconNotification extends JFrame {
         try {
             SystemTray tray = SystemTray.getSystemTray();
             TrayIcon trayIcon = new TrayIcon(image);
-            trayIcon.addActionListener(event -> Platform.runLater(()->{
+            trayIcon.addActionListener(e -> Platform.runLater(()->{
                 showStage();
                 notificationTimer.cancel();
                 tray.remove(trayIcon);
             }));
-
+            trayIcon.addMouseListener(
+                new MouseInputAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        Platform.runLater(() -> {
+                            showStage();
+                            notificationTimer.cancel();
+                            tray.remove(trayIcon);
+                        });
+                    }
+                }
+            );
             MenuItem openItem = new MenuItem("Show");
             openItem.addActionListener(e -> Platform.runLater(()->{
                 showStage();
@@ -115,7 +132,7 @@ public class TrayIconNotification extends JFrame {
                             );
                         }
                     },
-                    5_000,
+                    1_000,
                     10_000
             );
             tray.add(trayIcon);
@@ -127,6 +144,8 @@ public class TrayIconNotification extends JFrame {
 
     private void showStage(){
         if(stage != null) {
+            stage.setIconified(false);
+            stage.requestFocus();
             stage.toFront();
             stage.setAlwaysOnTop(true);
             stage.setAlwaysOnTop(false);

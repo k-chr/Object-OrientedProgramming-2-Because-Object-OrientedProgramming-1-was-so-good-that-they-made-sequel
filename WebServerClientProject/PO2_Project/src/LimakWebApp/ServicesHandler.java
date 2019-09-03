@@ -5,11 +5,11 @@ import LimakWebApp.DataPackets.FilePacket;
 import LimakWebApp.DataPackets.MessageToSend;
 import LimakWebApp.DataPackets.SocketHandler;
 
-import javafx.application.Platform;
 import LimakWebApp.Utils.Constants;
 import LimakWebApp.Utils.Controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -34,7 +34,7 @@ public abstract class ServicesHandler {
 
     private volatile ServiceThread fileService;
     private volatile ServiceThread notificationService;
-    protected volatile Map.Entry<CredentialPacket, ArrayList<String>> filesToTransfer;
+    protected volatile Map.Entry<CredentialPacket, ArrayList<File>> filesToTransfer;
     protected volatile Controller mainPageController;
     protected volatile boolean closed = false;
 
@@ -111,26 +111,24 @@ public abstract class ServicesHandler {
         serviceForNotificationService.shutdown();
         if(!serviceForNotificationService.isTerminated()){
             try {
-                serviceForNotificationService.awaitTermination(10, TimeUnit.SECONDS);
+                serviceForNotificationService.awaitTermination(3, TimeUnit.SECONDS);
                 socketHandler.getFileTransferSocket().close();
                 socketHandler.getNotificationSocket().close();
             }
-            catch (InterruptedException| IOException ie){
+            catch (InterruptedException| IOException ie) {
                 serviceForNotificationService.shutdownNow();
                 ie.printStackTrace();
-                Platform.runLater(() -> {
-                    mainPageController.setStatusText("Can't terminate service!");
-                    StringBuilder stringBuilder = new StringBuilder();
-                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                    PrintStream outStream = new PrintStream(outputStream);
-                    ie.printStackTrace(outStream);
-                    stringBuilder.append(new Date())
-                            .append(":\n").append("Can't terminate service!")
-                            .append("\n\t")
-                            .append(ie.getMessage()).append("\n")
-                            .append(outStream.toString()).append("\n");
-                    mainPageController.addLog(Constants.LogType.ERROR, stringBuilder.toString());
-                });
+                mainPageController.setStatusText("Can't terminate service!");
+                StringBuilder stringBuilder = new StringBuilder();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                PrintStream outStream = new PrintStream(outputStream);
+                ie.printStackTrace(outStream);
+                stringBuilder.append(new Date())
+                        .append(":\n").append("Can't terminate service!")
+                        .append("\n\t")
+                        .append(ie.getMessage()).append("\n")
+                        .append(outStream.toString()).append("\n");
+                mainPageController.addLog(Constants.LogType.ERROR, stringBuilder.toString());
             }
             serviceForNotificationService.shutdownNow();
         }
@@ -191,5 +189,5 @@ public abstract class ServicesHandler {
      * This abstract method is model, deriving classes can also put other functionality
      * @param data the entry of map that contains a user's credentials as a <code>key</code> and list of file names as a <code>value</code>
      */
-    protected abstract void sendListOfFiles(Map.Entry<CredentialPacket, ArrayList<String>> data);
+    protected abstract void sendListOfFiles(Map.Entry<CredentialPacket, ArrayList<File>> data);
 }

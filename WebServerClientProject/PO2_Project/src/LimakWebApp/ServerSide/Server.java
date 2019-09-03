@@ -1,10 +1,11 @@
 package LimakWebApp.ServerSide;
 
-import LimakWebApp.Utils.Constants;
 import LimakWebApp.DataPackets.CredentialPacket;
 import LimakWebApp.DataPackets.SocketHandler;
-
-import javafx.application.Platform;
+import LimakWebApp.Utils.AbstractServerController;
+import LimakWebApp.Utils.Constants;
+import LimakWebApp.Utils.Controller;
+import LimakWebApp.Utils.DataPair;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * <h1>Server</h1>
@@ -30,13 +32,32 @@ import java.util.Timer;
  * @version 1.0
  * @since   12.06.2019
  */
-public class Server{
+public class Server {
 
     private Thread authThread;
     private ServerSocket server = null;
     private ServerSocket fileServer = null;
     private ServerSocket notificationServer = null;
 
+    /**
+     * Returns {@link Controller} of {@link Server}.
+     *
+     * @return Controller
+     */
+    public Controller getController() {
+        return controller;
+    }
+
+    /**
+     * This method sets {@link Controller} for {@link Server}.
+     *
+     * @param controller Controller to set.
+     */
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    private Controller controller;
     private volatile boolean isItTimeToStop = false;
     private volatile Socket socket = null;
     private volatile ArrayList<CommunicationServiceThreadHandler> threadList = new ArrayList<>();
@@ -44,71 +65,81 @@ public class Server{
     /**
      * Constructor of Server. Initializes server's sockets.
      */
-    public Server(){
-        try{
+    public Server() {
+        try {
             server = new ServerSocket(Constants.authPort);
             fileServer = new ServerSocket(Constants.filePort);
             notificationServer = new ServerSocket(Constants.commPort);
-        }
-        catch(IOException i){
-            Platform.runLater(()-> {
-                ServerApp.getController().setStatusText("Connection issue!");
-                StringBuilder stringBuilder = new StringBuilder();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                PrintStream outStream = new PrintStream(outputStream);
-                i.printStackTrace(outStream);
-                stringBuilder.append(new Date()).append(":\n").append("Connection issue! \n\t").append(i.getMessage()).append("\n").append(outStream.toString()).append("\n");
-                ServerApp.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
-                i.printStackTrace();
-                System.exit(1);
-            });
+        } catch (IOException i) {
+            controller.setStatusText("Connection issue!");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            i.printStackTrace(outStream);
+            stringBuilder.append(new Date()).append(":\n").append("Connection issue! \n\t").append(i.getMessage()).append("\n").append(outStream.toString()).append("\n");
+            controller.addLog(Constants.LogType.ERROR, stringBuilder.toString());
+            i.printStackTrace();
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(1);
+                    timer.cancel();
+                }
+            };
+            timer.schedule(task, 4000);
+
         }
     }
 
     /**
-     * This method destroys all connections and closes ServerApp
+     * Quits app and clears connections
      */
-    public void clearUpConnection(){
+    public void quit() {
+        ((AbstractServerController) controller).getServer().clearUpConnection();
         Timer timer = new Timer();
-        timer.schedule(
-            new java.util.TimerTask() {
-                @Override
-                public void run() {
-                    for(CommunicationServiceThreadHandler handler : threadList){
-                        if(!handler.isClosed()) {
-                            handler.close();
-                        }
-                    }
-                    try {
-                        if(server != null && !server.isClosed()) {
-                            server.close();
-                        }
-                    }
-                    catch(IOException io){
-                        io.printStackTrace();
-                    }
-                    try{
-                        if(fileServer != null && !fileServer.isClosed()){
-                            fileServer.close();
-                        }
-                    }
-                    catch(IOException io){
-                        io.printStackTrace();
-                    }
-                    try{
-                        if(notificationServer != null && !notificationServer.isClosed()){
-                            notificationServer.close();
-                        }
-                    }
-                    catch(IOException io){
-                        io.printStackTrace();
-                    }
-                    timer.cancel();
-                    System.exit(0);
-                }
-            }, 4000
-        );
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        };
+        timer.schedule(task, 4000);
     }
+
+    /**
+     * This method destroys all connections
+     */
+    public void clearUpConnection() {
+        for (CommunicationServiceThreadHandler handler : threadList) {
+            if (!handler.isClosed()) {
+                handler.close();
+            }
+        }
+        try {
+            if (server != null && !server.isClosed()) {
+                server.close();
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+        try {
+            if (fileServer != null && !fileServer.isClosed()) {
+                fileServer.close();
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+        try {
+            if (notificationServer != null && !notificationServer.isClosed()) {
+                notificationServer.close();
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
+    }
+
 
     /**
      * This method serves given socket in separated thread. Performs authorization of single connection and rejects or accepts new client.
@@ -132,35 +163,31 @@ public class Server{
                     errCode = entry.getValue();
                 }
                 if (errCode.equals(9) || errCode.equals(0)) {
-                    Platform.runLater(() -> {
-                        ServerApp.getController().updateListOfClients(entry.getKey(), true);
-                        ServerApp.getController().setStatusText("Accepted client: " + entry.getKey().getUserName());
-                        StringBuilder stringBuilder = new StringBuilder();
-                        stringBuilder.append(new Date()).append(":\n").append("Accepted client: \n\t").append(entry.getKey().getUserName()).append("\n");
-                        ServerApp.getController().addLog(Constants.LogType.INFO, stringBuilder.toString());
-                        if (errCode.equals(9)) {
-                            ServerApp.getController().getEmailSession().sendEmail(entry.getKey(), true, null);
-                        }
-                    });
+                    ((AbstractServerController)controller).updateListOfClients(entry.getKey(), true);
+                    controller.setStatusText("Accepted client: " + entry.getKey().getUserName());
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append(new Date()).append(":\n").append("Accepted client: \n\t").append(entry.getKey().getUserName()).append("\n");
+                    controller.addLog(Constants.LogType.INFO, stringBuilder.toString());
+                    if (errCode.equals(9)) {
+                        ((AbstractServerController)controller).getEmailSession().sendEmail(entry.getKey(), true, null);
+                    }
                     ArrayList<Socket> socketList = new ArrayList<>();
-                    String ID = ServerApp.getController().generateID(ServerApp.getController().getClass());
+                    String ID = ((AbstractServerController)controller).generateID((controller));
                     outputStream.writeObject(ID);
                     socketList.add(fileServer.accept());
                     socketList.add(notificationServer.accept());
                     SocketHandler socketHandler = new SocketHandler(socketList);
                     synchronized (threadList) {
-                        threadList.add(new CommunicationServiceThreadHandler(socketHandler, entry.getKey(), ID));
+                        threadList.add(new CommunicationServiceThreadHandler(socketHandler, entry.getKey(), ID, controller));
                     }
                 }
                 else {
-                    Platform.runLater(() -> {
-                        if(entry != null) {
-                            ServerApp.getController().setStatusText("Rejected client: " + "\"" + entry.getKey().getUserName() + "\"");
-                            StringBuilder stringBuilder = new StringBuilder();
-                            stringBuilder.append(new Date()).append(":\n").append("Rejected client: \n\t").append(entry.getKey().getUserName()).append("\n");
-                            ServerApp.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
-                        }
-                    });
+                    if (entry != null) {
+                        getController().setStatusText("Rejected client: " + "\"" + entry.getKey().getUserName() + "\"");
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append(new Date()).append(":\n").append("Rejected client: \n\t").append(entry.getKey().getUserName()).append("\n");
+                        controller.addLog(Constants.LogType.ERROR, stringBuilder.toString());
+                    }
                 }
                 inputStream.close();
                 outputStream.close();
@@ -231,7 +258,7 @@ public class Server{
                 outputStream.flush();
                 return null;
             }
-            Set<DataPair> listOfClients = ServerApp.getController().getListOfClients().toDataPairSet();
+            Set<DataPair> listOfClients = ((AbstractServerController)controller).getListOfClients().toDataPairSet();
             boolean newUser = listOfClients.stream().allMatch(dataPair -> {
                 Integer ret = dataPair.getKey().compareTo(credentialPacket);
                 return ret.equals(9);
@@ -257,16 +284,14 @@ public class Server{
             outputStream.flush();
             return new HashMap.SimpleEntry<>(credentialPacket, rV);
         }
-        catch(ClassNotFoundException|IOException e){
-            Platform.runLater(()-> {
-                ServerApp.getController().setStatusText("Connection issue!");
-                StringBuilder stringBuilder = new StringBuilder();
-                ByteArrayOutputStream outputByteStream = new ByteArrayOutputStream();
-                PrintStream outStream = new PrintStream(outputByteStream);
-                e.printStackTrace(outStream);
-                stringBuilder.append(new Date()).append(":\n").append("Connection issue! \n\t").append(e.getMessage()).append("\n").append(outStream.toString()).append("\n");
-                ServerApp.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
-            });
+        catch(ClassNotFoundException|IOException e) {
+            controller.setStatusText("Connection issue!");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputByteStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputByteStream);
+            e.printStackTrace(outStream);
+            stringBuilder.append(new Date()).append(":\n").append("Connection issue! \n\t").append(e.getMessage()).append("\n").append(outStream.toString()).append("\n");
+            getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
             e.printStackTrace();
             return null;
         }

@@ -58,26 +58,28 @@ public class DiskMap {
      * @param owner - the owner of file
      * @return boolean
      */
-    public boolean putOwnerToFile(String fileName, CredentialPacket owner) {
+    public synchronized boolean putOwnerToFile(String fileName, CredentialPacket owner) {
         boolean rV = false;
-        if(dataMap.isEmpty()){
-            ArrayList<CredentialPacket> items = new ArrayList<>();
-            items.add(owner);
-            dataMap.put(fileName, items);
-        }
-        for(Map.Entry<String, ArrayList<CredentialPacket>> entry : dataMap.entrySet()){
-            if(entry.getKey().equals(fileName)){
-                if(!entry.getValue().contains(owner)) {
-                    entry.getValue().add(owner);
-                    rV = true;
-                }
-                break;
+        synchronized (dataMap) {
+            if (dataMap.isEmpty()) {
+                ArrayList<CredentialPacket> items = new ArrayList<>();
+                items.add(owner);
+                dataMap.put(fileName, items);
             }
-        }
-        if(!rV){
-            ArrayList<CredentialPacket> items = new ArrayList<>();
-            items.add(owner);
-            dataMap.put(fileName, items);
+            for (Map.Entry<String, ArrayList<CredentialPacket>> entry : dataMap.entrySet()) {
+                if (entry.getKey().equals(fileName)) {
+                    if (!entry.getValue().contains(owner)) {
+                        entry.getValue().add(owner);
+                        rV = true;
+                    }
+                    break;
+                }
+            }
+            if (!rV) {
+                ArrayList<CredentialPacket> items = new ArrayList<>();
+                items.add(owner);
+                dataMap.put(fileName, items);
+            }
         }
         return !rV;
     }

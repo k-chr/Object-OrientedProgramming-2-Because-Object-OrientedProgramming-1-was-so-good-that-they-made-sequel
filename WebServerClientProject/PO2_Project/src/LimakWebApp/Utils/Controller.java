@@ -1,7 +1,5 @@
 package LimakWebApp.Utils;
 
-import javafx.application.Platform;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -70,12 +68,7 @@ public abstract class Controller {
     /**
      * This method should refresh {@link javafx.scene.control.TreeView} owned by deriving Controller
      */
-    public void refreshTree(){
-        Platform.runLater(()-> {
-            clearRoot();
-            displayTree();
-        });
-    }
+    public abstract void refreshTree();
 
     /**
      * This method returns MAX_SIZE to compute ID of session
