@@ -18,7 +18,7 @@ public final class MessageTemplates {
     private String subject;
 
     /**
-     * Constructor of MessageTemplates.
+     * Constructor of {@link MessageTemplates}.
      * @param packet destination user
      * @param type type of message. If true the email will contain greetings message otherwise email will be reminder of new files
      * @param files Optional parameter - an array of file names to place them in content of reminder
@@ -29,7 +29,7 @@ public final class MessageTemplates {
                         .append("Hello ").append(packet.getUserName()).append("!").append('\n')
                         .append("Thank you for joining to our community!").append('\n')
                         .append("Enjoy our File Transfer Service!")
-                        .append('\n').append("Greetings!")
+                        .append('\n').append("Best regards!")
                 .toString()
                 :   new StringBuilder()
                         .append("Dear ").append(packet.getUserName()).append("!").append('\n')
@@ -46,7 +46,7 @@ public final class MessageTemplates {
      * {@link LimakWebApp.ServerSide.Server}
      * or
      * {@link LimakWebApp.ServerSide.EmailUtil}
-     * @return String
+     * @return {@link String}
      */
     public final String getContents(Object o) {
         return o instanceof LimakWebApp.ServerSide.Server || o instanceof LimakWebApp.ServerSide.EmailUtil ? contents : null;
@@ -58,7 +58,7 @@ public final class MessageTemplates {
      * {@link LimakWebApp.ServerSide.Server}
      * or
      * {@link LimakWebApp.ServerSide.EmailUtil}
-     * @return String
+     * @return {@link String}
      */
     public final String getSubject(Object o){
         return o instanceof LimakWebApp.ServerSide.Server || o instanceof LimakWebApp.ServerSide.EmailUtil ? subject : null;

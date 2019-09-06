@@ -100,8 +100,6 @@ public class MainPageController extends AbstractClientController {
     private ReadWriteLock lock;
     private CredentialPacket credentialPacket;
 
-    private ExecutorService watcherServiceTh;
-
     private ScheduledExecutorService scheduler;
     private Client client;
     private File itemToSend = null;
@@ -149,17 +147,11 @@ public class MainPageController extends AbstractClientController {
                             items.add(cell.getText());
                             items.add(itemToShare);
                             command.addContents(items);
-                            client.rcvCmd(command);
                             Platform.runLater(() -> {
                                 tView.setDisable(false);
                                 viewOfClientsToShare.setVisible(false);
                             });
-                            StringBuilder builder = new StringBuilder();
-                            builder.append(new Date())
-                                    .append(":\n").append("Shared successfully: \n\t").append(itemToShare)
-                                    .append("\n").append("to:\n\t").append(cell.getItem()).append("\n");
-                            addLog(Constants.LogType.INFO, builder.toString());
-                            setStatusText("Shared successfully");
+                            client.rcvCmd(command);
                         }
                     }
                 });
@@ -178,20 +170,14 @@ public class MainPageController extends AbstractClientController {
                         if (event.getButton() == MouseButton.PRIMARY && !cell.isEmpty()) {
                             MessageToSend command = new MessageToSend(credentialPacket, MessageToSend.COMMAND_TYPE.SHARE_FILE_TO_USER);
                             ArrayList<Object> items = new ArrayList<>();
-                            items.add(cell.getText());
+                            items.add(cell.getItem());
                             items.add(itemToShare);
                             command.addContents(items);
-                            client.rcvCmd(command);
                             Platform.runLater(() -> {
                                 tView.setDisable(false);
                                 viewOfClientsToShare.setVisible(false);
                             });
-                            StringBuilder builder = new StringBuilder();
-                            builder.append(new Date())
-                                    .append(":\n").append("Shared successfully: \n\t").append(itemToShare)
-                                    .append("\n").append("to:\n\t").append(cell.getItem()).append("\n");
-                            addLog(Constants.LogType.INFO, builder.toString());
-                            setStatusText("Shared successfully");
+                            client.rcvCmd(command);
                         }
                     });
                     return cell;
@@ -201,7 +187,6 @@ public class MainPageController extends AbstractClientController {
         listOfFiles = new ArrayList<>();
         scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(()->setStatusText("Session is active"), 0, 60, SECONDS);
-        watcherServiceTh = Executors.newFixedThreadPool(1);
         activeUsersObservableList = FXCollections.observableList(new ArrayList<>());
         activeUsersListProperty.setValue(activeUsersObservableList);
         activeUsersListView.itemsProperty().bindBidirectional(activeUsersListProperty);
@@ -219,22 +204,15 @@ public class MainPageController extends AbstractClientController {
     public void cleanUp(){
         setStatusText("Closing...");
         addLog(Constants.LogType.INFO, new Date().toString() + ":\nClosing...\n");
-        client.dropConnection();
+        client.dropConnection(false);
         pool.shutdown();
         scheduler.shutdown();
-        watcherServiceTh.shutdown();
         watchService.quit();
         try {
             scheduler.awaitTermination(3, SECONDS);
         }
         catch(InterruptedException ie){
             scheduler.shutdownNow();
-        }
-        try{
-            watcherServiceTh.awaitTermination(3, SECONDS);
-        }
-        catch(InterruptedException ie){
-            watcherServiceTh.shutdownNow();
         }
         try{
             pool.awaitTermination(3, SECONDS);
@@ -261,6 +239,9 @@ public class MainPageController extends AbstractClientController {
         }
     }
 
+    /**
+     * Runs {@link ApacheWatchService}
+     */
     @Override
     public void runWatcher(){
         watchService.runWatcher();
@@ -490,8 +471,6 @@ public class MainPageController extends AbstractClientController {
                         outList.add(fileName);
                     }
                 }
-            } else {
-                outList.addAll(tmp);
             }
         }finally {
             lock.readLock().unlock();
@@ -537,14 +516,6 @@ public class MainPageController extends AbstractClientController {
         Platform.runLater(()->this.sessionID.setText(sessionID));
     }
 
-    /**
-     * Returns access to reference of thread pool for watcher.
-     * @return {@link ExecutorService}
-     */
-    @Override
-    public ExecutorService getWatcherServiceTh() {
-        return watcherServiceTh;
-    }
 
     /**
      * This method sets user's credentials.
@@ -579,7 +550,7 @@ public class MainPageController extends AbstractClientController {
 
     /**
      * This method returns current stage.
-     * @return Stage
+     * @return {@link Stage}
      */
     public Stage getStage(){
         return (Stage)logOutButton.getScene().getWindow();
@@ -587,7 +558,7 @@ public class MainPageController extends AbstractClientController {
 
     /**
      * This method provides access to user's files' list.
-     * @return <pre>{@code ArrayList<String>}</pre>
+     * @return {@code ArrayList<String>}
      */
     @Override
     public ArrayList<String> getListOfFiles(){
@@ -596,7 +567,7 @@ public class MainPageController extends AbstractClientController {
 
     /**
      * This method returns name of file to send.
-     * @return String
+     * @return {@link String}
      */
     @Override
     public File getItemToSend(){
@@ -657,7 +628,7 @@ public class MainPageController extends AbstractClientController {
 
     /**
      * Adds new log message to log pane with specified type and content.
-     * @param logType type of message.
+     * @param logType {@link Constants.LogType} type of message.
      * @param message content of message, usually contains a date of message and some basic content which indicates performed action.
      */
     @Override
@@ -679,6 +650,11 @@ public class MainPageController extends AbstractClientController {
         }
         Platform.runLater(()->logContent.getChildren().add(textToAdd));
     }
+
+    /**
+     * This method hides window and loads login page
+     * @param stage Window to hide
+     */
     @Override
     public void hideWindow(Object stage){
         if (stage instanceof Window){

@@ -29,7 +29,7 @@ public class ClientApp extends Application {
     /**
      * This method returns reference to object of class:{@link Controller} specified by <code>boolean which</code>
      * @param which This value specifies which controller method should return
-     * @return Controller
+     * @return {@link Controller}
      */
     static public Controller getController(boolean which){
         return which ? mainPageController : loginPageController;
@@ -48,7 +48,7 @@ public class ClientApp extends Application {
      * @param width Indicates the width of application
      * @param height Indicates the height of application
      * @param which Indicates which controller should be responsible to handle GUI operations
-     * @return Stage
+     * @return {@link Stage}
      * @throws IOException if method fails to load FXML or create the stage
      */
     static public Stage createStage(String nameFXML, int width, int height, boolean which) throws IOException {

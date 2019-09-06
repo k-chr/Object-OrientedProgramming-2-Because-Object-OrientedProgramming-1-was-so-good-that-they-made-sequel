@@ -21,7 +21,7 @@ public class FileAlreadyExistsOnServerException extends IOException {
 
     /**
      * Basic constructor of {@link FileAlreadyExistsOnServerException}
-     * @param controller Controller that prints exception data in label
+     * @param controller {@link Controller} that prints exception data in label
      */
     public FileAlreadyExistsOnServerException(Controller controller){
         super();

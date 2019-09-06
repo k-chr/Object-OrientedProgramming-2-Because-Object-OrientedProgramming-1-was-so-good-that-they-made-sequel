@@ -62,7 +62,7 @@ public class MessageToSend  implements Serializable{
 
     /**
      * Returns user, the creator of message.
-     * @return CredentialPacket
+     * @return {@link CredentialPacket}
      */
     public CredentialPacket getUser(){
         return from;
@@ -70,7 +70,7 @@ public class MessageToSend  implements Serializable{
 
     /**
      * Returns a type of command
-     * @return {@code COMMAND_TYPE}
+     * @return {@link COMMAND_TYPE}
      */
     public COMMAND_TYPE getCommandType() {
         return command_type;

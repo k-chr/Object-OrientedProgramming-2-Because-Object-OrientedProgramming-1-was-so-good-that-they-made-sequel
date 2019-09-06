@@ -42,7 +42,7 @@ public class ApacheWatchService {
     /**
      * Overloaded constructor of {@link ApacheWatchService}
      * @param abstractClientController Controller to get ability to log exceptions
-     * @throws IOException
+     * @throws IOException if root directory doesn't exist
      */
     public ApacheWatchService(AbstractClientController abstractClientController) throws IOException {
         this.clientController = abstractClientController;
@@ -89,8 +89,10 @@ public class ApacheWatchService {
      */
     public void quit(){
         try {
-            this.watcher.stop();
-            this.observer.destroy();
+            if(watcher != null && observer != null) {
+                this.watcher.stop();
+                this.observer.destroy();
+            }
         } catch (Exception e) {
             clientController.setStatusText("Exception with watcher occurred");
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

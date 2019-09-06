@@ -1,10 +1,13 @@
 package LimakWebApp.ServerSide;
 
 import javafx.application.Application;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,8 +32,8 @@ public class ServerApp extends Application {
 
     /**
      * This method starts application, creates stage and runs authorization thread.
-     * @param primaryStage - the parameter inherited from abstract declaration in super class
-     * @throws Exception throws if there are problems with stage creation or application can't start
+     * @param primaryStage the parameter inherited from abstract declaration in super class
+     * @throws Exception if there are problems with stage creation or application can't start
      */
     @Override
     public void start(Stage primaryStage) throws Exception{

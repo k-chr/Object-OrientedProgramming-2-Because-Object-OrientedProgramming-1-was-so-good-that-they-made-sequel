@@ -24,6 +24,7 @@ public class FilePacket implements Serializable {
      * Basic constructor of {@link FilePacket}. Reads data
      * @param userName indicates the owner of file
      * @param file indicates the file to wrap
+     * @throws IOException if any problem with reading data from provided {@code file} occurs
      */
     public FilePacket(String userName, File file) throws IOException{
         this.userName = userName;
@@ -36,7 +37,7 @@ public class FilePacket implements Serializable {
 
     /**
      * Method returns user's name.
-     * @return String
+     * @return {@link String}
      */
     public String getUserName() {
         return userName;
@@ -52,7 +53,7 @@ public class FilePacket implements Serializable {
 
     /**
      * Method returns file's name.
-     * @return String
+     * @return {@link String}
      */
     public String getFileName() {
         return fileName;

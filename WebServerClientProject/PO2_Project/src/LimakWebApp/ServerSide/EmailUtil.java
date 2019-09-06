@@ -63,6 +63,7 @@ public class EmailUtil {
         };
         pool.submit(task);
     }
+
     private void sendMessage(CredentialPacket toEmail, Boolean purpose, String...files){
         try {
             MessageTemplates messageTemplates = new MessageTemplates(toEmail, purpose, files);
@@ -71,7 +72,6 @@ public class EmailUtil {
             msg.addHeader("format", "flowed");
             msg.addHeader("Content-Transfer-Encoding", "8bit");
             msg.setFrom(new InternetAddress(Constants.getServerEMail(this), "NoReply"));
-            System.out.println(session.getProperty("mail.smtp.auth"));
             msg.setReplyTo(InternetAddress.parse(toEmail.getUserEmail(), false));
             msg.setSubject(messageTemplates.getSubject(this), "UTF-8");
             msg.setText(messageTemplates.getContents(this), "UTF-8");
@@ -90,6 +90,31 @@ public class EmailUtil {
             controller.addLog(Constants.LogType.ERROR, stringBuilder.toString());
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Initializes session for testing purpose
+     */
+    public void testSession(){
+        pool = Executors.newFixedThreadPool(2);
+        initSessionForTests();
+    }
+
+    private void initSessionForTests(){
+        final String fromEmail = Constants.getServerEMail(this);
+        final String sessionPassword = "XsW2#eDc!qAz";
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        Authenticator auth = new Authenticator() {
+            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                return new javax.mail.PasswordAuthentication(fromEmail, sessionPassword);
+            }
+        };
+        session = Session.getInstance(props, auth);
+        sessionExists = true;
     }
 
     void createSession(String password){
@@ -112,7 +137,11 @@ public class EmailUtil {
         }
     }
 
-    void dropSession(){
+
+    /**
+     * Drops email session
+     */
+    public void dropSession(){
         sessionExists = false;
         pool.shutdown();
         try {

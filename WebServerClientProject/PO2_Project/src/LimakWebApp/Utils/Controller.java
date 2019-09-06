@@ -52,7 +52,7 @@ public abstract class Controller {
     /**
      * This methods returns text representation of provided size in bytes
      * @param bytes Size to convert
-     * @return String
+     * @return {@link String}
      */
     public String computeDataStorageUnitAndValue(long bytes){
         final String bytesUnit = " Bytes";
@@ -80,7 +80,7 @@ public abstract class Controller {
 
     /**
      * This method gives access to thread pool
-     * @return ExecutorService
+     * @return {@link ExecutorService}
      */
     public ExecutorService getPool() {
         return pool;

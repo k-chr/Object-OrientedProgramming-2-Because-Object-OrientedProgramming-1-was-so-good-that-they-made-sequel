@@ -1,5 +1,7 @@
 package LimakWebApp;
 
+import LimakWebApp.DataPackets.CredentialPacket;
+import LimakWebApp.DataPackets.MessageToSend;
 import LimakWebApp.Utils.Constants;
 
 import java.io.ByteArrayOutputStream;
@@ -61,10 +63,9 @@ public class ServiceThread {
             do {
                 if (sendExit || socket.isClosed() || socket.isInputShutdown()) break;
                 try {
-                   // synchronized (readLock) {
                         Object object = inputStream.readObject();
+                        if(object instanceof MessageToSend && this.parentHandler.getLocalEndPoint().equals((CredentialPacket) (((MessageToSend)object).getUser()))) return;
                         parentHandler.processObject(object);
-                  //  }
                 } catch (ClassNotFoundException cNFE) {
                     parentHandler.getController().setStatusText("Can't get the " + token + "!");
                     StringBuilder stringBuilder = new StringBuilder();
@@ -97,12 +98,10 @@ public class ServiceThread {
     public synchronized void sendObject(Object object) {
         if(socket.isClosed() || socket.isOutputShutdown()) return;
         Runnable task = () -> {
-            try  {
-               // synchronized (writeLock) {
-                    outputStream.writeObject(object);
-                    outputStream.flush();
-              //  }
-            } catch (SocketException io) {
+            try {
+                outputStream.writeObject(object);
+                outputStream.flush();
+            }catch (SocketException io) {
                 parentHandler.getController().setStatusText("Can't send the " + token + "!");
                 StringBuilder stringBuilder = new StringBuilder();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

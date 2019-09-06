@@ -61,7 +61,6 @@ public class LoginPageController  extends Controller {
 
     /**
      * This method is prepared to be implemented by deriving classes, this method should add new log for Controller
-     *
      * @param type Type of log
      * @param body Contents
      */
@@ -72,7 +71,6 @@ public class LoginPageController  extends Controller {
 
     /**
      * This method should set status bar in deriving Controller
-     *
      * @param text Text to set
      */
     @Override
@@ -118,6 +116,7 @@ public class LoginPageController  extends Controller {
             }
         }
     }
+
     @FXML
     private void initialize(){
         authAgent = new AuthAgent();

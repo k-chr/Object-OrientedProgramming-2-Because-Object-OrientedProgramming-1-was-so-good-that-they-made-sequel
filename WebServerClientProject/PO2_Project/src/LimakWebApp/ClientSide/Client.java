@@ -44,7 +44,7 @@ public class Client extends ServicesHandler {
 
     /**
      * This constructor sets a controller provided from {@link ClientApp} and calls super()
-     *
+     * @param controller {@link AbstractClientController} controller to manage communication with app's GUI
      * @param socketHandler indicates package of sockets needed to perform any networking
      * @param packet        indicates the data of user who uses the client service
      * @throws IOException if {@code socketHandler} is not valid.
@@ -67,25 +67,37 @@ public class Client extends ServicesHandler {
         getNotificationService().sendObject(command);
     }
 
-    void dropConnection() {
+    /**
+     * Drops connection and quit client application
+     * @param ifTests indicates if Test's session is active
+     */
+    public void dropConnection(boolean ifTests) {
         getNotificationService().sendObject(new MessageToSend(getLocalEndPoint(), MessageToSend.COMMAND_TYPE.QUIT_CONNECTION));
         getNotificationService().submitTask(this::cleanUp);
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.exit(0);
-            }
-        }, 4000);
+        if (!ifTests) {
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            }, 4000);
+        }
     }
 
+    /**
+     * Gives access outside the package to give orders to {@link Client}
+     * @param command Command to perform
+     */
+    public void submitCmd(MessageToSend command){
+        rcvCmd(command);
+    }
     void demandForLogOut() {
         getNotificationService().sendObject(new MessageToSend(getLocalEndPoint(), MessageToSend.COMMAND_TYPE.LOG_OUT_DEMAND));
     }
 
     /**
      * This method handles received commands to perform indicated operations
-     *
      * @param command the data package with several instructions
      */
     @Override
@@ -158,7 +170,15 @@ public class Client extends ServicesHandler {
                 }
                 break;
             }
-            case SHARE_FILE_TO_USER:
+            case SHARE_FILE_TO_USER: {
+                getNotificationService().sendObject(command);
+                StringBuilder builder = new StringBuilder();
+                builder.append(new Date())
+                        .append(":\n").append("Shared successfully: \n\t").append(((String)command.getContents().get(1)))
+                        .append("\n").append("to:\n\t").append(command.getContents().get(0)).append("\n");
+                mainPageController.addLog(Constants.LogType.INFO, builder.toString());
+                mainPageController.setStatusText("Shared successfully");
+            }
             case REMOVE_USER_FROM_FILE_OWNERS: {
                 getNotificationService().sendObject(command);
                 break;
@@ -168,15 +188,14 @@ public class Client extends ServicesHandler {
 
     /**
      * This method saves file in Client's <i>Download</i> directory
-     *
      * @param filePacket the data package to save on drive
      */
     @Override
     protected void saveFile(FilePacket filePacket) {
         File root = new File(getLocalEndPoint().getUserFolderPath());
-        if (root != null && root.listFiles() != null) {
+        if (root.listFiles() != null) {
             File downloadFolder = new File(root, Constants.getClientDownloadDirectory(this));
-            if (!downloadFolder.exists()) {
+            if (!downloadFolder.isDirectory()) {
                 downloadFolder.mkdir();
             }
             File fileToSave = new File(downloadFolder, filePacket.getFileName());
@@ -212,7 +231,6 @@ public class Client extends ServicesHandler {
 
     /**
      * These method sends a list of files to server
-     *
      * @param data the entry of map that contains a user's credentials as a <code>key</code> and list of file names as a <code>value</code>
      */
     @Override

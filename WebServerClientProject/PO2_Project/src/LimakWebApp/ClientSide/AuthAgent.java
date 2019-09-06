@@ -76,7 +76,11 @@ public class AuthAgent implements Callable<Integer> {
 
     }
 
-    String getSessionID(){
+    /**
+     * This method returns session's ID generated for current new user.
+     * @return {@link String}
+     */
+    public String getSessionID(){
         try {
             return (String) inputReceiver.readObject();
         }
@@ -105,7 +109,7 @@ public class AuthAgent implements Callable<Integer> {
         }
         catch(ClassNotFoundException|IOException e){
             e.printStackTrace();
-            return null;
+            return -1;
         }
     }
 

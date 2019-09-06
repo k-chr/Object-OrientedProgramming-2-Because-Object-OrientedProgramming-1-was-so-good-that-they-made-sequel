@@ -2,6 +2,7 @@ package LimakWebApp.ServerSide;
 
 import LimakWebApp.DataPackets.CredentialPacket;
 import LimakWebApp.DataPackets.SocketHandler;
+
 import LimakWebApp.Utils.AbstractServerController;
 import LimakWebApp.Utils.Constants;
 import LimakWebApp.Utils.Controller;
@@ -39,6 +40,11 @@ public class Server {
     private ServerSocket fileServer = null;
     private ServerSocket notificationServer = null;
 
+    private Controller controller;
+    private volatile boolean isItTimeToStop = false;
+    private volatile Socket socket = null;
+    private volatile ArrayList<CommunicationServiceThreadHandler> threadList = new ArrayList<>();
+
     /**
      * Returns {@link Controller} of {@link Server}.
      *
@@ -57,11 +63,6 @@ public class Server {
         this.controller = controller;
     }
 
-    private Controller controller;
-    private volatile boolean isItTimeToStop = false;
-    private volatile Socket socket = null;
-    private volatile ArrayList<CommunicationServiceThreadHandler> threadList = new ArrayList<>();
-
     /**
      * Constructor of Server. Initializes server's sockets.
      */
@@ -71,13 +72,13 @@ public class Server {
             fileServer = new ServerSocket(Constants.filePort);
             notificationServer = new ServerSocket(Constants.commPort);
         } catch (IOException i) {
-            controller.setStatusText("Connection issue!");
+            System.out.println("Connection issue!");
             StringBuilder stringBuilder = new StringBuilder();
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             PrintStream outStream = new PrintStream(outputStream);
             i.printStackTrace(outStream);
             stringBuilder.append(new Date()).append(":\n").append("Connection issue! \n\t").append(i.getMessage()).append("\n").append(outStream.toString()).append("\n");
-            controller.addLog(Constants.LogType.ERROR, stringBuilder.toString());
+            System.out.println(stringBuilder.toString());
             i.printStackTrace();
             Timer timer = new Timer();
             TimerTask task = new TimerTask() {
@@ -178,7 +179,7 @@ public class Server {
                     socketList.add(notificationServer.accept());
                     SocketHandler socketHandler = new SocketHandler(socketList);
                     synchronized (threadList) {
-                        threadList.add(new CommunicationServiceThreadHandler(socketHandler, entry.getKey(), ID, controller));
+                        threadList.add(new CommunicationServiceThreadHandler(socketHandler, entry.getKey(), ID, (AbstractServerController) controller));
                     }
                 }
                 else {
@@ -186,6 +187,12 @@ public class Server {
                         getController().setStatusText("Rejected client: " + "\"" + entry.getKey().getUserName() + "\"");
                         StringBuilder stringBuilder = new StringBuilder();
                         stringBuilder.append(new Date()).append(":\n").append("Rejected client: \n\t").append(entry.getKey().getUserName()).append("\n");
+                        controller.addLog(Constants.LogType.ERROR, stringBuilder.toString());
+                    }
+                    else{
+                        getController().setStatusText("Rejected client");
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append(new Date()).append(":\n").append("Rejected client").append("Client's packet was empty or partially empty").append("\n");
                         controller.addLog(Constants.LogType.ERROR, stringBuilder.toString());
                     }
                 }

@@ -75,6 +75,7 @@ public abstract class ServicesHandler {
             saveFile((FilePacket) o);
         }
         else if(o instanceof MessageToSend){
+            if(this.getLocalEndPoint().equals((CredentialPacket) (((MessageToSend)o).getUser()))) return;
             rcvCmd((MessageToSend) o);
         }
     }
@@ -101,7 +102,7 @@ public abstract class ServicesHandler {
     }
 
     /**
-     * This method terminates ExecutorServices, closes held sockets
+     * This method terminates {@link ExecutorService}s, closes held sockets
      */
     protected void cleanUp(){
         closed = true;
@@ -143,7 +144,7 @@ public abstract class ServicesHandler {
 
     /**
      * This method returns reference to hold controller
-     * @return Controller
+     * @return {@link Controller}
      */
     public Controller getController(){
         return mainPageController;
@@ -151,7 +152,7 @@ public abstract class ServicesHandler {
 
     /**
      * This method returns reference to local user's credentials
-     * @return CredentialPacket
+     * @return {@link CredentialPacket}
      */
     protected CredentialPacket getLocalEndPoint() {
         return localEndPoint;
@@ -159,7 +160,7 @@ public abstract class ServicesHandler {
 
     /**
      * This method returns reference to file service
-     * @return ServiceThread
+     * @return {@link ServiceThread}
      */
     protected ServiceThread getFileService() {
         return fileService;
@@ -167,7 +168,7 @@ public abstract class ServicesHandler {
 
     /**
      * This method returns reference to notification service
-     * @return ServiceThread
+     * @return {@link ServiceThread}
      */
     protected ServiceThread getNotificationService() {
         return notificationService;

@@ -1,6 +1,7 @@
 package LimakWebApp.ServerSide;
 
 import LimakWebApp.DataPackets.CredentialPacket;
+
 import LimakWebApp.Utils.AbstractServerController;
 import LimakWebApp.Utils.Constants;
 import LimakWebApp.Utils.DataPair;
@@ -22,11 +23,15 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
 import javafx.application.Platform;
+
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
 
 import java.awt.Desktop;
@@ -79,7 +84,7 @@ public class MainPageController extends AbstractServerController {
 
     private final Object lock = new Object();
     private static Server server;
-    private CredentialPacket credentialPacket;
+    private volatile CredentialPacket credentialPacket;
     private ScheduledExecutorService scheduler;
     private EmailUtil emailSession;
     private volatile ListProperty<DataPair> listProperty;
@@ -90,7 +95,7 @@ public class MainPageController extends AbstractServerController {
     private volatile Set<String> ids;
 
     /**
-     * Constructor of ServerSide.MainPageController, initializes Server, set of string and calls super()
+     * Constructor of {@link MainPageController}, initializes {@link Server}, set of string and calls super()
      */
     public MainPageController(){
         super();
@@ -114,7 +119,7 @@ public class MainPageController extends AbstractServerController {
         emailSession = new EmailUtil(this);
         emailSession.createSession("XsW2#eDc!qAz");
         for(int i = 0; i < 5; ++i){
-            serverDiskMap.add(new DiskMap(Constants.getServerDirectory(this) + "\\" + Constants.getDirectories(this)[i]));
+            serverDiskMap.add(new DiskMap(credentialPacket.getUserFolderPath() + "\\" + Constants.getDirectories(this)[i]));
             serverDiskMap.get(i).setDataMap(readContentsFromJson(i));
         }
         listOfClients.put(credentialPacket, true);
@@ -149,11 +154,24 @@ public class MainPageController extends AbstractServerController {
      */
     @Override
     public void addToRuntimeMap(CredentialPacket user, String fileName){
+        if(runTimeMapOfFileOwners.isEmpty()){
+            ArrayList<String> list = new ArrayList<>();
+            list.add(fileName);
+            runTimeMapOfFileOwners.put(user, list);
+            return;
+        }
+        boolean found = false;
         for (Map.Entry<CredentialPacket, ArrayList<String>> next : runTimeMapOfFileOwners.entrySet()) {
             if (next.getKey().equals(user)) {
                 next.getValue().add(fileName);
+                found = true;
                 break;
             }
+        }
+        if(!found) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(fileName);
+            runTimeMapOfFileOwners.put(user, list);
         }
     }
 
@@ -180,6 +198,7 @@ public class MainPageController extends AbstractServerController {
      * @param to The user who file would be shared with.
      * @param item File to share.
      */
+    @Override
     public void shareFile(CredentialPacket to, String item){
         addUserToFileOwners(item,to);
         if(getActiveListOfClients().contains(to)){
@@ -292,7 +311,7 @@ public class MainPageController extends AbstractServerController {
     @Override
     public String findFileInServer(String fileName){
         for(String dir : Constants.getDirectories(this)){
-            String outName = Constants.getServerDirectory(this) + "\\" + dir;
+            String outName = credentialPacket.getUserFolderPath() + "\\" + dir;
             File tmp = new File(outName);
             if(tmp.exists() && tmp.isDirectory()){
                 for(String file : tmp.list()){
@@ -331,16 +350,32 @@ public class MainPageController extends AbstractServerController {
         server.acceptClients();
     }
 
+    /**
+     * This method removes provided ID from set of sessions' IDs and updates list of client on index of provided user with false value.
+     * @param ID ID of session to close.
+     * @param user User, who wants to close connection
+     */
     @Override
     public void cleanUpSessionForID(String ID, CredentialPacket user){
         removeId(ID);
         updateListOfClients(user, false);
     }
 
+    /**
+     * This method returns reference to user founded by provided name, if not exists returns empty {@link CredentialPacket}
+     * @param userName Key (user) to find
+     * @return {@link CredentialPacket}
+     */
     @Override
     public CredentialPacket findUserByName(String userName){
         return listOfClients.entrySet().stream().map(entry->entry.getKey()).filter(user-> user.getUserName().equals(userName)).findAny().orElse(new CredentialPacket("","",""));
     }
+
+    /**
+     * This method generates ID for new session.
+     * @param accessor valid object
+     * @return {@link String}
+     */
     @Override
     public synchronized String generateID(Object accessor){
         if(! (accessor instanceof LimakWebApp.Utils.AbstractServerController)) return null;
@@ -376,7 +411,7 @@ public class MainPageController extends AbstractServerController {
 
     private synchronized ConcurrentHashMap<String, ArrayList<CredentialPacket>> readContentsFromJson(int disk){
         ConcurrentHashMap<String, ArrayList<LinkedTreeMap<String,String>>> outMap = new ConcurrentHashMap<>();
-        File root = new File(Constants.getServerDirectory(this));
+        File root = new File(credentialPacket.getUserFolderPath());
         File subFolder = new File(root, Constants.getDirectories(this)[disk]);
         File fileToRead = new File(subFolder, Constants.getDirectoriesControlFile(this));
         if(fileToRead.length() < 1){
@@ -409,13 +444,19 @@ public class MainPageController extends AbstractServerController {
     }
 
     private synchronized void dumpContentsToJson(int disk){
-        File root = new File(Constants.getServerDirectory(this));
+        File root = new File(credentialPacket.getUserFolderPath());
         File subFolder = new File(root, Constants.getDirectories(this)[disk]);
         File fileToDump = new File(subFolder, Constants.getDirectoriesControlFile(this));
         Gson gson = new Gson();
         try(Writer writer= new FileWriter(fileToDump)){
             ConcurrentHashMap<String, ArrayList<CredentialPacket>> toDump = serverDiskMap.get(disk).getMap();
             gson.toJson(toDump, writer);
+            setStatusText("File is saved successfully");
+            StringBuilder builder = new StringBuilder();
+            builder.append(new Date())
+                    .append("\n").append("Saved properly a file:\n\t")
+                    .append(fileToDump.getAbsolutePath() + "\n");
+            addLog(Constants.LogType.SUCCESS, builder.toString());
         }
         catch (IOException io) {
             setStatusText("Can't save file");
@@ -430,10 +471,11 @@ public class MainPageController extends AbstractServerController {
                     .append(outStream.toString()).append("\n");
             addLog(Constants.LogType.ERROR, stringBuilder.toString());
         }
+
     }
 
     private void dumpListOfClients(){
-        File root = new File(Constants.getServerDirectory(this));
+        File root = new File(credentialPacket.getUserFolderPath());
         File listOfClientsFile = new File(root, Constants.getListOfClientsFileName(this));
         Gson gson= new Gson();
         try(Writer writer = new FileWriter(listOfClientsFile)) {
@@ -463,7 +505,7 @@ public class MainPageController extends AbstractServerController {
     }
 
     private void readInitListOfClientsFromFile(){
-        File root = new File(Constants.getServerDirectory(this));
+        File root = new File(credentialPacket.getUserFolderPath());
         File listOfClientsFile = new File(root, Constants.getListOfClientsFileName(this));
         Gson gson = new Gson();
         try (JsonReader jsonReader = new JsonReader(new FileReader(listOfClientsFile))){
@@ -491,7 +533,7 @@ public class MainPageController extends AbstractServerController {
     }
 
     private void createServerDirectoriesIfNotExist(String[] directories){
-        String stringPath = Constants.getServerDirectory(this);
+        String stringPath = credentialPacket.getUserFolderPath();
         File rootFile = new File (stringPath);
         if(!rootFile.exists()){
             rootFile.mkdirs();
@@ -540,7 +582,7 @@ public class MainPageController extends AbstractServerController {
     }
 
     private void createImportantStartUpFilesIfNotExist(){
-        File rootFile = new File (Constants.getServerDirectory(this));
+        File rootFile = new File (credentialPacket.getUserFolderPath());
         if(rootFile.exists()){
             File clientsFile = new File(rootFile, Constants.getListOfClientsFileName(this));
             if(!clientsFile.exists()){
@@ -564,7 +606,7 @@ public class MainPageController extends AbstractServerController {
     }
 
     private void displayTreeView() {
-        String inputDirectoryLocation = Constants.getServerDirectory(this);
+        String inputDirectoryLocation = credentialPacket.getUserFolderPath();
         String[] path = inputDirectoryLocation.split("\\\\");
         StringBuilder stringBuilder = new StringBuilder();
         TreeItem<File> rootItem = new TreeItem<>(new File(inputDirectoryLocation));
@@ -660,6 +702,11 @@ public class MainPageController extends AbstractServerController {
         }
     }
 
+    /**
+     * Returns reference to disk of given index.
+     * @param idx Indicates the number of disk we want to get access
+     * @return {@link DiskMap}
+     */
     @Override
     public synchronized DiskMap getDisk(int idx){
         return serverDiskMap.get(idx);

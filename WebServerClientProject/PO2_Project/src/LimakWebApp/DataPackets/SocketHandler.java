@@ -17,7 +17,7 @@ public class SocketHandler {
     private final boolean isSocketsSet;
 
     /**
-     * Constructor of SocketHandler - sets provided sockets from list, performs validation and sets <code>isSocketSet</code> flag.
+     * Constructor of SocketHandler - sets provided sockets from list, performs validation and sets {@link SocketHandler#isSocketsSet} flag.
      * @param socketArrayList List of sockets to set
      */
     public SocketHandler(ArrayList<Socket> socketArrayList){
@@ -35,7 +35,7 @@ public class SocketHandler {
 
     /**
      * Returns socket connected with file transport port
-     * @return Socket
+     * @return {@link Socket}
      */
     public Socket getFileTransferSocket() {
         return fileTransferSocket;
@@ -43,7 +43,7 @@ public class SocketHandler {
 
     /**
      * Returns socket connected with notification port
-     * @return Socket
+     * @return {@link Socket}
      */
     public Socket getNotificationSocket() {
         return notificationSocket;
