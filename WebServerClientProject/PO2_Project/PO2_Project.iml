@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/Third party packages/gson-2.8.5.jar!/" />
@@ -16,109 +16,170 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/imap.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/jartest.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/smtp.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/mailapi.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/vintage-testjar.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/pop3.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/jupiter-testjar.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/gradle-wrapper.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/gimap.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/gh-1436-invalid-nested-class-file.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/dsn.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/commons-io-2.6.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/Third party packages/commons-io-2.6-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/Third party packages/commons-io-2.6-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/activation-1.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/dsn.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-jupiter-5.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/gimap.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-jupiter-api-5.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/imap.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-jupiter-engine-5.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/mailapi.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-jupiter-migrationsupport-5.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/pop3.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-jupiter-params-5.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/javamail1_4_7/javamail-1.4.7/lib/smtp.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-platform-commons-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/gradle/wrapper/gradle-wrapper.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-platform-console-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/junit-jupiter-engine/src/test/resources/jupiter-testjar.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-platform-console-standalone-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/junit-vintage-engine/src/test/resources/vintage-testjar.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-platform-engine-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/platform-tests/src/test/resources/gh-1436-invalid-nested-class-file.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-platform-launcher-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/platform-tests/src/test/resources/jartest.jar!/" />
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-platform-reporting-1.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-platform-runner-1.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-platform-suite-api-1.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-platform-testkit-1.5.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/Third party packages/junit-vintage-engine-5.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

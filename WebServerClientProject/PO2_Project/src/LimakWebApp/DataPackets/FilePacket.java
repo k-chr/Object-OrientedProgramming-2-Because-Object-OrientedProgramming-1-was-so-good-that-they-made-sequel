@@ -19,29 +19,25 @@ public class FilePacket implements Serializable {
     private String fileName;
     private long size;
 
+
     /**
      * Basic constructor of {@link FilePacket}. Reads data
      * @param userName indicates the owner of file
-     * @param fileName indicates the file name
-     * @param directoryPath indicates the path do directory, where file item is stored
+     * @param file indicates the file to wrap
+     * @throws IOException if any problem with reading data from provided {@code file} occurs
      */
-    public FilePacket(String userName, String fileName, String directoryPath) {
+    public FilePacket(String userName, File file) throws IOException{
         this.userName = userName;
-        this.fileName = fileName;
-        StringBuilder stringBuilder = new StringBuilder(directoryPath);
-        stringBuilder.append('/').append(fileName);
-        File file = new File(stringBuilder.toString());
-        try (FileInputStream fileReader = new FileInputStream(file)) {
-            fileBytes = fileReader.readAllBytes();
-            size = file.length();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.fileName = file.getName();
+        FileInputStream fileReader = new FileInputStream(file);
+        fileBytes = fileReader.readAllBytes();
+        size = file.length();
+        fileReader.close();
     }
 
     /**
      * Method returns user's name.
-     * @return String
+     * @return {@link String}
      */
     public String getUserName() {
         return userName;
@@ -57,7 +53,7 @@ public class FilePacket implements Serializable {
 
     /**
      * Method returns file's name.
-     * @return String
+     * @return {@link String}
      */
     public String getFileName() {
         return fileName;

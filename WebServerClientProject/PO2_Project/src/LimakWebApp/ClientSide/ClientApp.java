@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * <h1>ClientApp</h1>
@@ -26,10 +27,11 @@ public class ClientApp extends Application {
     @FXML
     private static LoginPageController loginPageController;
 
+    private static String loadedCSS;
     /**
      * This method returns reference to object of class:{@link Controller} specified by <code>boolean which</code>
      * @param which This value specifies which controller method should return
-     * @return Controller
+     * @return {@link Controller}
      */
     static public Controller getController(boolean which){
         return which ? mainPageController : loginPageController;
@@ -39,7 +41,7 @@ public class ClientApp extends Application {
      * Default constructor
      */
     public ClientApp(){
-
+        loadedCSS = getCSS();
     }
 
     /**
@@ -48,7 +50,7 @@ public class ClientApp extends Application {
      * @param width Indicates the width of application
      * @param height Indicates the height of application
      * @param which Indicates which controller should be responsible to handle GUI operations
-     * @return Stage
+     * @return {@link Stage}
      * @throws IOException if method fails to load FXML or create the stage
      */
     static public Stage createStage(String nameFXML, int width, int height, boolean which) throws IOException {
@@ -63,10 +65,20 @@ public class ClientApp extends Application {
         Stage stage = new Stage();
         stage.setResizable(false);
         stage.setScene(new Scene(root, width, height));
+        stage.getScene().getStylesheets().add(loadedCSS);
         stage.setTitle(which ? "Client app::MAIN":"Client app::LOGIN");
         return stage;
     }
 
+
+    private String getCSS(){
+        URL url = this.getClass().getResource("..\\Resources\\modena.css");
+        if (url == null) {
+            System.out.println("Resource not found. Aborting.");
+            System.exit(-1);
+        }
+        return url.toExternalForm();
+    }
     /**
      * This method indicates necessary operations to perform to start an application
      * @param primaryStage initial stage, in case of client it will be login page by default

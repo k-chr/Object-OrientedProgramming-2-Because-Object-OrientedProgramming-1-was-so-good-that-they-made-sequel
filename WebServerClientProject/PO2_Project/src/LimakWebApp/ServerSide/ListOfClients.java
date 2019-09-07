@@ -1,6 +1,7 @@
 package LimakWebApp.ServerSide;
 
 import LimakWebApp.DataPackets.CredentialPacket;
+import LimakWebApp.Utils.DataPair;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -16,6 +17,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ListOfClients extends ConcurrentHashMap<CredentialPacket, Boolean>  {
 
+    /**
+     * Puts key and value into map
+     * @param C key {@link CredentialPacket}
+     * @param B value boolean
+     * @return {@link Boolean}
+     */
     @Override
     public Boolean put(CredentialPacket C, Boolean B){
         if(C != null && this.size() == 0){

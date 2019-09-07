@@ -1,53 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/AuthAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/AuthAgent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ClientApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ClientApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/LoginPageController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/LoginPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/LoginPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/TrayIconNotification$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/TrayIconNotification$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/TrayIconNotification.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/TrayIconNotification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/CredentialPacket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/CredentialPacket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/FilePacket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/FilePacket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/MessageToSend$COMMAND_TYPE.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/MessageToSend$COMMAND_TYPE.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/MessageToSend.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/MessageToSend.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/SocketHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/SocketHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DataPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DataPair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DiskMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DiskMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ListOfClients.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ListOfClients.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ServerApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ServerApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServiceThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServiceThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServicesHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServicesHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants$LogType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants$LogType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/MessageTemplates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/MessageTemplates.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/AuthAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/AuthAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/LoginPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +86,7 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Third party packages/junit5-r5.5.1/junit5-r5.5.1/platform-tests/src/test/resources/jartest.jar!/" />
+    <property name="last_opened_file_path" value="C:/Program Files/Java/jre-9.0.4/lib/javafx-swt.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -141,14 +95,14 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\PO2_Project\out\production\PO2_Project\sample\ClientSide" />
+      <recent name="D:\Users\PO2_Project\src\sample\ServerSide" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Users\PO2_Project\src\LimakWebApp\Resources" />
       <recent name="D:\Users\PO2_Project\src\sample\ServerSide" />
       <recent name="D:\Users\PO2_Project\src\sample\ClientSide" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Users\PO2_Project\out\production\PO2_Project\sample\ClientSide" />
-      <recent name="D:\Users\PO2_Project\src\sample\ServerSide" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -163,7 +117,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -212,6 +166,27 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestsForClientAndServer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PO2_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="LimakWebApp.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="LimakWebApp.Tests" />
+      <option name="MAIN_CLASS_NAME" value="LimakWebApp.Tests.TestsForClientAndServer" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -276,9 +251,11 @@
       <item itemvalue="Java Scratch.JavaFXTrayIconSample" />
       <item itemvalue="Java Scratch.Scratch" />
       <item itemvalue="Java Scratch.scratch_1" />
+      <item itemvalue="JUnit.TestsForClientAndServer" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestsForClientAndServer" />
         <item itemvalue="Java Scratch.scratch_1" />
       </list>
     </recent_temporary>
@@ -305,7 +282,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -318,50 +297,583 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="170" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServicesHandler.java</url>
-          <line>57</line>
+          <line>69</line>
           <option name="timeStamp" value="222" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>157</line>
-          <option name="timeStamp" value="224" />
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
+          <line>308</line>
+          <option name="timeStamp" value="237" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>158</line>
-          <option name="timeStamp" value="225" />
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
+          <line>304</line>
+          <option name="timeStamp" value="240" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>541</line>
-          <option name="timeStamp" value="226" />
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="247" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>546</line>
-          <option name="timeStamp" value="227" />
+          <line>217</line>
+          <option name="timeStamp" value="254" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>229</line>
+          <option name="timeStamp" value="256" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>334</line>
+          <option name="timeStamp" value="259" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java</url>
+          <line>166</line>
+          <option name="timeStamp" value="290" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
+          <line>234</line>
+          <option name="timeStamp" value="293" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
+          <line>237</line>
+          <option name="timeStamp" value="299" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>166</line>
+          <option name="timeStamp" value="318" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>137</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="334" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>563</line>
+          <option name="timeStamp" value="336" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>564</line>
+          <option name="timeStamp" value="337" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="340" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="348" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="350" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="351" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="352" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="353" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="355" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="356" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="358" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="372" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="373" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="376" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/TrayIconNotification.java</url>
+          <line>149</line>
+          <option name="timeStamp" value="381" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/TrayIconNotification.java</url>
+          <line>150</line>
+          <option name="timeStamp" value="382" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>174</line>
+          <option name="timeStamp" value="410" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>175</line>
+          <option name="timeStamp" value="411" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>179</line>
+          <option name="timeStamp" value="413" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
+          <line>491</line>
+          <option name="timeStamp" value="426" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
+          <line>492</line>
+          <option name="timeStamp" value="427" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>220</line>
+          <option name="timeStamp" value="428" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="429" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>226</line>
+          <option name="timeStamp" value="430" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="431" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>148</line>
+          <option name="timeStamp" value="433" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>154</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="434" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>125</line>
+          <option name="timeStamp" value="435" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="438" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>141</line>
+          <option name="timeStamp" value="439" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>202</line>
+          <option name="timeStamp" value="443" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>203</line>
+          <option name="timeStamp" value="444" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>204</line>
+          <option name="timeStamp" value="445" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>206</line>
+          <option name="timeStamp" value="446" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>205</line>
+          <option name="timeStamp" value="447" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>207</line>
+          <option name="timeStamp" value="448" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java</url>
+          <line>223</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="451" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="452" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>575</line>
+          <option name="timeStamp" value="454" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>574</line>
+          <option name="timeStamp" value="455" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="456" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="458" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="459" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="460" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="461" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>135</line>
+          <option name="timeStamp" value="462" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>155</line>
+          <option name="timeStamp" value="463" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="465" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>157</line>
+          <option name="timeStamp" value="466" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>158</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="467" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>175</line>
+          <option name="timeStamp" value="468" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>269</line>
+          <option name="timeStamp" value="469" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>172</line>
+          <option name="timeStamp" value="471" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>174</line>
+          <option name="timeStamp" value="473" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>247</line>
+          <option name="timeStamp" value="474" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="476" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="477" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="478" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="479" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>142</line>
+          <option name="timeStamp" value="482" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>571</line>
+          <option name="timeStamp" value="484" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>572</line>
+          <option name="timeStamp" value="485" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
           <line>63</line>
-          <option name="timeStamp" value="230" />
+          <option name="timeStamp" value="486" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="487" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="488" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="489" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>573</line>
+          <option name="timeStamp" value="492" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="493" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="494" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="495" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>102</line>
+          <option name="timeStamp" value="496" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="497" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="498" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="499" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
+          <line>303</line>
+          <properties class="LimakWebApp.ClientSide.MainPageController" method="showUsers">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="236" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>556</line>
+          <properties class="LimakWebApp.ServerSide.MainPageController" method="checkIfAreFilesToSendForInactiveUsers">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="335" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java</url>
+          <line>66</line>
+          <properties class="LimakWebApp.ServerSide.EmailUtil" method="sendMessage">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="375" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/TrayIconNotification.java</url>
+          <line>144</line>
+          <properties class="LimakWebApp.ClientSide.TrayIconNotification" method="showStage">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="380" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/Tests/TestClientController.java</url>
+          <line>226</line>
+          <properties class="LimakWebApp.Tests.TestClientController" method="setStatusText">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="415" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
+          <line>462</line>
+          <properties class="LimakWebApp.ClientSide.MainPageController" method="checkIfAreNewFiles">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="424" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
+          <line>486</line>
+          <properties class="LimakWebApp.ClientSide.MainPageController" method="compareUserAndServerList">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="425" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
+          <line>237</line>
+          <properties class="LimakWebApp.ClientSide.Client" method="sendListOfFiles">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="432" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>537</line>
-          <properties class="LimakWebApp.ServerSide.MainPageController" method="createServerDirectoriesIfNotExist">
+          <line>241</line>
+          <properties class="LimakWebApp.ServerSide.MainPageController" method="getListOfFilesForUser">
             <option name="EMULATED" value="true" />
           </properties>
-          <option name="timeStamp" value="223" />
+          <option name="timeStamp" value="440" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java</url>
+          <line>30</line>
+          <properties class="LimakWebApp.ServerSide.DiskMap" method="getListOfFilesForGivenUser">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="441" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>201</line>
+          <properties class="LimakWebApp.ServerSide.MainPageController" method="shareFile">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="442" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java</url>
+          <line>222</line>
+          <properties class="LimakWebApp.ServerSide.Server" method="shareToUser">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="450" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>569</line>
+          <properties class="LimakWebApp.ServerSide.MainPageController" method="addUserToFileOwners">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="453" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
+          <line>70</line>
+          <properties class="LimakWebApp.ServerSide.CommunicationServiceThreadHandler" method="shareToUser">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="457" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>155</line>
+          <properties class="LimakWebApp.ServerSide.MainPageController" method="addToRuntimeMap">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="470" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
+          <line>92</line>
+          <properties field="serverDiskMap" class="LimakWebApp.ServerSide.MainPageController" />
+          <option name="timeStamp" value="481" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="listOfFiles" language="JAVA" />
+        <watch expression="serverDiskMap" language="JAVA" />
+        <watch expression="((java.util.ArrayList)((java.util.concurrent.ConcurrentHashMap.MapEntry)serverDiskMap.get(1).dataMap.entrySet().toArray()[1]).getValue()).get(1)" custom="java.util.concurrent.ConcurrentHashMap.MapEntry,java.util.ArrayList" />
+        <watch expression="serverDiskMap" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

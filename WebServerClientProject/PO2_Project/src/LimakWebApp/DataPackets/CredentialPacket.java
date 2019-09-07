@@ -29,7 +29,7 @@ public class CredentialPacket implements Comparable, Serializable {
 
     /**
      * This method returns user's email
-     * @return String
+     * @return {@link String}
      */
     public String getUserEmail() {
         return userEmail;
@@ -37,7 +37,7 @@ public class CredentialPacket implements Comparable, Serializable {
 
     /**
      * This method returns user's name
-     * @return String
+     * @return {@link String}
      */
     public String getUserName() {
         return userName;
@@ -59,6 +59,11 @@ public class CredentialPacket implements Comparable, Serializable {
         return userFolderPath;
     }
 
+    /**
+     * Overridden compareTo method, checks class of object, then user's email, path and name to compute output number.
+     * @param o Object to compare
+     * @return int
+     */
     @Override
     public int compareTo(Object o){
         int err=-1;
@@ -78,19 +83,31 @@ public class CredentialPacket implements Comparable, Serializable {
     }
 
 
+    /**
+     * This is a overridden equals method, checks if compareTo method returns {@code 0}
+     * @param o Object to check equality
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         return this.compareTo(o) == 0;
     }
 
+    /**
+     * Overridden hashCode method, returns hash code of {@link CredentialPacket#userName}
+     * @return int
+     */
     @Override
     public int hashCode(){
         return userName.hashCode();
     }
 
+    /**
+     * Returns {@link CredentialPacket#userName}
+     * @return {@link String}
+     */
     @Override
     public String toString(){
         return this.getUserName();
     }
-
 }

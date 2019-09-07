@@ -1,8 +1,8 @@
 package LimakWebApp;
 
+import LimakWebApp.DataPackets.CredentialPacket;
+import LimakWebApp.DataPackets.MessageToSend;
 import LimakWebApp.Utils.Constants;
-
-import javafx.application.Platform;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -12,6 +12,7 @@ import java.io.PrintStream;
 
 import java.net.Socket;
 
+import java.net.SocketException;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -27,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class ServiceThread {
 
     private ServicesHandler parentHandler;
+    private ExecutorService receivingService = Executors.newFixedThreadPool(1);
     private ExecutorService transferService = Executors.newFixedThreadPool(1);
     private Socket socket;
     private String type;
@@ -34,7 +36,8 @@ public class ServiceThread {
     private volatile ObjectInputStream inputStream;
     private volatile ObjectOutputStream outputStream;
     private volatile Boolean sendExit = false;
-
+    private final Object lock = new Object();
+    private  final Object readLock = new Object();
     /**
      * Constructor of ServiceThread, sets socket, gets I/O streams.
      * @param socket socket to set
@@ -59,33 +62,29 @@ public class ServiceThread {
     public synchronized void getObject(boolean conditionalIgnored) {
         Runnable task = () -> {
             do {
-                if(sendExit || socket.isClosed() || socket.isInputShutdown()) break;
-                synchronized (inputStream) {
-                    try {
+                if (sendExit || socket.isClosed() || socket.isInputShutdown()) break;
+                try {
                         Object object = inputStream.readObject();
                         parentHandler.processObject(object);
-                    } catch (ClassNotFoundException cNFE) {
-                        Platform.runLater(() -> {
-                            parentHandler.getController().setStatusText("Can't get the " + token + "!");
-                            StringBuilder stringBuilder = new StringBuilder();
-                            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                            PrintStream outStream = new PrintStream(outputStream);
-                            cNFE.printStackTrace(outStream);
-                            stringBuilder.append(new Date())
-                                    .append(":\n").append("Can't get the ")
-                                    .append(token).append("\n\t")
-                                    .append(cNFE.getMessage()).append("\n")
-                                    .append(outStream.toString()).append("\n");
-                            parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
-                        });
-                    } catch (IOException ignored) {
-                    }
+                }catch (ClassNotFoundException cNFE) {
+                    parentHandler.getController().setStatusText("Can't get the " + token + "!");
+                    StringBuilder stringBuilder = new StringBuilder();
+                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                    PrintStream outStream = new PrintStream(outputStream);
+                    cNFE.printStackTrace(outStream);
+                    stringBuilder.append(new Date())
+                            .append(":\n").append("Can't get the ")
+                            .append(token).append("\n\t")
+                            .append(cNFE.getMessage()).append("\n")
+                            .append(outStream.toString()).append("\n");
+                    parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
+                } catch (IOException ignored) {
                 }
             }
             while(conditionalIgnored);
         };
         if(!conditionalIgnored) {
-            parentHandler.getController().getPool().submit(task);
+            receivingService.submit(task);
         }
         else {
             parentHandler.submitNotificationWatcher(task);
@@ -99,26 +98,35 @@ public class ServiceThread {
     public synchronized void sendObject(Object object) {
         if(socket.isClosed() || socket.isOutputShutdown()) return;
         Runnable task = () -> {
-            try  {
-                synchronized (outputStream) {
+            try {
+                synchronized (readLock) {
                     outputStream.writeObject(object);
                     outputStream.flush();
                 }
-            } catch (IOException io) {
-                io.printStackTrace();
-                Platform.runLater(() -> {
-                    parentHandler.getController().setStatusText("Can't send the " + token + "!");
-                    StringBuilder stringBuilder = new StringBuilder();
-                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                    PrintStream outStream = new PrintStream(outputStream);
-                    io.printStackTrace(outStream);
-                    stringBuilder.append(new Date())
-                            .append(":\n").append("Can't send the ")
-                            .append(token).append("\n\t")
-                            .append(io.getMessage()).append("\n")
-                            .append(outStream.toString()).append("\n");
-                    parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
-                });
+            }catch (SocketException io) {
+                parentHandler.getController().setStatusText("Can't send the " + token + "!");
+                StringBuilder stringBuilder = new StringBuilder();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                PrintStream outStream = new PrintStream(outputStream);
+                io.printStackTrace(outStream);
+                stringBuilder.append(new Date())
+                        .append(":\n").append("Can't send the ")
+                        .append(token).append("\n\t")
+                        .append(io.getMessage()).append("\n")
+                        .append(outStream.toString()).append("\n");
+                parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
+            }
+            catch(IOException io){
+                parentHandler.getController().setStatusText("Connection problems!");
+                StringBuilder stringBuilder = new StringBuilder();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                PrintStream outStream = new PrintStream(outputStream);
+                io.printStackTrace(outStream);
+                stringBuilder.append(new Date())
+                        .append(":\n").append("Connection problems\n\t")
+                        .append(io.getMessage()).append("\n")
+                        .append(outStream.toString()).append("\n");
+                parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
             }
         };
         transferService.submit(task);
@@ -128,10 +136,8 @@ public class ServiceThread {
      * This method submit task to owned thread pool.
      * @param task task to perform
      */
-    public synchronized void submitTask(Runnable task){
-        synchronized (transferService) {
-            transferService.submit(task);
-        }
+    public synchronized void submitTask(Runnable task) {
+        transferService.submit(task);
     }
 
     /**
@@ -143,28 +149,65 @@ public class ServiceThread {
     }
 
     void cleanUp(){
+        transferService.shutdown();
+        receivingService.shutdown();
         try {
             inputStream.close();
-            outputStream.close();
-            transferService.shutdown();
-            if(!transferService.isTerminated())
-                this.transferService.awaitTermination(10, TimeUnit.SECONDS);
+        }catch(IOException io){
+            parentHandler.getController().setStatusText("Can't close socket stream!");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            io.printStackTrace(outStream);
+            stringBuilder.append(new Date())
+                    .append(":\n").append("Can't close socket stream!")
+                    .append("\n\t")
+                    .append(io.getMessage()).append("\n")
+                    .append(outStream.toString()).append("\n");
+            parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
         }
-        catch(InterruptedException|IOException e){
-            Platform.runLater(() -> {
-                transferService.shutdownNow();
-                parentHandler.getController().setStatusText("Can't terminate service!");
-                StringBuilder stringBuilder = new StringBuilder();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                PrintStream outStream = new PrintStream(outputStream);
-                e.printStackTrace(outStream);
-                stringBuilder.append(new Date())
-                        .append(":\n").append("Can't terminate service!")
-                        .append("\n\t")
-                        .append(e.getMessage()).append("\n")
-                        .append(outStream.toString()).append("\n");
-                parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
-            });
+        try {
+            outputStream.close();
+        }
+        catch(IOException io){
+            parentHandler.getController().setStatusText("Can't close socket stream!");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            io.printStackTrace(outStream);
+            stringBuilder.append(new Date())
+                    .append(":\n").append("Can't close socket stream!")
+                    .append("\n\t")
+                    .append(io.getMessage()).append("\n")
+                    .append(outStream.toString()).append("\n");
+            parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
+        }
+        try {
+            if(!transferService.isTerminated())
+                this.transferService.awaitTermination(3, TimeUnit.SECONDS);
+            if(!receivingService.isTerminated())
+                this.receivingService.awaitTermination(3, TimeUnit.SECONDS);
+        }
+        catch(InterruptedException e) {
+            transferService.shutdownNow();
+            receivingService.shutdownNow();
+            parentHandler.getController().setStatusText("Can't terminate service!");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            e.printStackTrace(outStream);
+            stringBuilder.append(new Date())
+                    .append(":\n").append("Can't terminate service!")
+                    .append("\n\t")
+                    .append(e.getMessage()).append("\n")
+                    .append(outStream.toString()).append("\n");
+            parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
+        }
+        try{
+            socket.close();
+        }
+        catch (IOException ignored){
+
         }
     }
 }

@@ -54,21 +54,33 @@ public class AuthAgent implements Callable<Integer> {
      */
     public void closeInitConnection(){
         try{
-            inputReceiver.close();
-            inputSender.close();
-            if(!socket.isClosed())
+            if(inputReceiver != null) {
+                inputReceiver.close();
+            }
+            if(inputSender != null) {
+                    inputSender.close();
+            }
+            if(socket != null && !socket.isClosed()) {
                 socket.close();
+            }
         }
         catch(IOException ignored){
 
         }
     }
 
-    AuthAgent(){
+    /**
+     * Default constructor
+     */
+    public AuthAgent(){
 
     }
 
-    String getSessionID(){
+    /**
+     * This method returns session's ID generated for current new user.
+     * @return {@link String}
+     */
+    public String getSessionID(){
         try {
             return (String) inputReceiver.readObject();
         }
@@ -97,7 +109,7 @@ public class AuthAgent implements Callable<Integer> {
         }
         catch(ClassNotFoundException|IOException e){
             e.printStackTrace();
-            return null;
+            return -1;
         }
     }
 

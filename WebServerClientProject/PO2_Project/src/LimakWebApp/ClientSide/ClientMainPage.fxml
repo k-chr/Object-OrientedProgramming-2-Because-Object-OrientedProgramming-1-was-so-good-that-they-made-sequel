@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LimakWebApp.ClientSide.MainPageController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LimakWebApp.ClientSide.MainPageController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -25,15 +25,15 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane id="mainPane" fx:id="mainPane" prefHeight="400.0" prefWidth="350.0">
+      <AnchorPane id="mainPane" fx:id="mainPane" prefHeight="480.0" prefWidth="435.0">
          <children>
-            <TreeView fx:id="tView" layoutX="14.0" layoutY="61.0" prefHeight="270.0" prefWidth="150.0" />
-            <TextField fx:id="statusText" disable="true" editable="false" layoutX="187.0" layoutY="306.0" opacity="0.99" prefHeight="25.0" prefWidth="153.0">
+            <TreeView fx:id="tView" layoutX="14.0" layoutY="61.0" prefHeight="286.0" prefWidth="247.0" />
+            <TextField fx:id="statusText" disable="true" editable="false" layoutX="267.0" layoutY="321.0" opacity="0.99" prefHeight="25.0" prefWidth="153.0">
                <font>
                   <Font size="11.0" />
                </font>
             </TextField>
-            <TextField fx:id="fixedText" alignment="CENTER" disable="true" editable="false" layoutX="187.0" layoutY="275.0" opacity="0.99" prefHeight="25.0" prefWidth="153.0" text="STATUS:">
+            <TextField fx:id="fixedText" alignment="CENTER" disable="true" editable="false" layoutX="267.0" layoutY="290.0" opacity="0.99" prefHeight="25.0" prefWidth="153.0" text="STATUS:">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -43,15 +43,15 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </TextField>
-            <Label layoutX="14.0" layoutY="331.0" text="Log:" />
-            <ScrollPane fx:id="log" layoutX="14.0" layoutY="348.0" prefHeight="50.0" prefWidth="325.0">
+            <Label layoutX="13.0" layoutY="347.0" text="Log:" />
+            <ScrollPane fx:id="log" layoutX="14.0" layoutY="365.0" prefHeight="110.0" prefWidth="408.0">
                <content>
-                  <VBox fx:id="logContent" prefHeight="50.0" prefWidth="310.0" />
+                  <VBox fx:id="logContent" prefHeight="100.0" prefWidth="390.0" />
                </content>
             </ScrollPane>
             <Label layoutX="1.0" text="Session ID:" />
             <Text fx:id="sessionID" fill="#328337" layoutX="72.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.00000279396772" />
-            <Button fx:id="logOutButton" layoutX="300.0" layoutY="16.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0">
+            <Button fx:id="logOutButton" layoutX="379.0" layoutY="16.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0">
                <graphic>
                   <ImageView blendMode="MULTIPLY" cache="true" cacheHint="SPEED" fitHeight="168.0" fitWidth="168.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" scaleX="0.25" scaleY="0.25">
                      <image>
@@ -62,7 +62,7 @@
                      </effect>
                   </ImageView>
                </graphic></Button>
-            <AnchorPane fx:id="viewOfClientsToShare" layoutX="187.0" layoutY="61.0" prefHeight="208.0" prefWidth="153.0">
+            <AnchorPane fx:id="viewOfClientsToShare" layoutX="267.0" layoutY="61.0" prefHeight="227.0" prefWidth="154.0">
                <children>
                   <ListView fx:id="activeUsersListView" layoutY="24.0" prefHeight="80.0" prefWidth="153.0" />
                   <ListView fx:id="inactiveUsersListView" layoutY="128.0" prefHeight="80.0" prefWidth="153.0" />
@@ -76,6 +76,18 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </TextField>
+                  <Button fx:id="backButton" layoutX="133.0" layoutY="208.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
+                           <image>
+                              <Image url="@backbutton.png" />
+                           </image>
+                           <effect>
+                              <BoxBlur height="1.5" width="1.5" />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
          </children></AnchorPane>

@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
  */
 public class DiskMap {
 
+    private final Object lock= new Object();
     private volatile ConcurrentHashMap<String, ArrayList<CredentialPacket>> dataMap;
     private String path;
 
@@ -58,26 +59,31 @@ public class DiskMap {
      * @param owner - the owner of file
      * @return boolean
      */
-    public boolean putOwnerToFile(String fileName, CredentialPacket owner) {
+    public synchronized boolean putOwnerToFile(String fileName, CredentialPacket owner) {
         boolean rV = false;
-        if(dataMap.isEmpty()){
-            ArrayList<CredentialPacket> items = new ArrayList<>();
-            items.add(owner);
-            dataMap.put(fileName, items);
-        }
-        for(Map.Entry<String, ArrayList<CredentialPacket>> entry : dataMap.entrySet()){
-            if(entry.getKey().equals(fileName)){
-                if(!entry.getValue().contains(owner)) {
-                    entry.getValue().add(owner);
-                    rV = true;
-                }
-                break;
+        synchronized (lock) {
+            if (dataMap.isEmpty()) {
+                ArrayList<CredentialPacket> items = new ArrayList<>();
+                items.add(owner);
+                dataMap.put(fileName, items);
             }
-        }
-        if(!rV){
-            ArrayList<CredentialPacket> items = new ArrayList<>();
-            items.add(owner);
-            dataMap.put(fileName, items);
+            for (Map.Entry<String, ArrayList<CredentialPacket>> entry : dataMap.entrySet()) {
+                if (entry.getKey().equals(fileName)) {
+                    if (!entry.getValue().contains(owner)) {
+                        entry.getValue().add(owner);
+                        rV = true;
+                    }
+                    else {
+                        rV = true;
+                    }
+                    break;
+                }
+            }
+            if (!rV) {
+                ArrayList<CredentialPacket> items = new ArrayList<>();
+                items.add(owner);
+                dataMap.put(fileName, items);
+            }
         }
         return !rV;
     }
@@ -122,7 +128,11 @@ public class DiskMap {
         return found;
     }
 
-    void setDataMap(ConcurrentHashMap<String, ArrayList<CredentialPacket>> map){
+    /**
+     * Sets disk's map
+     * @param map Map to set
+     */
+    public void setDataMap(ConcurrentHashMap<String, ArrayList<CredentialPacket>> map){
         if(map != null) {
             dataMap = map;
         }

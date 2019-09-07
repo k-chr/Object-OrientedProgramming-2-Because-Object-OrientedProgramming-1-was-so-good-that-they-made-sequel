@@ -1,9 +1,10 @@
 package LimakWebApp.ClientSide;
 
+import LimakWebApp.Utils.AbstractClientController;
 import LimakWebApp.Utils.Constants;
+import LimakWebApp.Utils.StringFunctionalInterface;
 import LimakWebApp.DataPackets.CredentialPacket;
 import LimakWebApp.DataPackets.MessageToSend;
-import LimakWebApp.Utils.StringFunctionalInterface;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,7 +32,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import LimakWebApp.Utils.Controller;
+import javafx.stage.Window;
 
 import java.awt.Desktop;
 
@@ -40,13 +41,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import java.nio.file.ClosedWatchServiceException;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.BasicFileAttributes;
 
@@ -54,13 +49,14 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import java.util.Timer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.stream.Collectors;
 
-import static java.nio.file.StandardWatchEventKinds.*;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
@@ -70,12 +66,14 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  * @version 1.0
  * @since   20.05.2019
  */
-public class MainPageController extends Controller {
+public class MainPageController extends AbstractClientController {
 
+    @FXML
+    private Button backButton;
     @FXML
     private Button logOutButton;
     @FXML
-    private ListView<String> inactiveUsersListView;
+    private volatile ListView<String> inactiveUsersListView;
     @FXML
     private AnchorPane viewOfClientsToShare;
     @FXML
@@ -87,24 +85,25 @@ public class MainPageController extends Controller {
     @FXML
     private VBox logContent;
     @FXML
-    private TreeView<File> tView;
+    private volatile TreeView<File> tView;
     @FXML
     private TextField  statusText;
 
-    private volatile ArrayList<String> listOfFiles;
+    private volatile ArrayList<File> tempListOfFiles;
+    private volatile ArrayList<File> listOfFiles;
     private volatile ListProperty<String> activeUsersListProperty;
     private volatile ObservableList<String> activeUsersObservableList;
     private volatile ListProperty<String> inactiveUsersListProperty;
     private volatile ObservableList<String> inactiveUsersObservableList;
 
+    private ApacheWatchService watchService;
     private ReadWriteLock lock;
     private CredentialPacket credentialPacket;
-    private ExecutorService watcherServiceTh;
+
     private ScheduledExecutorService scheduler;
     private Client client;
-    private String itemToSend = null;
+    private File itemToSend = null;
     private String itemToShare = null;
-    private WatchService watchService;
 
     /**
      * This constructor calls super().
@@ -120,8 +119,15 @@ public class MainPageController extends Controller {
             client.demandForLogOut();
             event.consume();
         };
+        EventHandler<ActionEvent> backButtonHandler = event -> {
+            Platform.runLater(() -> {
+                tView.setDisable(false);
+                viewOfClientsToShare.setVisible(false);
+            });
+        };
         viewOfClientsToShare.setVisible(false);
         logOutButton.addEventHandler(ActionEvent.ACTION, actionHandler);
+        backButton.addEventHandler(ActionEvent.ACTION, backButtonHandler);
         log.setContent(logContent);
         activeUsersListProperty = new SimpleListProperty<>();
         inactiveUsersListProperty = new SimpleListProperty<>();
@@ -135,22 +141,18 @@ public class MainPageController extends Controller {
                 };
                 cell.setOnMouseClicked(event -> {
                     if (event.getButton() == MouseButton.PRIMARY && !cell.isEmpty()) {
-                        MessageToSend command = new MessageToSend(credentialPacket, MessageToSend.COMMAND_TYPE.SHARE_FILE_TO_USER);
-                        ArrayList<Object> items = new ArrayList<>();
-                        items.add(cell.getText());
-                        items.add(itemToShare);
-                        command.addContents(items);
-                        client.rcvCmd(command);
-                        Platform.runLater(() -> {
-                            tView.setDisable(false);
-                            viewOfClientsToShare.setVisible(false);
-                            StringBuilder builder = new StringBuilder();
-                            builder.append(new Date())
-                                    .append(":\n").append("Shared successfully: \n\t").append(itemToShare)
-                                    .append("\n").append("to:\n\t").append(cell.getItem()).append("\n");
-                            addLog(Constants.LogType.INFO, builder.toString());
-                            statusText.setText("Shared successfully");
-                        });
+                        if (!cell.getItem().equals(credentialPacket.getUserName())) {
+                            MessageToSend command = new MessageToSend(credentialPacket, MessageToSend.COMMAND_TYPE.SHARE_FILE_TO_USER);
+                            ArrayList<Object> items = new ArrayList<>();
+                            items.add(cell.getText());
+                            items.add(itemToShare);
+                            command.addContents(items);
+                            Platform.runLater(() -> {
+                                tView.setDisable(false);
+                                viewOfClientsToShare.setVisible(false);
+                            });
+                            client.rcvCmd(command);
+                        }
                     }
                 });
                 return cell;
@@ -168,72 +170,57 @@ public class MainPageController extends Controller {
                         if (event.getButton() == MouseButton.PRIMARY && !cell.isEmpty()) {
                             MessageToSend command = new MessageToSend(credentialPacket, MessageToSend.COMMAND_TYPE.SHARE_FILE_TO_USER);
                             ArrayList<Object> items = new ArrayList<>();
-                            items.add(cell.getText());
+                            items.add(cell.getItem());
                             items.add(itemToShare);
                             command.addContents(items);
-                            client.rcvCmd(command);
                             Platform.runLater(() -> {
                                 tView.setDisable(false);
                                 viewOfClientsToShare.setVisible(false);
-                                StringBuilder builder = new StringBuilder();
-                                builder.append(new Date())
-                                        .append(":\n").append("Shared successfully: \n\t").append(itemToShare)
-                                        .append("\n").append("to:\n\t").append(cell.getItem()).append("\n");
-                                addLog(Constants.LogType.INFO, builder.toString());
-                                statusText.setText("Shared successfully");
                             });
+                            client.rcvCmd(command);
                         }
                     });
                     return cell;
                 }
         );
+        tempListOfFiles = new ArrayList<>();
         listOfFiles = new ArrayList<>();
         scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(()->Platform.runLater(()->setStatusText("Session is active")), 10, 60, SECONDS);
-        watcherServiceTh = Executors.newFixedThreadPool(1);
+        scheduler.scheduleAtFixedRate(()->setStatusText("Session is active"), 0, 60, SECONDS);
         activeUsersObservableList = FXCollections.observableList(new ArrayList<>());
         activeUsersListProperty.setValue(activeUsersObservableList);
         activeUsersListView.itemsProperty().bindBidirectional(activeUsersListProperty);
         inactiveUsersObservableList = FXCollections.observableList(new ArrayList<>());
         inactiveUsersListProperty.setValue(inactiveUsersObservableList);
         inactiveUsersListView.itemsProperty().bindBidirectional(inactiveUsersListProperty);
-        try {
-            watchService = FileSystems.getDefault().newWatchService();
-        }
-        catch(IOException io){
-            io.printStackTrace();
-        }
+        watchService = new ApacheWatchService();
         lock = new ReentrantReadWriteLock();
     }
 
     /**
      * This method performs shutdown of all {@link ExecutorService} objects, closes {@link WatchService} and {@link Client}.
      */
+    @Override
     public void cleanUp(){
-        Platform.runLater(()->{
-            setStatusText("Closing...");
-            addLog(Constants.LogType.INFO, new Date().toString() + ":\nClosing...\n");
-        });
-        client.dropConnection();
+        setStatusText("Closing...");
+        addLog(Constants.LogType.INFO, new Date().toString() + ":\nClosing...\n");
+        client.dropConnection(false);
         pool.shutdown();
         scheduler.shutdown();
-        watcherServiceTh.shutdown();
+        watchService.quit();
         try {
-            watchService.close();
-        }
-        catch(IOException io){
-            io.printStackTrace();
-        }
-        try {
-            scheduler.awaitTermination(10, SECONDS);
-            watcherServiceTh.awaitTermination(10, SECONDS);
-            pool.awaitTermination(10, SECONDS);
+            scheduler.awaitTermination(3, SECONDS);
         }
         catch(InterruptedException ie){
-            pool.shutdownNow();
             scheduler.shutdownNow();
-            watcherServiceTh.shutdownNow();
         }
+        try{
+            pool.awaitTermination(3, SECONDS);
+        }
+        catch(InterruptedException ie) {
+            pool.shutdownNow();
+        }
+
         boolean rV = client.isClosed() == false;
         if(rV) {
             client.close();
@@ -241,67 +228,55 @@ public class MainPageController extends Controller {
     }
 
     void createDirectories(){
-        File dir = new File(credentialPacket.getUserFolderPath());
-        if(!dir.exists() && dir.isDirectory()){
-            dir.mkdirs();
+        lock.writeLock().lock();
+        try {
+            File dir = new File(credentialPacket.getUserFolderPath());
+            if (!dir.isDirectory()) {
+                dir.mkdirs();
+            }
+        }finally {
+            lock.writeLock().unlock();
         }
     }
 
-    boolean checkIfMinimized(){
+    /**
+     * Runs {@link ApacheWatchService}
+     */
+    @Override
+    public void runWatcher(){
+        watchService.runWatcher();
+    }
+
+    /**
+     * This method checks if application window is iconified
+     * @return boolean
+     */
+    @Override
+    public boolean checkIfMinimized(){
         return ((Stage)tView.getScene().getWindow()).isIconified();
     }
 
     /**
-     * This method runs client's directory watcher to manage file events.
+     * Returns reference to held {@link Client}
+     * @return {@link Client}
      */
-    public void runWatcher(){
-        Runnable task = ()->{
-            try {
-                while (true) {
-                    WatchKey watchKey = watchService.take();
-                    for(WatchEvent<?> e : watchKey.pollEvents()){
-                        WatchEvent.Kind kind = e.kind();
-                        if(kind == ENTRY_CREATE){
-                            Path fullPath = ((Path)watchKey.watchable()).resolve((Path)e.context());
-                           System.out.println("WATCH_SERVICE_ACTION: "+((Path)e.context()).toFile().getName());
-                           if((fullPath).toFile().isDirectory()){
-                               try {
-                                   (fullPath).register(watchService, ENTRY_DELETE);
-                               }
-                               catch(IOException io){
-                                   io.printStackTrace();
-                               }
-                           }
-                           else{
-                               itemToSend = ((Path)e.context()).toFile().getName();
-                               client.demandForTransferEnforcedByWatchService(itemToSend);
-                           }
-                        }
-                        if(kind == ENTRY_DELETE){
-                            MessageToSend command = new MessageToSend(credentialPacket, MessageToSend.COMMAND_TYPE.REMOVE_USER_FROM_FILE_OWNERS);
-                            ArrayList<Object> arrList = new ArrayList<>();
-                            arrList.add(credentialPacket.getUserName());
-                            arrList.add(((Path)e.context()).toFile().getName());
-                            command.addContents(arrList);
-                            client.rcvCmd(command);
-                        }
-                    }
-                    watchKey.reset();
-                    refreshTree();
-                }
-            }
-            catch(InterruptedException|ClosedWatchServiceException ignored){}
-        };
-        watcherServiceTh.submit(task);
+    @Override
+    public Client getClient() {
+        return client;
     }
 
     /**
-     * This method register user directory to watcher to manage new and removed files.
-     * @throws IOException if path to directory is not valid
+     * This method fills initially list of files owned by {@link Client} to avoid thread race.
+     * @param items Items to add.
      */
-    public void registerDirectoriesForWatchService() throws  IOException{
-        Path path = Paths.get(credentialPacket.getUserFolderPath());
-        path.register(watchService, ENTRY_CREATE, ENTRY_DELETE);
+    public synchronized void fillListOfFilesInitially(ArrayList<File> items){
+        lock.writeLock().lock();
+        try{
+            listOfFiles.clear();
+            listOfFiles.addAll(items);
+        }finally {
+            lock.writeLock().unlock();
+        }
     }
 
     /**
@@ -309,30 +284,32 @@ public class MainPageController extends Controller {
      * @param itemsToAdd List of users' names to add
      * @param which Indicates which list should be updated - the active or inactive users' list
      */
+    @Override
     public void updateListOfUsers(ArrayList<String> itemsToAdd, boolean which){
-        if(which) {
-            activeUsersObservableList.clear();
-            activeUsersObservableList.addAll(itemsToAdd);
-        }
-        else{
-            inactiveUsersObservableList.clear();
-            inactiveUsersObservableList.addAll(itemsToAdd);
-        }
+        Platform.runLater(()-> {
+            if (which) {
+                activeUsersObservableList.clear();
+                activeUsersObservableList.addAll(itemsToAdd.stream().filter(name->!name.equals(credentialPacket.getUserName())).collect(Collectors.toCollection(ArrayList::new)));
+            } else {
+                inactiveUsersObservableList.clear();
+                inactiveUsersObservableList.addAll(itemsToAdd);
+            }
+        });
     }
 
     /**
      * This method shows lists of users (inactive and active users).
      */
+    @Override
     public void showUsers(){
-        tView.setDisable(true);
-        viewOfClientsToShare.setVisible(true);
+        Platform.runLater(()->{
+            tView.setDisable(true);
+            viewOfClientsToShare.setVisible(true);
+        });
         setStatusText("Choose user");
     }
 
-    /**
-     * This method displays user's directory contents in tree.
-     */
-    public void displayTreeView() {
+    private void displayTreeView() {
         String inputDirectoryLocation = credentialPacket.getUserFolderPath();
         String[] path = inputDirectoryLocation.split("\\\\");
         StringBuilder stringBuilder = new StringBuilder();
@@ -383,7 +360,9 @@ public class MainPageController extends Controller {
                         setText(item.getName());
                         tooltip.setText(stringFunctionalInterface.getText(stringBuilder));
                         setTooltip(tooltip);
-                        setContextMenu(contextMenu);
+                        if(!item.isDirectory() && !item.getName().equals("Downloads")) {
+                            setContextMenu(contextMenu);
+                        }
                     }
                 }
             };
@@ -425,7 +404,7 @@ public class MainPageController extends Controller {
                         addLog(Constants.LogType.SUCCESS, builder.toString());
                     });
                 }
-                else if(e.getButton() == MouseButton.SECONDARY && !cell.isEmpty() && cell.getTreeItem() != rootItem){
+                else if(e.getButton() == MouseButton.SECONDARY && !cell.isEmpty() && cell.getTreeItem() != rootItem && !cell.getTreeItem().getValue().getName().equals("Downloads")){
                     Platform.runLater(()->{
                         StringBuilder builder = new StringBuilder();
                         builder.append(new Date())
@@ -448,6 +427,13 @@ public class MainPageController extends Controller {
         }
         rootItem.setExpanded(true);
         tView.setRoot(rootItem);
+        lock.writeLock().lock();
+        try{
+            listOfFiles.clear();
+            listOfFiles.addAll(tempListOfFiles);
+        }finally {
+            lock.writeLock().unlock();
+        }
     }
 
     private void createTree(File file, TreeItem<File> parentTreeItem){
@@ -460,7 +446,7 @@ public class MainPageController extends Controller {
         } else {
             lock.readLock().lock();
             try {
-                listOfFiles.add(file.getName());
+                tempListOfFiles.add(file);
             }finally {
                 lock.readLock().unlock();
             }
@@ -473,22 +459,21 @@ public class MainPageController extends Controller {
      * @param serverFileList List of user's files that are assigned to him on server
      * @return boolean
      */
+    @Override
     public boolean checkIfAreNewFiles(ArrayList<String> serverFileList){
         ArrayList<String> outList = new ArrayList<>();
-        lock.writeLock().lock();
+        lock.readLock().lock();
         try{
-            ArrayList<String> tmp = listOfFiles;
+            ArrayList<String> tmp = listOfFiles.stream().map(file->file.getName()).collect(Collectors.toCollection(ArrayList::new));
             if (serverFileList.size() > 0) {
                 for (String fileName : serverFileList) {
                     if (!tmp.contains(fileName)) {
                         outList.add(fileName);
                     }
                 }
-            } else {
-                outList.addAll(tmp);
             }
         }finally {
-            lock.writeLock().unlock();
+            lock.readLock().unlock();
         }
         return outList.size() > 0;
     }
@@ -498,16 +483,17 @@ public class MainPageController extends Controller {
      * @param serverFileList List of user's files that are assigned to him on server
      * @return <pre>{@code Map.Entry<CredentialPacket, ArrayList<String>>}</pre>
      */
-    public Map.Entry<CredentialPacket, ArrayList<String>> compareUserAndServerList( ArrayList<String> serverFileList){
-        Map.Entry<CredentialPacket, ArrayList<String>> rV = null;
-        ArrayList<String> outList = new ArrayList<>();
-        lock.writeLock().lock();
+    @Override
+    public Map.Entry<CredentialPacket, ArrayList<File>> compareUserAndServerList( ArrayList<String> serverFileList){
+        Map.Entry<CredentialPacket, ArrayList<File>> rV = null;
+        ArrayList<File> outList = new ArrayList<>();
+        lock.readLock().lock();
         try {
-            ArrayList<String> tmp = listOfFiles;
+            ArrayList<File> tmp = listOfFiles;
             if (serverFileList.size() > 0) {
-                for (String fileName : tmp) {
-                    if (!serverFileList.contains(fileName)) {
-                        outList.add(fileName);
+                for (File file : tmp) {
+                    if (!serverFileList.contains(file.getName())) {
+                        outList.add(file);
                     }
                 }
             } else {
@@ -515,7 +501,7 @@ public class MainPageController extends Controller {
             }
         }
         finally {
-            lock.writeLock().unlock();
+            lock.readLock().unlock();
         }
         rV = new AbstractMap.SimpleEntry<>(credentialPacket, outList);
         return rV;
@@ -525,29 +511,46 @@ public class MainPageController extends Controller {
      * This method sets an ID of current session.
      * @param sessionID received ID from server
      */
+    @Override
     public void setSessionID(String sessionID) {
-        this.sessionID.setText(sessionID);
+        Platform.runLater(()->this.sessionID.setText(sessionID));
     }
+
 
     /**
      * This method sets user's credentials.
      * @param credentialPacket credentials of user to set
      */
+    @Override
     public void setCredentialPacket(CredentialPacket credentialPacket) {
         this.credentialPacket = credentialPacket;
+    }
+
+    /**
+     * This method returns credentials of current user
+     * @return {@link CredentialPacket}
+     */
+    @Override
+    public CredentialPacket getCredentialPacket(){
+        return this.credentialPacket;
     }
 
     /**
      * This method sets a client.
      * @param client Client object to set
      */
+    @Override
     public void setClient(Client client) {
         this.client = client;
+    }
+    @Override
+    public void setItemToSend(File file) {
+        itemToSend = file;
     }
 
     /**
      * This method returns current stage.
-     * @return Stage
+     * @return {@link Stage}
      */
     public Stage getStage(){
         return (Stage)logOutButton.getScene().getWindow();
@@ -555,13 +558,19 @@ public class MainPageController extends Controller {
 
     /**
      * This method provides access to user's files' list.
-     * @return <pre>{@code ArrayList<String>}</pre>
+     * @return {@code ArrayList<String>}
      */
+    @Override
     public ArrayList<String> getListOfFiles(){
-        return listOfFiles;
+        return listOfFiles.stream().map(file -> file.getName()).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    String getItemToSend(){
+    /**
+     * This method returns name of file to send.
+     * @return {@link String}
+     */
+    @Override
+    public File getItemToSend(){
         return itemToSend;
     }
 
@@ -570,7 +579,7 @@ public class MainPageController extends Controller {
      */
     @Override
     public void displayTree() {
-        displayTreeView();
+        Platform.runLater(()->displayTreeView());
     }
 
     /**
@@ -579,13 +588,14 @@ public class MainPageController extends Controller {
     @Override
     public void refreshTree(){
         Platform.runLater(()-> {
-            lock.readLock().lock();
+            lock.writeLock().lock();
             try {
-                listOfFiles.clear();
-                super.refreshTree();
+                tempListOfFiles.clear();
+                clearRoot();
+                displayTree();
             }
             finally {
-                lock.readLock().unlock();
+                lock.writeLock().unlock();
             }
         });
     }
@@ -595,7 +605,16 @@ public class MainPageController extends Controller {
      */
     @Override
     public void clearRoot() {
-        tView.setRoot(null);
+        Platform.runLater(()->tView.setRoot(null));
+        Platform.runLater(()-> tView.setStyle(null));
+    }
+
+    /**
+     * Sets proper watch service for controller.
+     * @param watchService {@link ApacheWatchService} to set.
+     */
+    public void setWatchService(ApacheWatchService watchService) {
+        this.watchService = watchService;
     }
 
     /**
@@ -605,12 +624,12 @@ public class MainPageController extends Controller {
     @Override
     @FXML
     public void setStatusText(String string){
-        statusText.setText(string);
+        Platform.runLater(()-> statusText.setText(string));
     }
 
     /**
      * Adds new log message to log pane with specified type and content.
-     * @param logType type of message.
+     * @param logType {@link Constants.LogType} type of message.
      * @param message content of message, usually contains a date of message and some basic content which indicates performed action.
      */
     @Override
@@ -618,7 +637,7 @@ public class MainPageController extends Controller {
     public void addLog(Constants.LogType logType, String message){
         Text textToAdd = new Text();
         textToAdd.setText(message);
-        textToAdd.setWrappingWidth(304);
+        textToAdd.setWrappingWidth(390);
         switch(logType){
             case INFO:
                 textToAdd.setFill(Color.BLUE);
@@ -630,6 +649,38 @@ public class MainPageController extends Controller {
                 textToAdd.setFill(Color.GREEN);
                 break;
         }
-        logContent.getChildren().add(textToAdd);
+        Platform.runLater(()->logContent.getChildren().add(textToAdd));
+    }
+
+    /**
+     * This method hides window and loads login page
+     * @param stage Window to hide
+     */
+    @Override
+    public void hideWindow(Object stage){
+        if (stage instanceof Window){
+            Platform.runLater(() -> {
+                ((Window)stage).hide();
+                try {
+                    Stage primaryStage = LimakWebApp.ClientSide.ClientApp.createStage("ClientLoginPage.fxml", 240, 290, false);
+                    primaryStage.setOnCloseRequest(e -> {
+                        e.consume();
+                        Timer timer = new Timer();
+                        timer.schedule(
+                                new java.util.TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        System.exit(0);
+                                        timer.cancel();
+                                    }
+                                }, 4000);
+
+                    });
+                    primaryStage.show();
+                } catch (IOException io) {
+                    io.printStackTrace();
+                }
+            });
+        }
     }
 }

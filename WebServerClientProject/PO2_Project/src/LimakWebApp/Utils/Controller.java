@@ -1,7 +1,5 @@
 package LimakWebApp.Utils;
 
-import javafx.application.Platform;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -54,7 +52,7 @@ public abstract class Controller {
     /**
      * This methods returns text representation of provided size in bytes
      * @param bytes Size to convert
-     * @return String
+     * @return {@link String}
      */
     public String computeDataStorageUnitAndValue(long bytes){
         final String bytesUnit = " Bytes";
@@ -70,12 +68,7 @@ public abstract class Controller {
     /**
      * This method should refresh {@link javafx.scene.control.TreeView} owned by deriving Controller
      */
-    public void refreshTree(){
-        Platform.runLater(()-> {
-            clearRoot();
-            displayTree();
-        });
-    }
+    public abstract void refreshTree();
 
     /**
      * This method returns MAX_SIZE to compute ID of session
@@ -87,7 +80,7 @@ public abstract class Controller {
 
     /**
      * This method gives access to thread pool
-     * @return ExecutorService
+     * @return {@link ExecutorService}
      */
     public ExecutorService getPool() {
         return pool;

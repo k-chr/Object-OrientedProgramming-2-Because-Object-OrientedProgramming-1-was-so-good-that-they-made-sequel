@@ -1,7 +1,10 @@
 package LimakWebApp.ServerSide;
 
-import LimakWebApp.Utils.Constants;
 import LimakWebApp.DataPackets.CredentialPacket;
+
+import LimakWebApp.Utils.AbstractServerController;
+import LimakWebApp.Utils.Constants;
+import LimakWebApp.Utils.DataPair;
 import LimakWebApp.Utils.StringFunctionalInterface;
 
 import com.google.gson.Gson;
@@ -20,13 +23,16 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
 import javafx.application.Platform;
+
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
-import LimakWebApp.Utils.Controller;
 
 import java.awt.Desktop;
 
@@ -57,68 +63,13 @@ import java.util.stream.Collectors;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
- * <h1>DataPair</h1>
- * This class is used by {@link MainPageController} maintain list of clients
- * @author  Kamil Chrustowski
- * @version 1.0
- * @since   12.08.2019
- */
-class DataPair implements Map.Entry<CredentialPacket, Boolean>{
-
-    private CredentialPacket key;
-    private Boolean value;
-
-    DataPair(CredentialPacket packet, Boolean value){
-        this.value = value;
-        key = packet;
-    }
-
-    @Override
-    public Boolean setValue(Boolean value){
-        Boolean oldValue = this.value;
-        this.value = value;
-        return oldValue;
-    }
-
-    @Override
-    public CredentialPacket getKey(){
-        return key;
-    }
-
-    @Override
-    public Boolean getValue(){
-        return value;
-    }
-
-    @Override
-    public int hashCode() {
-        int keyHash = (key==null ? 0 : key.hashCode());
-        int valueHash = (value==null ? 0 : value.hashCode());
-        return keyHash ^ valueHash;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Map.Entry) || !(((Map.Entry) o).getKey() instanceof CredentialPacket) ||  !(((Map.Entry) o).getValue() instanceof Boolean))
-            return false;
-        return ((Map.Entry<CredentialPacket, Boolean>)o).getKey().compareTo(key) == 0 && ((Map.Entry<CredentialPacket, Boolean>) o).getValue().equals(value);
-    }
-
-    @Override
-    public String toString() {
-        return key.getUserName() + " " + (value ? "online" : "offline");
-    }
-
-}
-
-/**
  * <h1>MainPageController</h1>
  * This class performs GUI operations and some business logic for Server
  * @author  Kamil Chrustowski
  * @version 1.0
  * @since   20.06.2019
  */
-public class MainPageController extends Controller {
+public class MainPageController extends AbstractServerController {
 
     @FXML
     private TreeView<File> serverTreeView;
@@ -131,8 +82,9 @@ public class MainPageController extends Controller {
     @FXML
     private volatile ListView<DataPair> listView;
 
+    private final Object lock = new Object();
     private static Server server;
-    private CredentialPacket credentialPacket;
+    private volatile CredentialPacket credentialPacket;
     private ScheduledExecutorService scheduler;
     private EmailUtil emailSession;
     private volatile ListProperty<DataPair> listProperty;
@@ -143,12 +95,13 @@ public class MainPageController extends Controller {
     private volatile Set<String> ids;
 
     /**
-     * Constructor of ServerSide.MainPageController, initializes Server, set of string and calls super()
+     * Constructor of {@link MainPageController}, initializes {@link Server}, set of string and calls super()
      */
     public MainPageController(){
         super();
         ids = new HashSet<>();
         server = new Server();
+        server.setController(this);
     }
 
     @FXML
@@ -163,10 +116,10 @@ public class MainPageController extends Controller {
         runTimeMapOfFileOwners = new ConcurrentHashMap<>();
         readInitListOfClientsFromFile();
         serverDiskMap = new ArrayList<>();
-        emailSession = new EmailUtil();
+        emailSession = new EmailUtil(this);
         emailSession.createSession("XsW2#eDc!qAz");
         for(int i = 0; i < 5; ++i){
-            serverDiskMap.add(new DiskMap(Constants.getServerDirectory(this) + "\\" + Constants.getDirectories(this)[i]));
+            serverDiskMap.add(new DiskMap(credentialPacket.getUserFolderPath() + "\\" + Constants.getDirectories(this)[i]));
             serverDiskMap.get(i).setDataMap(readContentsFromJson(i));
         }
         listOfClients.put(credentialPacket, true);
@@ -184,11 +137,11 @@ public class MainPageController extends Controller {
         };
         Runnable task3 = ()->checkIfAreFilesToSendForInactiveUsers();
         Runnable task1 = ()->{
-          Platform.runLater(()->setStatusText("Waiting for clients..."));
+          setStatusText("Waiting for the clients...");
         };
         scheduler.scheduleAtFixedRate(task, 30, 120, SECONDS);
-        scheduler.scheduleAtFixedRate(task2, 30, 180, SECONDS);
-        scheduler.scheduleAtFixedRate(task3, 10, 600, SECONDS);
+        scheduler.scheduleAtFixedRate(task2, 10, 60, SECONDS);
+        scheduler.scheduleAtFixedRate(task3,180 , 7200, SECONDS);
         scheduler.scheduleAtFixedRate(task1, 10, 60, SECONDS);
         setStatusText("Waiting for the clients...");
         addLog(Constants.LogType.INFO, new Date().toString() + ":\nWaiting for the clients...\n");
@@ -199,12 +152,26 @@ public class MainPageController extends Controller {
      * @param user Owner of file represented by filename.
      * @param fileName File to add.
      */
+    @Override
     public void addToRuntimeMap(CredentialPacket user, String fileName){
+        if(runTimeMapOfFileOwners.isEmpty()){
+            ArrayList<String> list = new ArrayList<>();
+            list.add(fileName);
+            runTimeMapOfFileOwners.put(user, list);
+            return;
+        }
+        boolean found = false;
         for (Map.Entry<CredentialPacket, ArrayList<String>> next : runTimeMapOfFileOwners.entrySet()) {
             if (next.getKey().equals(user)) {
                 next.getValue().add(fileName);
+                found = true;
                 break;
             }
+        }
+        if(!found) {
+            ArrayList<String> list = new ArrayList<>();
+            list.add(fileName);
+            runTimeMapOfFileOwners.put(user, list);
         }
     }
 
@@ -214,6 +181,7 @@ public class MainPageController extends Controller {
      * @param user The user whose ownership to provided file will be abolished
      * @return boolean
      */
+    @Override
     public synchronized boolean removeUserFromFileOwners(String fileName, CredentialPacket user){
         boolean rV = false;
         for(DiskMap disk : serverDiskMap){
@@ -230,6 +198,7 @@ public class MainPageController extends Controller {
      * @param to The user who file would be shared with.
      * @param item File to share.
      */
+    @Override
     public void shareFile(CredentialPacket to, String item){
         addUserToFileOwners(item,to);
         if(getActiveListOfClients().contains(to)){
@@ -244,9 +213,10 @@ public class MainPageController extends Controller {
      * This method return the list of logged out users
      * @return {@code ArrayList<CredentialPacket>}
      */
+    @Override
     public ArrayList<CredentialPacket> getInactiveListOfClients(){
         return listOfClients.entrySet().stream()
-                .filter(client->client.getValue() == false)
+                .filter(client-> !client.getValue() && !client.getKey().getUserName().equals("Server"))
                 .map(client->client.getKey())
                 .collect(Collectors.toCollection(ArrayList::new));
     }
@@ -255,9 +225,10 @@ public class MainPageController extends Controller {
      * This method returns the list of legged in users
      * @return {@code ArrayList<CredentialPacket>}
      */
+    @Override
     public ArrayList<CredentialPacket> getActiveListOfClients(){
         return listOfClients.entrySet().stream()
-                .filter(client->client.getValue())
+                .filter(client->client.getValue() && !client.getKey().getUserName().equals("Server"))
                 .map(client->client.getKey())
                 .collect(Collectors.toCollection(ArrayList::new));
     }
@@ -267,7 +238,8 @@ public class MainPageController extends Controller {
      * @param packet the user who owns some files
      * @return {@code Set<String>}
      */
-    public Set<String> getListOfFilesForUser(CredentialPacket packet){
+    @Override
+    public synchronized Set<String> getListOfFilesForUser(CredentialPacket packet){
         Set<String> rV = new HashSet<>();
         for(DiskMap disk : serverDiskMap){
             if(disk == null || disk.getMap() == null || disk.getMap().isEmpty()) continue;
@@ -282,13 +254,14 @@ public class MainPageController extends Controller {
      * @param userFileList list of filenames to compare
      * @return {@code Map.Entry<CredentialPacket, ArrayList<String>>}
      */
-    public Map.Entry<CredentialPacket, ArrayList<String>> compareUserAndServerList(CredentialPacket user, ArrayList<String> userFileList){
-        Map.Entry<CredentialPacket, ArrayList<String>> rV = null;
-        ArrayList<String> outList = new ArrayList<>();
+    @Override
+    public Map.Entry<CredentialPacket, ArrayList<File>> compareUserAndServerList(CredentialPacket user, ArrayList<String> userFileList){
+        Map.Entry<CredentialPacket, ArrayList<File>> rV = null;
+        ArrayList<File> outList = new ArrayList<>();
         ArrayList<String> tmp = new ArrayList<>(getListOfFilesForUser(user));
         for(String fileName: tmp){
             if(!userFileList.contains(fileName)){
-                outList.add(fileName);
+                outList.add(new File(findFileInServer(fileName) ,fileName));
             }
         }
         rV = new AbstractMap.SimpleEntry<>(user, outList);
@@ -298,15 +271,14 @@ public class MainPageController extends Controller {
     /**
      * This method cleans connections, drops email session, dumps server control files, and shutdowns {@link ScheduledExecutorService}
      */
+    @Override
     public void cleanUp(){
         dumpListOfClients();
         for(int i = 0; i < serverDiskMap.size(); ++i){
             dumpContentsToJson(i);
         }
-        Platform.runLater(()->{
-            setStatusText("Closing...");
-            addLog(Constants.LogType.INFO, new Date().toString() + ":\nClosing...\n");
-        });
+        setStatusText("Closing...");
+        addLog(Constants.LogType.INFO, new Date().toString() + ":\nClosing...\n");
         emailSession.dropSession();
         server.setItTimeToStop(true);
         scheduler.shutdown();
@@ -319,15 +291,16 @@ public class MainPageController extends Controller {
             scheduler.shutdownNow();
             pool.shutdownNow();
         }
-        server.clearUpConnection();
+        server.quit();
     }
 
     /**
      * This method puts an ID to hash set of IDs.
      * @param strId unique ID to put
      */
+    @Override
     public synchronized void putId(String strId){
-        ids.add(strId);
+        Platform.runLater(()->{ synchronized(lock){ids.add(strId);}});
     }
 
     /**
@@ -335,9 +308,10 @@ public class MainPageController extends Controller {
      * @param fileName File to search
      * @return String
      */
+    @Override
     public String findFileInServer(String fileName){
         for(String dir : Constants.getDirectories(this)){
-            String outName = Constants.getServerDirectory(this) + "\\" + dir;
+            String outName = credentialPacket.getUserFolderPath() + "\\" + dir;
             File tmp = new File(outName);
             if(tmp.exists() && tmp.isDirectory()){
                 for(String file : tmp.list()){
@@ -355,32 +329,57 @@ public class MainPageController extends Controller {
      * @param packet User to update its state
      * @param value State, if true the user is on-line otherwise user is off-line
      */
+    @Override
     public synchronized void updateListOfClients(CredentialPacket packet, Boolean value){
-        listOfClients.put(packet, value);
+        synchronized (lock) {
+            listOfClients.put(packet, value);
+        }
         Platform.runLater(()-> {
-            packetBooleanObservableList.clear();
-            packetBooleanObservableList.addAll(listOfClients.toDataPairSet());
+            synchronized (lock) {
+                packetBooleanObservableList.clear();
+                packetBooleanObservableList.addAll(listOfClients.toDataPairSet());
+            }
         });
     }
 
     /**
      * This method authorizes and accepts clients
      */
+    @Override
     public void authorize(){
         server.acceptClients();
     }
 
-    void cleanUpSessionForID(String ID, CredentialPacket user){
+    /**
+     * This method removes provided ID from set of sessions' IDs and updates list of client on index of provided user with false value.
+     * @param ID ID of session to close.
+     * @param user User, who wants to close connection
+     */
+    @Override
+    public void cleanUpSessionForID(String ID, CredentialPacket user){
         removeId(ID);
         updateListOfClients(user, false);
+        getServer().removeHandlerById(ID);
     }
 
-    CredentialPacket findUserByName(String userName){
+    /**
+     * This method returns reference to user founded by provided name, if not exists returns empty {@link CredentialPacket}
+     * @param userName Key (user) to find
+     * @return {@link CredentialPacket}
+     */
+    @Override
+    public CredentialPacket findUserByName(String userName){
         return listOfClients.entrySet().stream().map(entry->entry.getKey()).filter(user-> user.getUserName().equals(userName)).findAny().orElse(new CredentialPacket("","",""));
     }
 
-    synchronized String generateID(Class accessor){
-        if(! (accessor.equals(LimakWebApp.ServerSide.MainPageController.class))) return null;
+    /**
+     * This method generates ID for new session.
+     * @param accessor valid object
+     * @return {@link String}
+     */
+    @Override
+    public synchronized String generateID(Object accessor){
+        if(! (accessor instanceof LimakWebApp.Utils.AbstractServerController)) return null;
         Random generator = new Random();
         StringBuilder stringBuilder = new StringBuilder();
         while(true) {
@@ -405,13 +404,15 @@ public class MainPageController extends Controller {
 
     private void fillRunTimeMap(){
         for(Map.Entry<CredentialPacket, Boolean> entry : listOfClients.entrySet()){
-            runTimeMapOfFileOwners.put(entry.getKey(), getListOfFilesForUser(entry.getKey()).stream().collect(Collectors.toCollection(ArrayList::new)));
+            if(!entry.getKey().getUserName().equals("Server")) {
+                runTimeMapOfFileOwners.put(entry.getKey(), getListOfFilesForUser(entry.getKey()).stream().collect(Collectors.toCollection(ArrayList::new)));
+            }
         }
     }
 
     private synchronized ConcurrentHashMap<String, ArrayList<CredentialPacket>> readContentsFromJson(int disk){
         ConcurrentHashMap<String, ArrayList<LinkedTreeMap<String,String>>> outMap = new ConcurrentHashMap<>();
-        File root = new File(Constants.getServerDirectory(this));
+        File root = new File(credentialPacket.getUserFolderPath());
         File subFolder = new File(root, Constants.getDirectories(this)[disk]);
         File fileToRead = new File(subFolder, Constants.getDirectoriesControlFile(this));
         if(fileToRead.length() < 1){
@@ -421,21 +422,19 @@ public class MainPageController extends Controller {
         try(JsonReader reader = new JsonReader(new FileReader(fileToRead))){
             outMap = gson.fromJson(reader, outMap.getClass());
         }
-        catch(IOException io){
-            Platform.runLater(()->{
-                setStatusText("Can't read file");
-                StringBuilder stringBuilder = new StringBuilder();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                PrintStream outStream = new PrintStream(outputStream);
-                io.printStackTrace(outStream);
-                stringBuilder.append(new Date())
-                        .append(":\n")
-                        .append("Can't read file: \n\t")
-                        .append(fileToRead.getAbsolutePath()).append("\n")
-                        .append(io.getMessage() + "\n")
-                        .append(outStream.toString()).append("\n");
-                addLog(Constants.LogType.ERROR, stringBuilder.toString());
-            });
+        catch(IOException io) {
+            setStatusText("Can't read file");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            io.printStackTrace(outStream);
+            stringBuilder.append(new Date())
+                    .append(":\n")
+                    .append("Can't read file: \n\t")
+                    .append(fileToRead.getAbsolutePath()).append("\n")
+                    .append(io.getMessage() + "\n")
+                    .append(outStream.toString()).append("\n");
+            addLog(Constants.LogType.ERROR, stringBuilder.toString());
         }
         ConcurrentHashMap<String, ArrayList<CredentialPacket>> rV = new ConcurrentHashMap<>();
         for(Map.Entry<String, ArrayList<LinkedTreeMap<String,String>>> node : outMap.entrySet()){
@@ -446,67 +445,68 @@ public class MainPageController extends Controller {
     }
 
     private synchronized void dumpContentsToJson(int disk){
-        File root = new File(Constants.getServerDirectory(this));
+        File root = new File(credentialPacket.getUserFolderPath());
         File subFolder = new File(root, Constants.getDirectories(this)[disk]);
         File fileToDump = new File(subFolder, Constants.getDirectoriesControlFile(this));
         Gson gson = new Gson();
         try(Writer writer= new FileWriter(fileToDump)){
             ConcurrentHashMap<String, ArrayList<CredentialPacket>> toDump = serverDiskMap.get(disk).getMap();
             gson.toJson(toDump, writer);
+            setStatusText("File is saved successfully");
+            StringBuilder builder = new StringBuilder();
+            builder.append(new Date())
+                    .append("\n").append("Saved properly a file:\n\t")
+                    .append(fileToDump.getAbsolutePath() + "\n");
+            addLog(Constants.LogType.SUCCESS, builder.toString());
         }
-        catch (IOException io){
-            Platform.runLater(()-> {
-                setStatusText("Can't save file");
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                PrintStream outStream = new PrintStream(outputStream);
-                io.printStackTrace(outStream);
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(new Date())
-                        .append(":\n")
-                        .append("Can't save file: \n\t")
-                        .append(fileToDump.getAbsolutePath()).append("\n")
-                        .append(outStream.toString()).append("\n");
-                addLog(Constants.LogType.ERROR, stringBuilder.toString());
-            });
+        catch (IOException io) {
+            setStatusText("Can't save file");
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            io.printStackTrace(outStream);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(new Date())
+                    .append(":\n")
+                    .append("Can't save file: \n\t")
+                    .append(fileToDump.getAbsolutePath()).append("\n")
+                    .append(outStream.toString()).append("\n");
+            addLog(Constants.LogType.ERROR, stringBuilder.toString());
         }
+
     }
 
     private void dumpListOfClients(){
-        File root = new File(Constants.getServerDirectory(this));
+        File root = new File(credentialPacket.getUserFolderPath());
         File listOfClientsFile = new File(root, Constants.getListOfClientsFileName(this));
         Gson gson= new Gson();
-        try(Writer writer = new FileWriter(listOfClientsFile)){
+        try(Writer writer = new FileWriter(listOfClientsFile)) {
             CredentialPacket[] packets = listOfClients.keySet().toArray(new CredentialPacket[listOfClients.keySet().size()]);
             gson.toJson(packets, writer);
-            Platform.runLater(()->{
-                setStatusText("File is saved successfully");
-                StringBuilder builder = new StringBuilder();
-                builder.append(new Date())
-                        .append("\n").append("Saved properly a file:\n\t")
-                        .append(listOfClientsFile.getAbsolutePath() + "\n");
-                addLog(Constants.LogType.SUCCESS, builder.toString());
-            });
+            setStatusText("File is saved successfully");
+            StringBuilder builder = new StringBuilder();
+            builder.append(new Date())
+                    .append("\n").append("Saved properly a file:\n\t")
+                    .append(listOfClientsFile.getAbsolutePath() + "\n");
+            addLog(Constants.LogType.SUCCESS, builder.toString());
         }
-        catch(IOException io){
-            Platform.runLater(()->{
-                setStatusText("Can't save file");
-                StringBuilder stringBuilder = new StringBuilder();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                PrintStream outStream = new PrintStream(outputStream);
-                io.printStackTrace(outStream);
-                stringBuilder.append(new Date())
-                        .append(":\n")
-                        .append("Can't save file: \n\t")
-                        .append(listOfClientsFile.getAbsolutePath()).append("\n")
-                        .append(io.getMessage() + "\n")
-                        .append(outStream.toString()).append("\n");
-                addLog(Constants.LogType.ERROR, stringBuilder.toString());
-            });
+        catch(IOException io) {
+            setStatusText("Can't save file");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            io.printStackTrace(outStream);
+            stringBuilder.append(new Date())
+                    .append(":\n")
+                    .append("Can't save file: \n\t")
+                    .append(listOfClientsFile.getAbsolutePath()).append("\n")
+                    .append(io.getMessage() + "\n")
+                    .append(outStream.toString()).append("\n");
+            addLog(Constants.LogType.ERROR, stringBuilder.toString());
         }
     }
 
     private void readInitListOfClientsFromFile(){
-        File root = new File(Constants.getServerDirectory(this));
+        File root = new File(credentialPacket.getUserFolderPath());
         File listOfClientsFile = new File(root, Constants.getListOfClientsFileName(this));
         Gson gson = new Gson();
         try (JsonReader jsonReader = new JsonReader(new FileReader(listOfClientsFile))){
@@ -517,32 +517,30 @@ public class MainPageController extends Controller {
                 }
             }
         }
-        catch(IOException|JsonParseException io){
-            Platform.runLater(()->{
-                setStatusText("Can't read or parse file");
-                StringBuilder stringBuilder = new StringBuilder();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                PrintStream outStream = new PrintStream(outputStream);
-                io.printStackTrace(outStream);
-                stringBuilder.append(new Date())
-                        .append(":\n")
-                        .append("Can't read or parse file: \n\t")
-                        .append(listOfClientsFile.getAbsolutePath()).append("\n")
-                        .append(io.getMessage() + "\n")
-                        .append(outStream.toString()).append("\n");
-                addLog(Constants.LogType.ERROR, stringBuilder.toString());
-            });
+        catch(IOException|JsonParseException io) {
+            setStatusText("Can't read or parse file");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            io.printStackTrace(outStream);
+            stringBuilder.append(new Date())
+                    .append(":\n")
+                    .append("Can't read or parse file: \n\t")
+                    .append(listOfClientsFile.getAbsolutePath()).append("\n")
+                    .append(io.getMessage() + "\n")
+                    .append(outStream.toString()).append("\n");
+            addLog(Constants.LogType.ERROR, stringBuilder.toString());
         }
     }
 
     private void createServerDirectoriesIfNotExist(String[] directories){
-        String stringPath = Constants.getServerDirectory(this);
+        String stringPath = credentialPacket.getUserFolderPath();
         File rootFile = new File (stringPath);
         if(!rootFile.exists()){
             rootFile.mkdirs();
         }
         File[] listingDir = rootFile.listFiles();
-        if(listingDir == null || (listingDir  != null && listingDir.length < 5)) {
+        if(listingDir == null || ( listingDir.length < 5)) {
             for (String str : directories) {
                new File(stringPath + "\\" + str).mkdir();
             }
@@ -551,17 +549,19 @@ public class MainPageController extends Controller {
     }
 
     private synchronized void removeId(String strId){
-        ids.remove(strId);
+        synchronized (lock) {
+            ids.remove(strId);
+        }
     }
 
-    private void checkIfAreFilesToSendForInactiveUsers(){
+    private synchronized void checkIfAreFilesToSendForInactiveUsers() {
         ArrayList<CredentialPacket> inactiveUsersList = getInactiveListOfClients();
         Map<CredentialPacket, ArrayList<String>> filtered = runTimeMapOfFileOwners.entrySet().stream()
                 .filter(entry -> inactiveUsersList.contains(entry.getKey()))
-                .collect(Collectors.toConcurrentMap(entry->entry.getKey(), entry->entry.getValue()));
-        filtered.forEach((key, value)->{
-            ArrayList<String> list = compareUserAndServerList(key, value).getValue();
-            if(list.size() > 0){
+                .collect(Collectors.toConcurrentMap(entry -> entry.getKey(), entry -> entry.getValue()));
+        filtered.forEach((key, value) -> {
+            ArrayList<String> list = compareUserAndServerList(key, value).getValue().stream().map(file -> file.getName()).collect(Collectors.toCollection(ArrayList::new));
+            if (list.size() > 0) {
                 emailSession.sendEmail(key, false, list.toArray(new String[list.size()]));
             }
         });
@@ -569,19 +569,21 @@ public class MainPageController extends Controller {
 
     private synchronized boolean addUserToFileOwners(String fileName, CredentialPacket user){
         boolean rV = false;
-        for(DiskMap disk: serverDiskMap){
-            if(disk.checkIfFileExists(fileName)){
-                if(!user.isEmpty()) {
-                    rV = disk.putOwnerToFile(fileName, user);
+        synchronized (lock) {
+            for (DiskMap disk : serverDiskMap) {
+                if (disk.checkIfFileExists(fileName)) {
+                    if (!user.isEmpty()) {
+                        rV = disk.putOwnerToFile(fileName, user);
+                    }
+                    break;
                 }
-                break;
             }
         }
         return rV;
     }
 
     private void createImportantStartUpFilesIfNotExist(){
-        File rootFile = new File (Constants.getServerDirectory(this));
+        File rootFile = new File (credentialPacket.getUserFolderPath());
         if(rootFile.exists()){
             File clientsFile = new File(rootFile, Constants.getListOfClientsFileName(this));
             if(!clientsFile.exists()){
@@ -605,7 +607,7 @@ public class MainPageController extends Controller {
     }
 
     private void displayTreeView() {
-        String inputDirectoryLocation = Constants.getServerDirectory(this);
+        String inputDirectoryLocation = credentialPacket.getUserFolderPath();
         String[] path = inputDirectoryLocation.split("\\\\");
         StringBuilder stringBuilder = new StringBuilder();
         TreeItem<File> rootItem = new TreeItem<>(new File(inputDirectoryLocation));
@@ -655,21 +657,19 @@ public class MainPageController extends Controller {
                             desktop.open(file);
                         } else throw new IOException();
                     }
-                    catch(IOException io){
-                        Platform.runLater(()->{
-                            setStatusText("Can't open a file");
-                            StringBuilder builder = new StringBuilder();
-                            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                            PrintStream outStream = new PrintStream(outputStream);
-                            io.printStackTrace(outStream);
-                            stringBuilder.append(new Date())
-                                    .append(":\n")
-                                    .append("Can't open file or Desktop is not supported class in your system: \n\t")
-                                    .append(file.getAbsolutePath()).append("\n")
-                                    .append(io.getMessage()).append("\n")
-                                    .append(outStream.toString()).append("\n");
-                            addLog(Constants.LogType.ERROR, builder.toString());
-                        });
+                    catch(IOException io) {
+                        setStatusText("Can't open a file");
+                        StringBuilder builder = new StringBuilder();
+                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                        PrintStream outStream = new PrintStream(outputStream);
+                        io.printStackTrace(outStream);
+                        stringBuilder.append(new Date())
+                                .append(":\n")
+                                .append("Can't open file or Desktop is not supported class in your system: \n\t")
+                                .append(file.getAbsolutePath()).append("\n")
+                                .append(io.getMessage()).append("\n")
+                                .append(outStream.toString()).append("\n");
+                        addLog(Constants.LogType.ERROR, builder.toString());
                     }
                     setStatusText("File opened");
                     StringBuilder builder = new StringBuilder();
@@ -703,7 +703,13 @@ public class MainPageController extends Controller {
         }
     }
 
-    DiskMap getDisk(int idx){
+    /**
+     * Returns reference to disk of given index.
+     * @param idx Indicates the number of disk we want to get access
+     * @return {@link DiskMap}
+     */
+    @Override
+    public synchronized DiskMap getDisk(int idx){
         return serverDiskMap.get(idx);
     }
 
@@ -711,6 +717,7 @@ public class MainPageController extends Controller {
      * This method returns server's credentials
      * @return CredentialPacket
      */
+    @Override
     public CredentialPacket getCredentialPacket() {
         return credentialPacket;
     }
@@ -719,6 +726,7 @@ public class MainPageController extends Controller {
      * This method returns Server instance
      * @return Server
      */
+    @Override
     public Server getServer() {
         return server;
     }
@@ -727,6 +735,7 @@ public class MainPageController extends Controller {
      * This method returns instance of email session
      * @return EmailUtil
      */
+    @Override
     public EmailUtil getEmailSession() {
         return emailSession;
     }
@@ -735,6 +744,7 @@ public class MainPageController extends Controller {
      * This method returns full list of clients with current states
      * @return ListOfClients
      */
+    @Override
     public ListOfClients getListOfClients(){
         return  listOfClients;
     }
@@ -744,7 +754,16 @@ public class MainPageController extends Controller {
      */
     @Override
     public void clearRoot() {
-        serverTreeView.setRoot(null);
+        Platform.runLater(()->serverTreeView.setRoot(null));
+    }
+
+    /**
+     * This method refresh {@link TreeView}
+     */
+    @Override
+    public void refreshTree() {
+        clearRoot();
+        displayTree();
     }
 
     /**
@@ -752,7 +771,7 @@ public class MainPageController extends Controller {
      */
     @Override
     public void displayTree() {
-        displayTreeView();
+        Platform.runLater(()->displayTreeView());
     }
 
     /**
@@ -762,7 +781,7 @@ public class MainPageController extends Controller {
     @Override
     @FXML
     public void setStatusText(String string){
-        serverStatusText.setText(string);
+        Platform.runLater(()->serverStatusText.setText(string));
     }
 
     /**
@@ -775,7 +794,7 @@ public class MainPageController extends Controller {
     public void addLog(Constants.LogType logType, String message){
         Text textToAdd = new Text();
         textToAdd.setText(message);
-        textToAdd.setWrappingWidth(304);
+        textToAdd.setWrappingWidth(390);
         switch(logType){
             case INFO:
                 textToAdd.setFill(Color.BLUE);
@@ -787,6 +806,8 @@ public class MainPageController extends Controller {
                 textToAdd.setFill(Color.GREEN);
                 break;
         }
-        logContent.getChildren().add(textToAdd);
+        Platform.runLater(()->{
+            logContent.getChildren().add(textToAdd);
+        });
     }
 }
