@@ -73,7 +73,6 @@ public class Server {
             i.printStackTrace(outStream);
             stringBuilder.append(new Date()).append(":\n").append("Connection issue! \n\t").append(i.getMessage()).append("\n").append(outStream.toString()).append("\n");
             System.out.println(stringBuilder.toString());
-            i.printStackTrace();
             Timer timer = new Timer();
             TimerTask task = new TimerTask() {
                 @Override
@@ -83,7 +82,6 @@ public class Server {
                 }
             };
             timer.schedule(task, 4000);
-
         }
     }
 
