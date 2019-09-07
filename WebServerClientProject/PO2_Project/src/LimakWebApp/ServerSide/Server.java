@@ -18,13 +18,7 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * <h1>Server</h1>
@@ -233,6 +227,21 @@ public class Server {
         }
     }
 
+    /**
+     * This method removes from {@link #threadList} {@link CommunicationServiceThreadHandler} which is supposed to be closed.
+     * @param ID ID of {@link CommunicationServiceThreadHandler}
+     */
+    public void removeHandlerById(String ID){
+        Iterator<CommunicationServiceThreadHandler> iterator = threadList.iterator();
+        CommunicationServiceThreadHandler item = iterator.next();
+        while(item != null){
+            if(item.getID().equals(ID)){
+                iterator.remove();
+                break;
+            }
+            item = iterator.next();
+        }
+    }
     /**
      * This method sets boolean flag to given value to stop or not process of accepting new sockets.
      * @param value value to set

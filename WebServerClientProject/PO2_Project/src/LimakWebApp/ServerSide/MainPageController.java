@@ -359,6 +359,7 @@ public class MainPageController extends AbstractServerController {
     public void cleanUpSessionForID(String ID, CredentialPacket user){
         removeId(ID);
         updateListOfClients(user, false);
+        getServer().removeHandlerById(ID);
     }
 
     /**

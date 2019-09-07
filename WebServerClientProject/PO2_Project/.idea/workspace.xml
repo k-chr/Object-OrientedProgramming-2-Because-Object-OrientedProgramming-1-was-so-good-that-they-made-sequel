@@ -2,253 +2,161 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/ApacheWatchService.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/AuthAgent.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/Client.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/ClientApp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/LoginPageController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/MainPageController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/TrayIconNotification.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/ApacheWatchService.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/AuthAgent.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/Client.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/ClientApp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/LoginPageController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/MainPageController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/TrayIconNotification.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-frame.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/CredentialPacket.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/FilePacket.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/MessageToSend.COMMAND_TYPE.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/MessageToSend.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/SocketHandler.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/CredentialPacket.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/FilePacket.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/MessageToSend.COMMAND_TYPE.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/MessageToSend.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/SocketHandler.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-frame.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/DiskMap.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/EmailUtil.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/FileAlreadyExistsOnServerException.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/ListOfClients.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/MainPageController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/Server.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/ServerApp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/CommunicationServiceThreadHandler.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/DiskMap.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/EmailUtil.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/FileAlreadyExistsOnServerException.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/ListOfClients.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/MainPageController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/Server.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/ServerApp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-frame.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServiceThread.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServicesHandler.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/TestClientController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/TestServerController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/TestsForClientAndServer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/class-use/TestClientController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/class-use/TestServerController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/class-use/TestsForClientAndServer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-frame.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/AbstractClientController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/AbstractServerController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/Constants.LogType.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/Constants.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/Controller.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/DataPair.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/MessageTemplates.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/StringFunctionalInterface.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/AbstractClientController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/AbstractServerController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/Constants.LogType.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/Constants.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/Controller.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/DataPair.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/MessageTemplates.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/StringFunctionalInterface.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-frame.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/class-use/ServiceThread.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/class-use/ServicesHandler.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-frame.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/allclasses-frame.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/allclasses-noframe.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/constant-values.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/deprecated-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/help-doc.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-10.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-11.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-12.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-13.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-14.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-15.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-16.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-17.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-18.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-6.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-7.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-8.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-9.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/external/jquery/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-bg_flat_0_aaaaaa_40x100.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-bg_flat_75_ffffff_40x100.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-bg_glass_55_fbf9ee_1x400.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-bg_glass_65_ffffff_1x400.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-bg_glass_75_dadada_1x400.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-bg_glass_75_e6e6e6_1x400.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-bg_glass_95_fef1ec_1x400.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-icons_222222_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-icons_2e83ff_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-icons_454545_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-icons_888888_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/images/ui-icons_cd0a0a_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jquery-1.10.2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jquery-ui.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jquery-ui.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jquery-ui.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jquery-ui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jquery-ui.structure.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jquery-ui.structure.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jszip-utils/dist/jszip-utils-ie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jszip-utils/dist/jszip-utils-ie.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jszip-utils/dist/jszip-utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jszip-utils/dist/jszip-utils.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jszip/dist/jszip.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/jquery/jszip/dist/jszip.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/member-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/member-search-index.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/overview-frame.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/overview-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/overview-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/package-list" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/package-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/package-search-index.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/resources/glass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/resources/x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/serialized-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/type-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JavaDoc/type-search-index.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-jupiter-5.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-jupiter-api-5.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-jupiter-engine-5.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-jupiter-migrationsupport-5.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-jupiter-params-5.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-platform-commons-1.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-platform-console-1.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-platform-console-standalone-1.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-platform-engine-1.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-platform-launcher-1.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-platform-reporting-1.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-platform-runner-1.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-platform-suite-api-1.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-platform-testkit-1.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Third party packages/junit-vintage-engine-5.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Tests/TestClientController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Tests/TestServerController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Tests/TestsForClientAndServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/PO2_Project/META-INF/PO2_Project.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LimakWebApp/Tests/TestClientController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LimakWebApp/Tests/TestServerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LimakWebApp/Tests/TestsForClientAndServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PO2_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PO2_Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/ApacheWatchService.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/ApacheWatchService.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/AuthAgent.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/AuthAgent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/Client.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/Client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/ClientApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/ClientApp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/LoginPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/LoginPageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/MainPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/MainPageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/TrayIconNotification.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/TrayIconNotification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/ApacheWatchService.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/ApacheWatchService.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/AuthAgent.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/AuthAgent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/Client.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/Client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/ClientApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/ClientApp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/LoginPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/LoginPageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/MainPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/MainPageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/TrayIconNotification.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/class-use/TrayIconNotification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ClientSide/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/CredentialPacket.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/CredentialPacket.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/FilePacket.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/FilePacket.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/MessageToSend.COMMAND_TYPE.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/MessageToSend.COMMAND_TYPE.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/MessageToSend.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/MessageToSend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/SocketHandler.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/SocketHandler.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/CredentialPacket.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/CredentialPacket.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/FilePacket.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/FilePacket.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/MessageToSend.COMMAND_TYPE.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/MessageToSend.COMMAND_TYPE.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/MessageToSend.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/MessageToSend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/SocketHandler.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/class-use/SocketHandler.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/DataPackets/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/DiskMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/DiskMap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/EmailUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/EmailUtil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/FileAlreadyExistsOnServerException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/FileAlreadyExistsOnServerException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/ListOfClients.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/ListOfClients.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/MainPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/MainPageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/Server.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/Server.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/ServerApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/ServerApp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/CommunicationServiceThreadHandler.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/CommunicationServiceThreadHandler.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/DiskMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/DiskMap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/EmailUtil.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/EmailUtil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/FileAlreadyExistsOnServerException.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/FileAlreadyExistsOnServerException.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/ListOfClients.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/ListOfClients.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/MainPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/MainPageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/Server.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/Server.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/ServerApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/class-use/ServerApp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServerSide/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServiceThread.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServiceThread.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServicesHandler.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/ServicesHandler.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/TestClientController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/TestClientController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/TestServerController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/TestServerController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/TestsForClientAndServer.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/TestsForClientAndServer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/class-use/TestClientController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/class-use/TestClientController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/class-use/TestServerController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/class-use/TestServerController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/class-use/TestsForClientAndServer.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/class-use/TestsForClientAndServer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Tests/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/AbstractClientController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/AbstractClientController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/AbstractServerController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/AbstractServerController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/Constants.LogType.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/Constants.LogType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/Constants.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/Constants.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/Controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/Controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/DataPair.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/DataPair.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/MessageTemplates.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/MessageTemplates.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/StringFunctionalInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/StringFunctionalInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/AbstractClientController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/AbstractClientController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/AbstractServerController.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/AbstractServerController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/Constants.LogType.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/Constants.LogType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/Constants.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/Constants.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/Controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/Controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/DataPair.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/DataPair.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/MessageTemplates.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/MessageTemplates.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/StringFunctionalInterface.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/class-use/StringFunctionalInterface.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/Utils/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/class-use/ServiceThread.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/class-use/ServiceThread.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/class-use/ServicesHandler.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/class-use/ServicesHandler.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/LimakWebApp/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/allclasses-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/allclasses-noframe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/constant-values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/deprecated-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/help-doc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-17.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-18.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-18.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index-files/index-9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/member-search-index.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/member-search-index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/member-search-index.zip" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/member-search-index.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/overview-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/overview-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/overview-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/package-search-index.zip" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/package-search-index.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/serialized-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/serialized-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDoc/type-search-index.zip" beforeDir="false" afterPath="$PROJECT_DIR$/JavaDoc/type-search-index.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ApacheWatchService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ApacheWatchService$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ApacheWatchService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ApacheWatchService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/AuthAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/AuthAgent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ClientApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/ClientApp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/LoginPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/LoginPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ClientSide/MainPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/CredentialPacket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/CredentialPacket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/FilePacket.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/DataPackets/FilePacket.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DiskMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/DiskMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/EmailUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ListOfClients.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ListOfClients.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/MainPageController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ServerApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServerSide/ServerApp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServiceThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServiceThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServicesHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/ServicesHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Tests/TestsForClient$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Tests/TestsForClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/AbstractClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/AbstractClientController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/AbstractServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/AbstractServerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants$LogType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants$LogType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/DataPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/DataPair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/MessageTemplates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Utils/MessageTemplates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Tests/TestServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Tests/TestServerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Tests/TestsForClientAndServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO2_Project/LimakWebApp/Tests/TestsForClientAndServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/ApacheWatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/ApacheWatchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/AuthAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/AuthAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/LoginPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/CredentialPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/CredentialPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/FilePacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/FilePacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/MessageToSend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/MessageToSend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/SocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/DataPackets/SocketHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/DiskMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/EmailUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/FileAlreadyExistsOnServerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/FileAlreadyExistsOnServerException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/ListOfClients.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/ListOfClients.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServerSide/ServerApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LimakWebApp/ServicesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/ServicesHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Tests/TestsForClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/AbstractClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/AbstractClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/AbstractServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/AbstractServerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/DataPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/DataPair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Utils/MessageTemplates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Utils/MessageTemplates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Tests/TestServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Tests/TestServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LimakWebApp/Tests/TestsForClientAndServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LimakWebApp/Tests/TestsForClientAndServer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -334,7 +242,7 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Third party packages/junit-vintage-engine-5.5.1.jar!/" />
+    <property name="last_opened_file_path" value="C:/Program Files/Java/jre-9.0.4/lib/javafx-swt.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -365,7 +273,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -547,7 +455,7 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServicesHandler.java</url>
-          <line>57</line>
+          <line>69</line>
           <option name="timeStamp" value="222" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -562,7 +470,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>159</line>
+          <line>160</line>
           <option name="timeStamp" value="247" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -582,7 +490,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java</url>
-          <line>172</line>
+          <line>166</line>
           <option name="timeStamp" value="290" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -597,7 +505,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>165</line>
+          <line>166</line>
           <option name="timeStamp" value="318" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -610,12 +518,12 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>562</line>
+          <line>563</line>
           <option name="timeStamp" value="336" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>563</line>
+          <line>564</line>
           <option name="timeStamp" value="337" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -715,7 +623,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>219</line>
+          <line>220</line>
           <option name="timeStamp" value="428" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -725,12 +633,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
-          <line>225</line>
+          <line>226</line>
           <option name="timeStamp" value="430" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
-          <line>224</line>
+          <line>225</line>
           <option name="timeStamp" value="431" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -753,12 +661,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>146</line>
+          <line>147</line>
           <option name="timeStamp" value="438" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>140</line>
+          <line>141</line>
           <option name="timeStamp" value="439" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -793,7 +701,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java</url>
-          <line>229</line>
+          <line>223</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
@@ -801,17 +709,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java</url>
-          <line>231</line>
+          <line>225</line>
           <option name="timeStamp" value="452" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>574</line>
+          <line>575</line>
           <option name="timeStamp" value="454" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>573</line>
+          <line>574</line>
           <option name="timeStamp" value="455" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -821,22 +729,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>70</line>
+          <line>71</line>
           <option name="timeStamp" value="458" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>71</line>
+          <line>72</line>
           <option name="timeStamp" value="459" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>75</line>
+          <line>76</line>
           <option name="timeStamp" value="460" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>76</line>
+          <line>77</line>
           <option name="timeStamp" value="461" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -869,22 +777,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>174</line>
+          <line>175</line>
           <option name="timeStamp" value="468" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>268</line>
+          <line>269</line>
           <option name="timeStamp" value="469" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>171</line>
+          <line>172</line>
           <option name="timeStamp" value="471" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>173</line>
+          <line>174</line>
           <option name="timeStamp" value="473" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -914,17 +822,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>141</line>
+          <line>142</line>
           <option name="timeStamp" value="482" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>570</line>
+          <line>571</line>
           <option name="timeStamp" value="484" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>571</line>
+          <line>572</line>
           <option name="timeStamp" value="485" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -939,7 +847,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
-          <line>65</line>
+          <line>66</line>
           <option name="timeStamp" value="488" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -948,18 +856,8 @@
           <option name="timeStamp" value="489" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServicesHandler.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="490" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="491" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>572</line>
+          <line>573</line>
           <option name="timeStamp" value="492" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -977,6 +875,26 @@
           <line>76</line>
           <option name="timeStamp" value="495" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>102</line>
+          <option name="timeStamp" value="496" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="497" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="498" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LimakWebApp/ServiceThread.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="499" />
+        </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/MainPageController.java</url>
           <line>303</line>
@@ -987,7 +905,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>555</line>
+          <line>556</line>
           <properties class="LimakWebApp.ServerSide.MainPageController" method="checkIfAreFilesToSendForInactiveUsers">
             <option name="EMULATED" value="true" />
           </properties>
@@ -1035,7 +953,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ClientSide/Client.java</url>
-          <line>236</line>
+          <line>237</line>
           <properties class="LimakWebApp.ClientSide.Client" method="sendListOfFiles">
             <option name="EMULATED" value="true" />
           </properties>
@@ -1067,7 +985,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/Server.java</url>
-          <line>228</line>
+          <line>222</line>
           <properties class="LimakWebApp.ServerSide.Server" method="shareToUser">
             <option name="EMULATED" value="true" />
           </properties>
@@ -1075,7 +993,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/MainPageController.java</url>
-          <line>568</line>
+          <line>569</line>
           <properties class="LimakWebApp.ServerSide.MainPageController" method="addUserToFileOwners">
             <option name="EMULATED" value="true" />
           </properties>
@@ -1083,7 +1001,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/LimakWebApp/ServerSide/CommunicationServiceThreadHandler.java</url>
-          <line>69</line>
+          <line>70</line>
           <properties class="LimakWebApp.ServerSide.CommunicationServiceThreadHandler" method="shareToUser">
             <option name="EMULATED" value="true" />
           </properties>

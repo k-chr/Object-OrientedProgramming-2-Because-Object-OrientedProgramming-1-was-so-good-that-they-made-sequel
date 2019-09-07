@@ -35,11 +35,12 @@ import java.util.stream.Collectors;
 public class CommunicationServiceThreadHandler extends ServicesHandler {
 
     private final long err = Long.MAX_VALUE;
+
     private final String ID;
+
     private CredentialPacket remoteEndPoint;
     private boolean isSomethingToShare = false;
     private volatile String itemToShare;
-
     /**
      * Constructor of CommunicationThreadHandler class, sets handler, credentials and ID and initialize communication with client.
      * @param handler contains accepted sockets
@@ -276,5 +277,9 @@ public class CommunicationServiceThreadHandler extends ServicesHandler {
                 break;
             }
         }
+    }
+
+    String getID() {
+        return ID;
     }
 }

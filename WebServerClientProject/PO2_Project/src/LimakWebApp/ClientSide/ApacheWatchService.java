@@ -62,7 +62,7 @@ public class ApacheWatchService {
             public void onFileCreate(File file) {
                 File parent = file.getParentFile();
                 clientController.refreshTree();
-                if (parent.getName().equals("Downloads")) {
+                if (parent.getName().equals("Downloads") || file.isDirectory()) {
                     return;
                 }
                 clientController.setItemToSend(file);
@@ -71,6 +71,9 @@ public class ApacheWatchService {
 
             @Override
             public void onFileDelete(File file) {
+                if(file.isDirectory()){
+                    return;
+                }
                 MessageToSend command = new MessageToSend(clientController.getCredentialPacket(), MessageToSend.COMMAND_TYPE.REMOVE_USER_FROM_FILE_OWNERS);
                 ArrayList<Object> arrList = new ArrayList<>();
                 arrList.add(clientController.getCredentialPacket().getUserName());

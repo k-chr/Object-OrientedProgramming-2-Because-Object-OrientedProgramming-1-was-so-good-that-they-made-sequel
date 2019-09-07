@@ -156,6 +156,7 @@ public class LoginPageController  extends Controller {
                     controller.setClient(client);
                     controller.setCredentialPacket( authAgent.getCredentialPacket());
                     client.setController(controller);
+                    controller.clearRoot();
                     controller.createDirectories();
                     controller.displayTree();
                     ApacheWatchService apacheWatchService = new ApacheWatchService(controller);

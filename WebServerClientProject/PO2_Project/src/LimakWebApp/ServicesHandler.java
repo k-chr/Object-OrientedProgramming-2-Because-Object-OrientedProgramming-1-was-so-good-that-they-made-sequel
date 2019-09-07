@@ -34,8 +34,20 @@ public abstract class ServicesHandler {
 
     private volatile ServiceThread fileService;
     private volatile ServiceThread notificationService;
+
+    /**
+     * Files prepared to send to Server/User.
+     */
     protected volatile Map.Entry<CredentialPacket, ArrayList<File>> filesToTransfer;
+
+    /**
+     * Reference to Controller to perform GUI interaction.
+     */
     protected volatile Controller mainPageController;
+
+    /**
+     * Indicates the closed state of {@link ServicesHandler}
+     */
     protected volatile boolean closed = false;
 
     /**
@@ -75,7 +87,6 @@ public abstract class ServicesHandler {
             saveFile((FilePacket) o);
         }
         else if(o instanceof MessageToSend){
-            if(this.getLocalEndPoint().equals((CredentialPacket) (((MessageToSend)o).getUser()))) return;
             rcvCmd((MessageToSend) o);
         }
     }

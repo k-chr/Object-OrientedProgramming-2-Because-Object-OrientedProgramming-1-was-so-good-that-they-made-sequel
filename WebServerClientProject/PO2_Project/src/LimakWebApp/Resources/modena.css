@@ -1,0 +1,274 @@
+.root {
+
+    -fx-base: #ececec;
+
+    -fx-background: derive(-fx-base,26.4%);
+
+    -fx-control-inner-background: derive(-fx-base,80%);
+
+    -fx-control-inner-background-alt: derive(-fx-control-inner-background,-2%);
+
+    -fx-dark-text-color: black;
+    -fx-mid-text-color: #333;
+    -fx-light-text-color: white;
+
+    -fx-accent: #0096C9;
+
+    -fx-default-button: #ABD8ED;
+
+    -fx-focus-color: #039ED3;
+    -fx-faint-focus-color: #039ED322;
+
+    -fx-color: -fx-base;
+
+    /* Chart Color Palette */
+    CHART_COLOR_1: #f3622d;
+    CHART_COLOR_2: #fba71b;
+    CHART_COLOR_3: #57b757;
+    CHART_COLOR_4: #41a9c9;
+    CHART_COLOR_5: #4258c9;
+    CHART_COLOR_6: #9a42c8;
+    CHART_COLOR_7: #c84164;
+    CHART_COLOR_8: #888888;
+
+    CHART_COLOR_1_TRANS_20: #f3622d33;
+    CHART_COLOR_2_TRANS_20: #fba71b33;
+    CHART_COLOR_3_TRANS_20: #57b75733;
+    CHART_COLOR_4_TRANS_20: #41a9c933;
+    CHART_COLOR_5_TRANS_20: #4258c933;
+    CHART_COLOR_6_TRANS_20: #9a42c833;
+    CHART_COLOR_7_TRANS_20: #c8416433;
+    CHART_COLOR_8_TRANS_20: #88888833;
+
+    CHART_COLOR_1_TRANS_70: #f3622db3;
+    CHART_COLOR_2_TRANS_70: #fba71bb3;
+    CHART_COLOR_3_TRANS_70: #57b757b3;
+    CHART_COLOR_4_TRANS_70: #41a9c9b3;
+    CHART_COLOR_5_TRANS_70: #4258c9b3;
+    CHART_COLOR_6_TRANS_70: #9a42c8b3;
+    CHART_COLOR_7_TRANS_70: #c84164b3;
+    CHART_COLOR_8_TRANS_70: #888888b3;
+
+    -fx-hover-base: ladder(
+        -fx-base,
+        derive(-fx-base,20%) 20%,
+        derive(-fx-base,30%) 35%,
+        derive(-fx-base,40%) 50%
+     );
+
+    -fx-pressed-base: derive(-fx-base,-6%);
+
+    -fx-text-background-color: ladder(
+        -fx-background,
+        -fx-light-text-color 45%,
+        -fx-dark-text-color  46%,
+        -fx-dark-text-color  59%,
+        -fx-mid-text-color   60%
+    );
+
+
+    -fx-box-border: ladder(
+        -fx-color,
+        black 20%,
+        derive(-fx-color,-15%) 30%
+    );
+
+    -fx-text-box-border: ladder(
+        -fx-background,
+        black 10%,
+        derive(-fx-background, -15%) 30%
+    );
+
+    -fx-shadow-highlight-color: ladder(
+        -fx-background,
+        rgba(255,255,255,0.07) 0%,
+        rgba(255,255,255,0.07) 20%,
+        rgba(255,255,255,0.07) 70%,
+        rgba(255,255,255,0.7) 90%,
+        rgba(255,255,255,0.75) 100%
+      );
+
+    -fx-outer-border: derive(-fx-color,-23%);
+
+    -fx-inner-border: linear-gradient(to bottom,
+                ladder(
+                    -fx-color,
+                    derive(-fx-color,30%) 0%,
+                    derive(-fx-color,20%) 40%,
+                    derive(-fx-color,25%) 60%,
+                    derive(-fx-color,55%) 80%,
+                    derive(-fx-color,55%) 90%,
+                    derive(-fx-color,75%) 100%
+                ),
+                ladder(
+                    -fx-color,
+                    derive(-fx-color,20%) 0%,
+                    derive(-fx-color,10%) 20%,
+                    derive(-fx-color,5%) 40%,
+                    derive(-fx-color,-2%) 60%,
+                    derive(-fx-color,-5%) 100%
+                ));
+    -fx-inner-border-horizontal: linear-gradient(to right, derive(-fx-color,55%), derive(-fx-color,-5%));
+    -fx-inner-border-bottomup: linear-gradient(to top, derive(-fx-color,55%), derive(-fx-color,-5%));
+
+
+    -fx-body-color: linear-gradient(to bottom,
+            ladder(
+                -fx-color,
+                derive(-fx-color,8%) 75%,
+                derive(-fx-color,10%) 80%
+            ),
+            derive(-fx-color,-8%));
+    -fx-body-color-bottomup: linear-gradient(to top, derive(-fx-color,10%) ,derive(-fx-color,-6%));
+    -fx-body-color-to-right: linear-gradient(to right, derive(-fx-color,10%) ,derive(-fx-color,-6%));
+
+    -fx-text-base-color: ladder(
+        -fx-color,
+        -fx-light-text-color 45%,
+        -fx-dark-text-color  46%,
+        -fx-dark-text-color  59%,
+        -fx-mid-text-color   60%
+    );
+
+
+    -fx-text-inner-color: ladder(
+        -fx-control-inner-background,
+        -fx-light-text-color 45%,
+        -fx-dark-text-color  46%,
+        -fx-dark-text-color  59%,
+        -fx-mid-text-color   60%
+    );
+
+    -fx-mark-color: ladder(
+        -fx-color,
+        white 30%,
+        derive(-fx-color,-63%) 31%
+    );
+
+    -fx-mark-highlight-color: ladder(
+        -fx-color,
+        derive(-fx-color,80%) 60%,
+        white 70%
+    );
+
+
+    -fx-selection-bar: -fx-accent;
+
+    -fx-selection-bar-non-focused: lightgrey;
+
+    -fx-selection-bar-text: -fx-text-background-color;
+
+    -fx-background-color: inherit;
+    -fx-background-radius: inherit;
+    -fx-background-insets: inherit;
+    -fx-padding: inherit;
+
+    -fx-cell-hover-color: #cce3f4;
+
+    -fx-cell-focus-inner-border: derive(-fx-selection-bar,30%);
+
+    -fx-page-bullet-border: #acacac;
+    -fx-page-indicator-hover-border: #accee5;
+
+    -fx-focused-text-base-color : ladder(
+        -fx-selection-bar,
+        -fx-light-text-color 45%,
+        -fx-dark-text-color 46%,
+        -fx-dark-text-color 59%,
+        -fx-mid-text-color 60%
+    );
+    -fx-focused-mark-color : -fx-focused-text-base-color;
+    -fx-background-color: -fx-background;
+}
+
+.tree-view:disabled,
+.tree-table-view:disabled,
+.tree-cell:filled:selected:focused:disabled,
+.tree-cell:filled:selected:disabled,
+.tree-cell > .tree-disclosure-node:disabled {
+    -fx-opacity: 0.4;
+}
+
+.tree-view {
+    -fx-background-color: white;
+    -fx-background-insets: 0, 1;
+    -fx-padding: 1;
+}
+
+.tree-view:focused{
+    -fx-background-color: -fx-faint-focus-color, -fx-focus-color, -fx-control-inner-background;
+    -fx-background-insets: -1.4, -0.3, 1;
+    -fx-background-radius: 2, 0, 0;
+}
+
+.tree-view > .virtual-flow > .scroll-bar:vertical {
+    -fx-background-insets: 0, 0 0 0 1;
+    -fx-padding: -1 -1 -1 0;
+}
+.tree-view > .virtual-flow > .scroll-bar:horizontal {
+    -fx-background-insets: 0, 1 0 0 0;
+    -fx-padding: 0 -1 -1 -1;
+}
+.tree-view > .virtual-flow > .corner{
+    -fx-background-color: derive(-fx-base,-1%);
+}
+
+.tree-cell {
+    -fx-background: white;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+/* Selected rows */
+.tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:filled:selected {
+    -fx-background: -fx-selection-bar;
+    -fx-table-cell-border-color: derive(-fx-selection-bar, 20%);
+}
+/* Selected when control is not focused */
+.tree-cell:filled:selected{
+    -fx-background: lightgrey;
+    -fx-table-cell-border-color: lightgrey, 20%;
+}
+.tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:focused{
+    -fx-background-color: -fx-background, -fx-cell-focus-inner-border, -fx-background;
+    -fx-background-insets: 0, 1, 2;
+}
+
+
+.tree-cell {
+    -fx-padding: 0.25em; /* 3 */
+    -fx-indent: 1em;
+}
+.tree-cell .label {
+    -fx-padding: 0.0em 0.0em 0.0em 0.25em; /* 0 0 0 3 */
+}
+.tree-cell > .tree-disclosure-node{
+    -fx-padding: 4 6 4 8;
+    -fx-background-color: transparent;
+}
+.tree-cell > .tree-disclosure-node > .arrow {
+    -fx-background-color: black;
+    -fx-padding: 0.333333em 0.229em 0.333333em 0.229em; /* 4 */
+    -fx-shape: "M 0 -3.5 L 4 0 L 0 3.5 z";
+}
+.tree-cell:expanded > .tree-disclosure-node > .arrow {
+    -fx-rotate: 90;
+}
+
+
+
+.tab-pane > * > .tree-view,
+.split-pane > * > .tree-view {
+    -fx-background-insets: 0, 0;
+    -fx-padding: 0;
+ }
+
+.tab-pane.floating > * > .tree-view {
+    -fx-background-insets: 0, 0;
+    -fx-padding: -1;
+}
+
+.titled-pane > .content > .tree-view {
+    -fx-background-color: null;
+    -fx-background-insets: 0, 0;
+    -fx-padding: 0;
+}

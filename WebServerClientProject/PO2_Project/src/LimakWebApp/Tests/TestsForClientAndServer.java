@@ -356,6 +356,8 @@ public class TestsForClientAndServer {
             }
             catch(InterruptedException ignored){}
             Assertions.assertEquals("Shared successfully", clientController.getStatus());
+            Assertions.assertEquals("Received command", serverController.getStatus());
+            Assertions.assertTrue(serverController.getLog().contains("SHARE_FILE_TO_USER"));
         }
     }
 

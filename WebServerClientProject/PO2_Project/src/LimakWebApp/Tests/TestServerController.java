@@ -44,6 +44,8 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  */
 public class TestServerController extends AbstractServerController {
 
+    private volatile String log;
+
     private String status;
     private final Object lock = new Object();
     private static Server server;
@@ -55,7 +57,6 @@ public class TestServerController extends AbstractServerController {
     private volatile ArrayList<DiskMap> serverDiskMap;
     private volatile ArrayList<DataPair> packetBooleanList;
     private volatile Set<String> ids;
-
     /**
      * Basic constructor of {@link TestServerController}
      * @param testPacket Data of {@link Server}
@@ -377,6 +378,7 @@ public class TestServerController extends AbstractServerController {
             setStatusText("Can't save file");
         }
     }
+
     private void dumpListOfClients(){
         File root = new File(credentialPacket.getUserFolderPath());
         File listOfClientsFile = new File(root, Constants.getListOfClientsFileName(this));
@@ -390,7 +392,6 @@ public class TestServerController extends AbstractServerController {
             setStatusText("Can't save file");
         }
     }
-
     /**
      * Cleans up session for given ID and user
      * @param ID Id of session
@@ -437,10 +438,10 @@ public class TestServerController extends AbstractServerController {
             }
         }
     }
+
     private synchronized boolean checkIfIdIsValid(String idToPut){
         return ids.contains(idToPut);
     }
-
     /**
      * Updates list of clients
      * @param packet User to update
@@ -517,7 +518,7 @@ public class TestServerController extends AbstractServerController {
      * @param body Contents
      */
     @Override
-    public void addLog(Constants.LogType type, String body) { }
+    public void addLog(Constants.LogType type, String body) { log = body; }
 
     /**
      * This method should set status bar in deriving Controller
@@ -550,5 +551,13 @@ public class TestServerController extends AbstractServerController {
      */
     public String getStatus() {
         return status;
+    }
+
+    /**
+     * Returns log for testing purpose
+     * @return {@link String}
+     */
+    public String getLog() {
+        return log;
     }
 }

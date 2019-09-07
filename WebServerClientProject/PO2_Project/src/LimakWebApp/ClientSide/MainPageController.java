@@ -73,7 +73,7 @@ public class MainPageController extends AbstractClientController {
     @FXML
     private Button logOutButton;
     @FXML
-    private ListView<String> inactiveUsersListView;
+    private volatile ListView<String> inactiveUsersListView;
     @FXML
     private AnchorPane viewOfClientsToShare;
     @FXML
@@ -85,7 +85,7 @@ public class MainPageController extends AbstractClientController {
     @FXML
     private VBox logContent;
     @FXML
-    private TreeView<File> tView;
+    private volatile TreeView<File> tView;
     @FXML
     private TextField  statusText;
 
@@ -606,6 +606,7 @@ public class MainPageController extends AbstractClientController {
     @Override
     public void clearRoot() {
         Platform.runLater(()->tView.setRoot(null));
+        Platform.runLater(()-> tView.setStyle(null));
     }
 
     /**

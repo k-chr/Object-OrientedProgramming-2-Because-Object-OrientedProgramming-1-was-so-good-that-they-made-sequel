@@ -178,6 +178,7 @@ public class Client extends ServicesHandler {
                         .append("\n").append("to:\n\t").append(command.getContents().get(0)).append("\n");
                 mainPageController.addLog(Constants.LogType.INFO, builder.toString());
                 mainPageController.setStatusText("Shared successfully");
+                break;
             }
             case REMOVE_USER_FROM_FILE_OWNERS: {
                 getNotificationService().sendObject(command);

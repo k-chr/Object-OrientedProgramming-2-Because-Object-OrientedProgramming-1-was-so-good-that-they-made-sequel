@@ -36,7 +36,8 @@ public class ServiceThread {
     private volatile ObjectInputStream inputStream;
     private volatile ObjectOutputStream outputStream;
     private volatile Boolean sendExit = false;
-
+    private final Object lock = new Object();
+    private  final Object readLock = new Object();
     /**
      * Constructor of ServiceThread, sets socket, gets I/O streams.
      * @param socket socket to set
@@ -64,9 +65,8 @@ public class ServiceThread {
                 if (sendExit || socket.isClosed() || socket.isInputShutdown()) break;
                 try {
                         Object object = inputStream.readObject();
-                        if(object instanceof MessageToSend && this.parentHandler.getLocalEndPoint().equals((CredentialPacket) (((MessageToSend)object).getUser()))) return;
                         parentHandler.processObject(object);
-                } catch (ClassNotFoundException cNFE) {
+                }catch (ClassNotFoundException cNFE) {
                     parentHandler.getController().setStatusText("Can't get the " + token + "!");
                     StringBuilder stringBuilder = new StringBuilder();
                     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -99,8 +99,10 @@ public class ServiceThread {
         if(socket.isClosed() || socket.isOutputShutdown()) return;
         Runnable task = () -> {
             try {
-                outputStream.writeObject(object);
-                outputStream.flush();
+                synchronized (readLock) {
+                    outputStream.writeObject(object);
+                    outputStream.flush();
+                }
             }catch (SocketException io) {
                 parentHandler.getController().setStatusText("Can't send the " + token + "!");
                 StringBuilder stringBuilder = new StringBuilder();
@@ -147,17 +149,46 @@ public class ServiceThread {
     }
 
     void cleanUp(){
+        transferService.shutdown();
+        receivingService.shutdown();
         try {
-            transferService.shutdown();
-            receivingService.shutdown();
             inputStream.close();
+        }catch(IOException io){
+            parentHandler.getController().setStatusText("Can't close socket stream!");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            io.printStackTrace(outStream);
+            stringBuilder.append(new Date())
+                    .append(":\n").append("Can't close socket stream!")
+                    .append("\n\t")
+                    .append(io.getMessage()).append("\n")
+                    .append(outStream.toString()).append("\n");
+            parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
+        }
+        try {
             outputStream.close();
+        }
+        catch(IOException io){
+            parentHandler.getController().setStatusText("Can't close socket stream!");
+            StringBuilder stringBuilder = new StringBuilder();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream outStream = new PrintStream(outputStream);
+            io.printStackTrace(outStream);
+            stringBuilder.append(new Date())
+                    .append(":\n").append("Can't close socket stream!")
+                    .append("\n\t")
+                    .append(io.getMessage()).append("\n")
+                    .append(outStream.toString()).append("\n");
+            parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
+        }
+        try {
             if(!transferService.isTerminated())
                 this.transferService.awaitTermination(3, TimeUnit.SECONDS);
             if(!receivingService.isTerminated())
                 this.receivingService.awaitTermination(3, TimeUnit.SECONDS);
         }
-        catch(InterruptedException|IOException e) {
+        catch(InterruptedException e) {
             transferService.shutdownNow();
             receivingService.shutdownNow();
             parentHandler.getController().setStatusText("Can't terminate service!");
@@ -171,6 +202,12 @@ public class ServiceThread {
                     .append(e.getMessage()).append("\n")
                     .append(outStream.toString()).append("\n");
             parentHandler.getController().addLog(Constants.LogType.ERROR, stringBuilder.toString());
+        }
+        try{
+            socket.close();
+        }
+        catch (IOException ignored){
+
         }
     }
 }
