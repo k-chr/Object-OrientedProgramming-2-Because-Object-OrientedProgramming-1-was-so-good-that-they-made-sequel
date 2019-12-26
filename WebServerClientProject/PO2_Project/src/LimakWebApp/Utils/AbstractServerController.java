@@ -21,7 +21,7 @@ import java.util.Set;
 public abstract class AbstractServerController extends Controller {
 
     /**
-     * Basin constructor of {@link AbstractServerController}
+     * Basic constructor of {@link AbstractServerController}
      */
     public AbstractServerController(){
         super();

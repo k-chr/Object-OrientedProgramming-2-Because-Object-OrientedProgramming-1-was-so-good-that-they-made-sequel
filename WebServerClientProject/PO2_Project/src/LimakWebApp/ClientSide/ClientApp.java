@@ -67,6 +67,10 @@ public class ClientApp extends Application {
         stage.setScene(new Scene(root, width, height));
         stage.getScene().getStylesheets().add(loadedCSS);
         stage.setTitle(which ? "Client app::MAIN":"Client app::LOGIN");
+        stage.setOnCloseRequest(e-> {
+            e.consume();
+            System.exit(0);
+        });
         return stage;
     }
 
